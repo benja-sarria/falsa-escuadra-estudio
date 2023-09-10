@@ -1,0 +1,35 @@
+.reusable-btn-base {
+    display: inline-flex;
+    padding: 0.8rem 2rem;
+    align-items: center;
+    gap: 0.75rem;
+    border-radius: 2.1875rem;
+
+    font-family: "Montserrat";
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: transform 400ms ease-out, padding 300ms 200ms ease-out,
+        color 400ms ease-out, border 400ms ease-out;
+    &:hover {
+        padding: 0.8rem 2.3rem;
+        transform: scale(1.1);
+        &:is([class*="green-hover"]) {
+            color: var(--falsa-escuadra-black);
+            background-color: var(--falsa-escuadra-green-mid);
+            border-color: var(--falsa-escuadra-black);
+        }
+    }
+}
+
+.outlined {
+    border: 2px solid var(--Black, #171717);
+    background-color: transparent;
+}
+
+.light {
+    border-color: #fff;
+    color: #fff;
+}
+.green-hover {
+    cursor: pointer;
+}
