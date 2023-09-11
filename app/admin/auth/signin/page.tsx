@@ -4,9 +4,16 @@ import { AnimatedLogoComponent } from "@/components/AnimatedLogoComponent/Animat
 import { ReusableButtonComponent } from "@/components/ReusableButtonComponent/ReusableButtonComponent";
 import { EventHandler, SyntheticEvent } from "react";
 import { ReusableButtonContainer } from "@/containers/ReusableButtonContainer/ReusableButtonContainer";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/utils/auth/authOptions";
+import { redirect } from "next/navigation";
 
-export default function SignIn() {
-    return (
+export default async function SignIn() {
+    const session = await getServerSession(authOptions);
+
+    return session !== null ? (
+        redirect("/admin/dashboard")
+    ) : (
         <div className={styles["page-container"]}>
             <div className={styles["logo-outer-container"]}>
                 <AnimatedLogoComponent styles={styles}>

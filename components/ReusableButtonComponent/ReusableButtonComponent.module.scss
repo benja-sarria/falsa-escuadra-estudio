@@ -15,7 +15,7 @@
         transform: scale(1.1);
         &:is([class*="green-hover"]) {
             color: var(--falsa-escuadra-black);
-            background-color: var(--falsa-escuadra-green-mid);
+            background-color: var(--falsa-escuadra-gold);
             border-color: var(--falsa-escuadra-black);
         }
     }

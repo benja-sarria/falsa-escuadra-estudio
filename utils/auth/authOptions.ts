@@ -42,28 +42,16 @@ export const authOptions: AuthOptions = {
                 console.log("[CALLBACK] => ");
                 console.log(profile);
                 console.log(account);
+                console.log(process.env.GOOGLE_AUTHORIZED_ACCOUNTS);
+                const authorizedAccounts = process.env
+                    .GOOGLE_AUTHORIZED_ACCOUNTS
+                    ? eval(process.env.GOOGLE_AUTHORIZED_ACCOUNTS)
+                    : [];
 
-                const checker = (Object.keys(process.env) as string[]).some(
-                    (env: any) => {
-                        console.log(
-                            env
-                                .toLowerCase()
-                                .includes("google_authorized_account")
-                        );
-
-                        console.log(profile?.email, process.env[env]);
-
-                        if (
-                            env
-                                .toLowerCase()
-                                .includes("google_authorized_account")
-                        ) {
-                            return profile?.email === process.env[env];
-                        } else {
-                            return false;
-                        }
-                    }
-                );
+                const checker = authorizedAccounts.some((account: any) => {
+                    console.log(profile?.email, account);
+                    return profile?.email === account;
+                });
 
                 console.log("[CHECKER] => ", checker);
 
@@ -72,9 +60,9 @@ export const authOptions: AuthOptions = {
 
             return true; // Do different verification for other providers that don't have `email_verified`
         },
-        async redirect({ url, baseUrl }: { url: string; baseUrl: string }) {
+        /*  async redirect({ url, baseUrl }: { url: string; baseUrl: string }) {
             return baseUrl;
-        },
+        }, */
         async session({
             session,
             token,

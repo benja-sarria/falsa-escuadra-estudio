@@ -1,6 +1,7 @@
 "use client";
 import { MouseEventHandler, useEffect } from "react";
 import styles from "./ReusableButtonComponent.module.scss";
+import { parseVariants } from "@/utils/styles/parseVariants";
 
 export const ReusableButtonComponent = ({
     text,
@@ -19,18 +20,7 @@ export const ReusableButtonComponent = ({
         <button
             className={`${styles["reusable-btn-base"]}${
                 styleVariants && styleVariants.length > 0
-                    ? (() => {
-                          const mappedStyles = styleVariants.map(
-                              (style: string) => {
-                                  return styles[style];
-                              }
-                          );
-                          console.log(mappedStyles);
-
-                          return ` ${mappedStyles
-                              .toString()
-                              .replaceAll(",", " ")}`;
-                      })()
+                    ? parseVariants(styleVariants, styles)
                     : ""
             }`}
             onClick={onClickHandler}
