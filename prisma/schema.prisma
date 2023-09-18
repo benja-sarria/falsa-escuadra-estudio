@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["debian-openssl-1.1.x"]
 }
 
 datasource db {
@@ -33,7 +34,7 @@ model Profile {
   bio    String?
   user   User    @relation(fields: [userId], references: [id])
   userId Int     @unique
-  photo Bytes
+  photo String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -48,9 +49,28 @@ model Product {
   published Boolean  @default(false)
   updatedBy    User     @relation(fields: [updatedById], references: [id])
   updatedById  Int
-  photos Bytes
+  photos ProductPhotos[]
+}
+
+model ProductTraits {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String  
+  description String 
+  coordinates String
+  photoId Int
+  photo ProductPhotos @relation(fields: [photoId], references: [id])
 }
 
 
-
-
+model ProductPhotos {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  src String
+  alt String
+  traits ProductTraits[]
+  productId Int
+  product Product @relation(fields: [productId], references: [id])
+}

@@ -1,5 +1,7 @@
 import GoogleProvider from "next-auth/providers/google";
 import { Account, AuthOptions, Profile } from "next-auth";
+import { UserServices } from "@/services/user.services";
+import { UsersPrismaDAO } from "@/models/daos/user.dao";
 
 export const authOptions: AuthOptions = {
     // Configure one or more authentication providers
@@ -73,10 +75,18 @@ export const authOptions: AuthOptions = {
             user: any;
         }) {
             // Send properties to the client, like an access_token and user id from a provider.
-            console.log("[SESSION]", session);
-            console.log("[SESSION]", user);
+            console.log("[SESSION-SESSION]", session);
 
-            return session;
+            const userServices = new UserServices(new UsersPrismaDAO());
+            const roleLvl = await userServices.getUserRoleLvlService(
+                session.user
+            );
+            console.log("SESSION-SETTING", roleLvl);
+
+            return {
+                ...session,
+                user: { ...session.user, roleLvl: roleLvl },
+            };
         },
     },
 };

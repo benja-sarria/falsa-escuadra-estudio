@@ -13,6 +13,7 @@
     --falsa-escuadra-blue: #3d6983;
     --falsa-escuadra-blue-mid: #99b9c9;
     --falsa-escuadra-blue-light: #c9d7da;
+    --falsa-escuadra-blue-dark: #203246;
     --falsa-escuadra-green: #458374;
     --falsa-escuadra-green-mid: #8cc0b4;
     --falsa-escuadra-green-light: #c9dad3;
@@ -21,6 +22,7 @@
     --falsa-escuadra-grey-mid: #898989;
     --falsa-escuadra-grey-light: #b9b9b9;
     --falsa-escuadra-grey-lighter: #ededed;
+    --falsa-escuadra-brown: #49332a;
 
     --foreground-rgb: 0, 0, 0;
     --background-start-rgb: 214, 219, 220;
@@ -117,3 +119,16 @@ body {
     }
 }
  */
+p,
+li,
+ul,
+div,
+span,
+h1,
+h2,
+h3 {
+    font-family: "Montserrat";
+}
+.MuiMenu-list {
+    font-family: "Montserrat" !important;
+}

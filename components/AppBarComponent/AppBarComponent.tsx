@@ -18,6 +18,8 @@ import { Session } from "next-auth";
 import { AutoAdjustImgComponent } from "../AutoAdjustImgComponent/AutoAdjustImgComponent";
 import { AnimatedNavbarLogoComponent } from "../AnimatedNavbarLogoComponent/AnimatedNavbarLogoComponent";
 
+import styles from "@/components/AppBarComponent/AppBarComponent.module.scss";
+
 const pages = ["Products", "Pricing", "Blog"];
 const settings = [
     { name: "Profile", action: () => {} },
@@ -59,13 +61,14 @@ function AppBarComponent({
 
     return (
         <AppBar
-            position="static"
+            position="fixed"
             sx={{
                 background: "var(--falsa-escuadra-black)",
                 padding: ".5rem 2rem",
                 filter: "brightness(1.2)",
                 maxHeight: "5rem",
             }}
+            className={styles["app-bar-container"]}
         >
             <Container
                 maxWidth={"xl"}
@@ -188,7 +191,9 @@ function AppBarComponent({
                             {settings.map((setting) => (
                                 <MenuItem
                                     key={setting.name}
-                                    onClick={setting.action}
+                                    onClick={() => {
+                                        setting.action();
+                                    }}
                                 >
                                     <Typography textAlign="center">
                                         {setting.name}

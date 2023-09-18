@@ -22,6 +22,20 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Session } from "next-auth";
 import AppBarComponent from "../AppBarComponent/AppBarComponent";
+import { AdminSectionType } from "@/types/adminSectionTypes";
+import CarpenterIcon from "@mui/icons-material/Carpenter";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import FingerprintIcon from "@mui/icons-material/Fingerprint";
+
+import styles from "@/components/MiniDrawerComponent/MiniDrawerComponent.module.scss";
+
+import {
+    selectActiveSection,
+    resetActiveSection,
+} from "@/redux/features/admin-slice";
+import { useDispatch } from "react-redux";
+import { AppDispatch, useAppSelector } from "@/redux/store";
 
 const drawerWidth = 240;
 
@@ -96,11 +110,17 @@ const Drawer = styled(MuiDrawer, {
 
 export default function MiniDrawerComponent({
     session,
+    enabledSections,
 }: {
     session: Session | null;
+    enabledSections: AdminSectionType;
 }) {
+    const section = useAppSelector((state) => state.activeSection.value);
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const [activeSection, setActiveSection] = React.useState(section);
+
+    const dispatch = useDispatch<AppDispatch>();
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -110,15 +130,19 @@ export default function MiniDrawerComponent({
         setOpen(false);
     };
 
+    React.useEffect(() => {
+        console.log("[SECTION]", section);
+    }, [section]);
+
     return (
         <Box
             sx={{
                 display: "flex",
             }}
+            className={styles["admin-container"]}
         >
             <CssBaseline />
 
-            <AppBarComponent session={session} open={open} />
             <Drawer
                 variant="permanent"
                 open={open}
@@ -126,17 +150,31 @@ export default function MiniDrawerComponent({
                 sx={{
                     ".MuiDrawer-paperAnchorLeft": {
                         backgroundColor:
-                            "var(--falsa-escuadra-grey) !important",
+                            "var(--falsa-escuadra-black) !important",
                     },
                 }}
             >
                 <DrawerHeader
-                    sx={{ backgroundColor: "var(--falsa-escuadra-grey-alt)" }}
+                    sx={{
+                        backgroundColor: "var(--falsa-escuadra-grey)",
+                    }}
                 >
+                    <ListItemText
+                        primary={"Administrar"}
+                        sx={{
+                            opacity: open ? 0.6 : 0,
+                            color: "var(--falsa-escuadra-white)",
+                            padding: "0rem .5rem",
+                            span: { fontWeight: "600 !important" },
+                        }}
+                    />
                     {open ? (
                         <IconButton onClick={handleDrawerClose}>
                             <ChevronLeftIcon
-                                sx={{ color: "var(--falsa-escuadra-white)" }}
+                                sx={{
+                                    color: "var(--falsa-escuadra-white)",
+                                    minHeight: "4rem",
+                                }}
                             />
                         </IconButton>
                     ) : (
@@ -147,6 +185,7 @@ export default function MiniDrawerComponent({
                             edge="start"
                             sx={{
                                 color: "var(--falsa-escuadra-white)",
+                                minHeight: "4.8rem",
                                 ...(open ? { display: "none" } : {}),
                             }}
                         >
@@ -166,59 +205,20 @@ export default function MiniDrawerComponent({
                 <Divider />
                 <List
                     sx={{
-                        backgroundColor: "var(--falsa-escuadra-grey)",
-                        borderColor: "var(--falsa-escuadra-grey)",
+                        backgroundColor: "var(--falsa-escuadra-black)",
+                        borderColor: "var(--falsa-escuadra-black)",
                     }}
                 >
-                    {["Inbox", "Starred", "Send email", "Drafts"].map(
-                        (text, index) => (
-                            <ListItem
-                                key={text}
-                                disablePadding
-                                sx={{ display: "block" }}
-                            >
-                                <ListItemButton
-                                    sx={{
-                                        minHeight: 48,
-                                        justifyContent: open
-                                            ? "initial"
-                                            : "center",
-                                        px: 2.5,
-                                    }}
-                                >
-                                    <ListItemIcon
-                                        sx={{
-                                            minWidth: 0,
-                                            mr: open ? 3 : "auto",
-                                            justifyContent: "center",
-                                            color: "var(--falsa-escuadra-white)",
-                                        }}
-                                    >
-                                        {index % 2 === 0 ? (
-                                            <InboxIcon />
-                                        ) : (
-                                            <MailIcon />
-                                        )}
-                                    </ListItemIcon>
-                                    <ListItemText
-                                        primary={text}
-                                        sx={{
-                                            opacity: open ? 1 : 0,
-                                            color: "var(--falsa-escuadra-white)",
-                                        }}
-                                    />
-                                </ListItemButton>
-                            </ListItem>
-                        )
-                    )}
-                </List>
-                <Divider />
-                <List>
-                    {["All mail", "Trash", "Spam"].map((text, index) => (
+                    {enabledSections.map((text, index) => (
                         <ListItem
                             key={text}
                             disablePadding
                             sx={{ display: "block" }}
+                            onClick={() => {
+                                console.log("[CLICKED]", text);
+
+                                dispatch(selectActiveSection(text));
+                            }}
                         >
                             <ListItemButton
                                 sx={{
@@ -235,14 +235,30 @@ export default function MiniDrawerComponent({
                                         color: "var(--falsa-escuadra-white)",
                                     }}
                                 >
-                                    {index % 2 === 0 ? (
-                                        <InboxIcon />
+                                    {text === "products" ? (
+                                        <CarpenterIcon />
+                                    ) : text === "dashboard" ? (
+                                        <DashboardIcon />
+                                    ) : text === "users" ? (
+                                        <PeopleAltIcon />
+                                    ) : text === "profile" ? (
+                                        <FingerprintIcon />
                                     ) : (
                                         <MailIcon />
                                     )}
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary={text}
+                                    primary={
+                                        text === "products"
+                                            ? "Productos"
+                                            : text === "dashboard"
+                                            ? "Inicio"
+                                            : text === "users"
+                                            ? "Usuarios"
+                                            : text === "profile"
+                                            ? "Perfil"
+                                            : "placeholder"
+                                    }
                                     sx={{
                                         opacity: open ? 1 : 0,
                                         color: "var(--falsa-escuadra-white)",
@@ -252,26 +268,21 @@ export default function MiniDrawerComponent({
                         </ListItem>
                     ))}
                 </List>
+                <Divider />
             </Drawer>
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                <DrawerHeader />
-                <Typography paragraph>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Rhoncus dolor purus non enim praesent elementum
-                    facilisis leo vel. Risus at ultrices mi tempus imperdiet.
-                    Semper risus in hendrerit gravida rutrum quisque non tellus.
-                    Convallis convallis tellus id interdum velit laoreet id
-                    donec ultrices. Odio morbi quis commodo odio aenean sed
-                    adipiscing. Amet nisl suscipit adipiscing bibendum est
-                    ultricies integer quis. Cursus euismod quis viverra nibh
-                    cras. Metus vulputate eu scelerisque felis imperdiet proin
-                    fermentum leo. Mauris commodo quis imperdiet massa
-                    tincidunt. Cras tincidunt lobortis feugiat vivamus at augue.
-                    At augue eget arcu dictum varius duis at consectetur lorem.
-                    Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-                    sapien faucibus et molestie ac.
-                </Typography>
+            <Box
+                component="main"
+                sx={{
+                    flexGrow: 1,
+                    padding: "6rem 3rem 2rem 2rem",
+                    position: "relative",
+                    backgroundColor: "var(--falsa-escuadra-blue-dark)",
+                    minHeight: "100vh",
+                }}
+            >
+                <AppBarComponent session={session} open={open} />
+                <h2>{section}</h2>
+                <Typography paragraph></Typography>
                 <Typography paragraph>
                     Consequat mauris nunc congue nisi vitae suscipit. Fringilla
                     est ullamcorper eget nulla facilisi etiam dignissim diam.

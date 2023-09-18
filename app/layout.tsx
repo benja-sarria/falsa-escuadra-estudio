@@ -5,6 +5,8 @@ import { SessionProvider } from "next-auth/react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/auth/authOptions";
 import Provider from "./context/sessionProvider";
+import { ReduxProvider } from "@/redux/provider";
+import { notFound } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +24,9 @@ export default async function RootLayout({
     return (
         <Provider session={session}>
             <html lang="en">
-                <body className={inter.className}>{children}</body>
+                <body className={inter.className}>
+                    <ReduxProvider>{children}</ReduxProvider>
+                </body>
             </html>
         </Provider>
     );
