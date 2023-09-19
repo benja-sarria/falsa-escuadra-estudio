@@ -36,6 +36,8 @@ import {
 } from "@/redux/features/admin-slice";
 import { useDispatch } from "react-redux";
 import { AppDispatch, useAppSelector } from "@/redux/store";
+import { AdminFrameComponent } from "../AdminFrameComponent/AdminFrameComponent";
+import { Tooltip } from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -220,51 +222,71 @@ export default function MiniDrawerComponent({
                                 dispatch(selectActiveSection(text));
                             }}
                         >
-                            <ListItemButton
-                                sx={{
-                                    minHeight: 48,
-                                    justifyContent: open ? "initial" : "center",
-                                    px: 2.5,
-                                }}
+                            <Tooltip
+                                title={
+                                    open
+                                        ? ""
+                                        : text === "products"
+                                        ? "Productos"
+                                        : text === "dashboard"
+                                        ? "Inicio"
+                                        : text === "users"
+                                        ? "Usuarios"
+                                        : text === "profile"
+                                        ? "Perfil"
+                                        : "placeholder"
+                                }
+                                placement="left"
+                                arrow
                             >
-                                <ListItemIcon
+                                <ListItemButton
                                     sx={{
-                                        minWidth: 0,
-                                        mr: open ? 3 : "auto",
-                                        justifyContent: "center",
-                                        color: "var(--falsa-escuadra-white)",
+                                        minHeight: 48,
+                                        justifyContent: open
+                                            ? "initial"
+                                            : "center",
+                                        px: 2.5,
                                     }}
                                 >
-                                    {text === "products" ? (
-                                        <CarpenterIcon />
-                                    ) : text === "dashboard" ? (
-                                        <DashboardIcon />
-                                    ) : text === "users" ? (
-                                        <PeopleAltIcon />
-                                    ) : text === "profile" ? (
-                                        <FingerprintIcon />
-                                    ) : (
-                                        <MailIcon />
-                                    )}
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary={
-                                        text === "products"
-                                            ? "Productos"
-                                            : text === "dashboard"
-                                            ? "Inicio"
-                                            : text === "users"
-                                            ? "Usuarios"
-                                            : text === "profile"
-                                            ? "Perfil"
-                                            : "placeholder"
-                                    }
-                                    sx={{
-                                        opacity: open ? 1 : 0,
-                                        color: "var(--falsa-escuadra-white)",
-                                    }}
-                                />
-                            </ListItemButton>
+                                    <ListItemIcon
+                                        sx={{
+                                            minWidth: 0,
+                                            mr: open ? 3 : "auto",
+                                            justifyContent: "center",
+                                            color: "var(--falsa-escuadra-white)",
+                                        }}
+                                    >
+                                        {text === "products" ? (
+                                            <CarpenterIcon />
+                                        ) : text === "dashboard" ? (
+                                            <DashboardIcon />
+                                        ) : text === "users" ? (
+                                            <PeopleAltIcon />
+                                        ) : text === "profile" ? (
+                                            <FingerprintIcon />
+                                        ) : (
+                                            <MailIcon />
+                                        )}
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary={
+                                            text === "products"
+                                                ? "Productos"
+                                                : text === "dashboard"
+                                                ? "Inicio"
+                                                : text === "users"
+                                                ? "Usuarios"
+                                                : text === "profile"
+                                                ? "Perfil"
+                                                : "placeholder"
+                                        }
+                                        sx={{
+                                            opacity: open ? 1 : 0,
+                                            color: "var(--falsa-escuadra-white)",
+                                        }}
+                                    />
+                                </ListItemButton>
+                            </Tooltip>
                         </ListItem>
                     ))}
                 </List>
@@ -278,27 +300,12 @@ export default function MiniDrawerComponent({
                     position: "relative",
                     backgroundColor: "var(--falsa-escuadra-blue-dark)",
                     minHeight: "100vh",
+                    maxHeight: "100vh",
+                    overflow: "hidden",
                 }}
             >
                 <AppBarComponent session={session} open={open} />
-                <h2>{section}</h2>
-                <Typography paragraph></Typography>
-                <Typography paragraph>
-                    Consequat mauris nunc congue nisi vitae suscipit. Fringilla
-                    est ullamcorper eget nulla facilisi etiam dignissim diam.
-                    Pulvinar elementum integer enim neque volutpat ac tincidunt.
-                    Ornare suspendisse sed nisi lacus sed viverra tellus. Purus
-                    sit amet volutpat consequat mauris. Elementum eu facilisis
-                    sed odio morbi. Euismod lacinia at quis risus sed vulputate
-                    odio. Morbi tincidunt ornare massa eget egestas purus
-                    viverra accumsan in. In hendrerit gravida rutrum quisque non
-                    tellus orci ac. Pellentesque nec nam aliquam sem et tortor.
-                    Habitant morbi tristique senectus et. Adipiscing elit duis
-                    tristique sollicitudin nibh sit. Ornare aenean euismod
-                    elementum nisi quis eleifend. Commodo viverra maecenas
-                    accumsan lacus vel facilisis. Nulla posuere sollicitudin
-                    aliquam ultrices sagittis orci a.
-                </Typography>
+                <AdminFrameComponent section={section} open={open} />
             </Box>
         </Box>
     );

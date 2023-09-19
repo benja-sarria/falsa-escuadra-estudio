@@ -1,6 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type AvailableSectionsType = "dashboard" | "products" | "users" | "profile";
+export type AvailableSectionsType =
+    | "dashboard"
+    | "products"
+    | "users"
+    | "profile";
 
 type InitialSectionType = {
     value: AvailableSectionsType;
