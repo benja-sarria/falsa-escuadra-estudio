@@ -38,6 +38,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch, useAppSelector } from "@/redux/store";
 import { AdminFrameComponent } from "../AdminFrameComponent/AdminFrameComponent";
 import { Tooltip } from "@mui/material";
+import { FormStepperContainer } from "@/containers/FormStepperContainer/FormStepperContainer";
 
 const drawerWidth = 240;
 
@@ -119,6 +120,7 @@ export default function MiniDrawerComponent({
 }) {
     const section = useAppSelector((state) => state.activeSection.value);
     const theme = useTheme();
+    const highlightRef = React.useRef(null);
     const [open, setOpen] = React.useState(false);
     const [activeSection, setActiveSection] = React.useState(section);
 
@@ -133,7 +135,37 @@ export default function MiniDrawerComponent({
     };
 
     React.useEffect(() => {
-        console.log("[SECTION]", section);
+        console.log(
+            "[SECTION]",
+            section,
+            highlightRef.current,
+            enabledSections,
+            section,
+            enabledSections.indexOf(section as any)
+        );
+        if (highlightRef.current) {
+            switch (enabledSections.indexOf(section as any)) {
+                case 0:
+                    (highlightRef.current as HTMLElement).style.top = "4%";
+                    break;
+
+                case 1:
+                    (highlightRef.current as HTMLElement).style.top = "27%";
+
+                    break;
+
+                case 2:
+                    (highlightRef.current as HTMLElement).style.top = "50%";
+
+                    break;
+                case 3:
+                    (highlightRef.current as HTMLElement).style.top = "73%";
+                    break;
+                default:
+                    (highlightRef.current as HTMLElement).style.top = "4%";
+                    break;
+            }
+        }
     }, [section]);
 
     return (
@@ -209,13 +241,23 @@ export default function MiniDrawerComponent({
                     sx={{
                         backgroundColor: "var(--falsa-escuadra-black)",
                         borderColor: "var(--falsa-escuadra-black)",
+                        position: "relative",
                     }}
                 >
                     {enabledSections.map((text, index) => (
                         <ListItem
                             key={text}
                             disablePadding
-                            sx={{ display: "block" }}
+                            sx={{
+                                display: "block",
+                                zIndex: 2,
+                                transition: "all 400ms ease-out",
+                                "&:hover": {
+                                    animationName: "tiltSelect",
+                                    animationIterationCount: "infinite",
+                                    animationDuration: "1.2s",
+                                },
+                            }}
                             onClick={() => {
                                 console.log("[CLICKED]", text);
 
@@ -289,6 +331,10 @@ export default function MiniDrawerComponent({
                             </Tooltip>
                         </ListItem>
                     ))}
+                    <div
+                        className={`${styles["selected-section-highlight"]}`}
+                        ref={highlightRef}
+                    ></div>
                 </List>
                 <Divider />
             </Drawer>
@@ -305,7 +351,20 @@ export default function MiniDrawerComponent({
                 }}
             >
                 <AppBarComponent session={session} open={open} />
-                <AdminFrameComponent section={section} open={open} />
+                <AdminFrameComponent section={section} open={open}>
+                    {" "}
+                    {section === "products" ? (
+                        <FormStepperContainer
+                            steps={[
+                                "Select campaign settings",
+                                "Create an ad group",
+                                "Create an ad",
+                            ]}
+                        />
+                    ) : (
+                        <></>
+                    )}
+                </AdminFrameComponent>
             </Box>
         </Box>
     );

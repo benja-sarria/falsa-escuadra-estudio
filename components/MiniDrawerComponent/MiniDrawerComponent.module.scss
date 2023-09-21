@@ -10,4 +10,25 @@
         font-family: "Montserrat";
         color: var(--falsa-escuadra-white);
     }
+    .selected-section-highlight {
+        min-height: 3rem;
+        min-width: 100%;
+        background-color: var(--falsa-escuadra-blue);
+        position: absolute;
+        top: 4%;
+        z-index: 1;
+        transition: all 400ms ease-out;
+    }
+}
+
+@keyframes tiltSelect {
+    0% {
+        background-color: transparent;
+    }
+    50% {
+        background-color: #3d69837c;
+    }
+    100% {
+        background-color: transparent;
+    }
 }

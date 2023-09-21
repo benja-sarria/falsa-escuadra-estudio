@@ -74,7 +74,7 @@ function AppBarComponent({
                 maxWidth={"xl"}
                 sx={{
                     transition: "all 400ms ease-out",
-                    paddingLeft: open ? "8rem !important" : "revert",
+                    paddingLeft: open ? "12rem !important" : "revert",
                 }}
             >
                 <Toolbar disableGutters>

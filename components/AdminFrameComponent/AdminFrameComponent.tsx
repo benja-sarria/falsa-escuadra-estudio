@@ -5,12 +5,14 @@ import styles from "@/components/AdminFrameComponent/AdminFrameComponent.module.
 import { motion, useAnimationControls } from "framer-motion";
 
 import { AvailableSectionsType } from "@/redux/features/admin-slice";
-import { useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 
 export const AdminFrameComponent = ({
+    children,
     section,
     open,
 }: {
+    children: ReactNode;
     section: AvailableSectionsType;
     open: Boolean;
 }) => {
@@ -74,13 +76,13 @@ export const AdminFrameComponent = ({
             >
                 <motion.path
                     d={`M100,100 h${
-                        open ? screen.width * 0.72 : screen.width * 0.8
+                        open ? screen.width * 0.62 : screen.width * 0.72
                     } a30,30 0 0 1 20,20 v${
-                        screen.height * 0.6
+                        screen.height * 0.52
                     }  a30,30 0 0 1 -20,20 h-${
-                        open ? screen.width * 0.72 : screen.width * 0.8
+                        open ? screen.width * 0.62 : screen.width * 0.72
                     } a30,30 0 0 1 -20,-20 v-${
-                        screen.height * 0.6
+                        screen.height * 0.52
                     } a30,30 0 0 1 20,-20 z`}
                     stroke="white"
                     fill={"transparent"}
@@ -91,8 +93,7 @@ export const AdminFrameComponent = ({
                     transition={{ duration: 1 }}
                 />
             </svg>
-
-            <div className={styles["frame-inner-line"]}></div>
+            <div className={styles["frame-content"]}>{children}</div>
         </div>
     );
 };

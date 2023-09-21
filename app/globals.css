@@ -132,3 +132,19 @@ h3 {
 .MuiMenu-list {
     font-family: "Montserrat" !important;
 }
+
+@keyframes tiltSelect {
+    0% {
+        background-color: transparent;
+    }
+    50% {
+        background-color: #3d69837c;
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+.MuiStepLabel-label {
+    color: var(--falsa-escuadra-white) !important;
+}
