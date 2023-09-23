@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type InitialValuesType = {
-    title: string | undefined;
-    content: string | undefined;
+    title: boolean | undefined;
+    content: boolean | undefined;
     photos: File[] | undefined;
-    productType: string | undefined;
+    productType: boolean | undefined;
 };
 type InitialFormFieldsValueType = {
     value: InitialValuesType;
