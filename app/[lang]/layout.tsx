@@ -7,6 +7,10 @@ import { authOptions } from "@/utils/auth/authOptions";
 import Provider from "./context/sessionProvider";
 import { ReduxProvider } from "@/redux/provider";
 import { notFound } from "next/navigation";
+import { store } from "@/redux/store";
+import { setLanguage } from "@/redux/features/siteTexts-slice";
+import { LanguageProvider } from "@/context/languageProvider";
+import { acceptedLocales } from "@/middleware";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,15 +21,23 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
     children,
+    params: { lang },
 }: {
     children: React.ReactNode;
+    params: { lang: (typeof acceptedLocales)[number] };
 }) {
     const session = await getServerSession(authOptions);
+    console.log("[LANG]", lang);
+
     return (
         <Provider session={session}>
             <html lang="en">
                 <body className={inter.className}>
-                    <ReduxProvider>{children}</ReduxProvider>
+                    <ReduxProvider>
+                        <LanguageProvider lang={lang}>
+                            {children}
+                        </LanguageProvider>
+                    </ReduxProvider>
                 </body>
             </html>
         </Provider>

@@ -72,6 +72,8 @@
     .product-card-img-outer-container {
         max-width: var(--large-card-img-max-width);
         max-height: var(--large-card-img-max-height);
+        min-width: var(--large-card-img-max-width);
+        min-height: var(--large-card-img-max-height);
         .product-img-inner-container {
             min-width: var(--large-card-img-max-width);
             max-width: var(--large-card-img-max-width);
@@ -99,6 +101,8 @@
     .product-card-img-outer-container {
         max-width: var(--small-card-img-max-width);
         max-height: var(--small-card-img-max-height);
+        min-width: var(--small-card-img-max-width);
+        min-height: var(--small-card-img-max-height);
         .product-img-inner-container {
             min-width: var(--small-card-img-max-width);
             max-width: var(--small-card-img-max-width);
@@ -108,4 +112,8 @@
         padding: calc(var(--small-card-img-max-height) * 0.3 * 0.1)
             calc(var(--small-card-img-max-height) * 0.3 * 0.2);
     }
+}
+
+.loader {
+    opacity: 0.4;
 }

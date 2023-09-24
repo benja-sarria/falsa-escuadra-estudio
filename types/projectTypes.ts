@@ -48,3 +48,5 @@ export interface UpdateOrDeletePhotoInterface extends PhotoDataInterface {
 export interface ProductReceivedType extends Product {
     photos: ProductPhotos[];
 }
+
+export type AvailableProductActionsType = "edit" | "remove";

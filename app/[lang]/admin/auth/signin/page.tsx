@@ -39,7 +39,7 @@ export default async function SignIn() {
                 <ReusableButtonContainer
                     text="Iniciar Sesión"
                     onClickHandler={"log-in" as any}
-                    styleVariants={["outlined", "light", "green-hover"]}
+                    styleVariants={["outlined", "light", "dark-blue-hover"]}
                 />
             </div>
         </div>

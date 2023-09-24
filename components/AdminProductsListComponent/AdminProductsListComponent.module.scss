@@ -1,4 +1,16 @@
-.card-list-container {
+.outer-container {
     display: flex;
-    column-gap: 2.5rem;
+    justify-content: center;
+    min-width: 100%;
+    min-height: 73vh;
+    .card-list-container {
+        padding: 1rem 0rem;
+        display: flex;
+        column-gap: 2.5rem;
+        row-gap: 2.5rem;
+        flex-wrap: wrap;
+        max-width: 90%;
+        min-width: 90%;
+        overflow-y: auto;
+    }
 }

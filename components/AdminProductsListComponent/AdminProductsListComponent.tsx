@@ -8,6 +8,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { ProductCardComponent } from "../ProductCardComponent/ProductCardComponent";
 import { ProductReceivedType } from "@/types/projectTypes";
+import { setLoading } from "@/redux/features/loading-slice";
 
 export const AdminProductsListComponent = ({
     products,
@@ -16,18 +17,25 @@ export const AdminProductsListComponent = ({
 }) => {
     const dispatch = useDispatch<AppDispatch>();
     const stateProducts = useAppSelector((state) => state.productsValue.value);
+    const loadingState = useAppSelector((state) => state.loading.value);
 
     useEffect(() => {
+        dispatch(setLoading(true));
         (async () => {
             const awaitedResponse = await products;
-            const parsedResponse =
-                (await awaitedResponse.json()) as StandardSuccessResponse;
-            dispatch(
-                setProducts({
-                    products: parsedResponse.data,
-                    sortCriteria: "id",
-                })
-            );
+            if (!awaitedResponse.bodyUsed) {
+                const parsedResponse =
+                    (await awaitedResponse.json()) as StandardSuccessResponse;
+                dispatch(
+                    setProducts({
+                        products: parsedResponse.data,
+                        sortCriteria: "id",
+                    })
+                );
+                setTimeout(() => {
+                    dispatch(setLoading(false));
+                }, 1000);
+            }
         })();
     }, [products]);
 
@@ -36,22 +44,48 @@ export const AdminProductsListComponent = ({
     }, [stateProducts]);
 
     return (
-        <div className={styles["card-list-container"]}>
-            {stateProducts.products.length > 0 &&
-                stateProducts.products.map(
-                    (product: ProductReceivedType, index: number) => {
-                        return (
-                            <React.Fragment
-                                key={`${product.title.replaceAll(" ", "-")}`}
-                            >
-                                <ProductCardComponent
-                                    product={product}
-                                    type={index % 2 !== 0 ? "small" : "large"}
-                                />
-                            </React.Fragment>
-                        );
-                    }
-                )}
+        <div className={styles["outer-container"]}>
+            <div className={styles["card-list-container"]}>
+                {loadingState
+                    ? [1, 2, 3, 4, 5, 6, 7, 8].map(
+                          (instance: any, index: number) => {
+                              return (
+                                  <React.Fragment key={`${instance}-loader`}>
+                                      <ProductCardComponent
+                                          loading={loadingState}
+                                          type={
+                                              index % 2 !== 0
+                                                  ? "small"
+                                                  : "large"
+                                          }
+                                      />
+                                  </React.Fragment>
+                              );
+                          }
+                      )
+                    : stateProducts.products.length > 0 &&
+                      stateProducts.products.map(
+                          (product: ProductReceivedType, index: number) => {
+                              return (
+                                  <React.Fragment
+                                      key={`${product.title.replaceAll(
+                                          " ",
+                                          "-"
+                                      )}`}
+                                  >
+                                      <ProductCardComponent
+                                          product={product}
+                                          type={
+                                              index % 2 !== 0
+                                                  ? "small"
+                                                  : "large"
+                                          }
+                                      />
+                                  </React.Fragment>
+                              );
+                          }
+                      )}
+            </div>
         </div>
     );
 };
