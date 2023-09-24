@@ -4,29 +4,34 @@ import Link from "next/link";
 import styles from "./AnimatedNavbarLogoComponent.module.scss";
 import { AutoAdjustImgComponent } from "../AutoAdjustImgComponent/AutoAdjustImgComponent";
 import { parseVariants } from "@/utils/styles/parseVariants";
+import { useEffect, useState } from "react";
 
 export const AnimatedNavbarLogoComponent = ({
     variants,
 }: {
     variants?: string[];
 }) => {
+    const [falsaAnimation, setFalsaAnimation] = useState<any>(undefined);
+    const [escuadraAnimation, setEscuadraAnimation] = useState<any>(undefined);
+    const [estudioAnimation, setEstudioAnimation] = useState<any>(undefined);
+
+    useEffect(() => {}, [falsaAnimation, escuadraAnimation, estudioAnimation]);
+
     return (
         <motion.div
-            className={`${styles["component-container"]}${
-                variants && variants.length > 0
-                    ? parseVariants(variants, styles)
-                    : ""
-            }`}
+            className={styles["outer-container"]}
             onHoverStart={() => {
                 animate(`.${styles["component-container"]}`, {
                     minWidth: "calc(var(--logo-min-width) * 4)",
                     maxWidth: "calc(var(--logo-min-width) * 4)",
                     overflow: "invisible",
                 });
+
                 animate(`.${styles["logo-inner-container"]}`, {
                     rotate: 360,
                 });
-                animate(
+
+                const falsaAnimation = animate(
                     `.${styles["falsa-inner-container"]}`,
                     {
                         left: "90%",
@@ -50,7 +55,9 @@ export const AnimatedNavbarLogoComponent = ({
                         },
                     }
                 );
-                animate(
+                setFalsaAnimation(falsaAnimation);
+
+                const escuadraAnimation = animate(
                     `.${styles["escuadra-inner-container"]}`,
                     {
                         left: "90%",
@@ -79,7 +86,8 @@ export const AnimatedNavbarLogoComponent = ({
                         },
                     }
                 );
-                animate(
+                setEscuadraAnimation(escuadraAnimation);
+                const estudioAnimation = animate(
                     `.${styles["estudio-inner-container"]}`,
                     {
                         left: "90%",
@@ -108,8 +116,12 @@ export const AnimatedNavbarLogoComponent = ({
                         },
                     }
                 );
+                setEstudioAnimation(estudioAnimation);
             }}
             onHoverEnd={() => {
+                falsaAnimation && falsaAnimation.cancel();
+                escuadraAnimation && escuadraAnimation.cancel();
+                estudioAnimation && estudioAnimation.cancel();
                 animate(
                     `.${styles["component-container"]}`,
                     {
@@ -197,38 +209,46 @@ export const AnimatedNavbarLogoComponent = ({
                 );
             }}
         >
-            <Link href={"/"}>
-                <AutoAdjustImgComponent
-                    alt="falsa escuadra logo"
-                    givenClassName={styles["logo-inner-container"]}
-                    src="/assets/img/icons/falsa-escuadra-logo.svg"
-                    calculate="height"
-                    fixedParameter="--logo-min-width"
-                />
-                <div className={styles["letters-container"]}>
+            <motion.div
+                className={`${styles["component-container"]}${
+                    variants && variants.length > 0
+                        ? parseVariants(variants, styles)
+                        : ""
+                }`}
+            >
+                <Link href={"/"}>
                     <AutoAdjustImgComponent
                         alt="falsa escuadra logo"
-                        givenClassName={`${styles["letter-inner-container"]} ${styles["falsa-inner-container"]}`}
-                        src="/assets/img/icons/Falsa.svg"
+                        givenClassName={styles["logo-inner-container"]}
+                        src="/assets/img/icons/falsa-escuadra-logo.svg"
                         calculate="height"
-                        fixedParameter="--logo-falsa-width"
+                        fixedParameter="--logo-min-width"
                     />
-                    <AutoAdjustImgComponent
-                        alt="falsa escuadra logo"
-                        givenClassName={`${styles["letter-inner-container"]} ${styles["escuadra-inner-container"]}`}
-                        src="/assets/img/icons/Escuadra.svg"
-                        calculate="height"
-                        fixedParameter="--logo-escuadra-width"
-                    />
-                    <AutoAdjustImgComponent
-                        alt="falsa escuadra logo"
-                        givenClassName={`${styles["letter-inner-container"]} ${styles["estudio-inner-container"]}`}
-                        src="/assets/img/icons/Estudio.svg"
-                        calculate="height"
-                        fixedParameter="--logo-estudio-width"
-                    />
-                </div>
-            </Link>
+                    <div className={styles["letters-container"]}>
+                        <AutoAdjustImgComponent
+                            alt="falsa escuadra logo"
+                            givenClassName={`${styles["letter-inner-container"]} ${styles["falsa-inner-container"]}`}
+                            src="/assets/img/icons/Falsa.svg"
+                            calculate="height"
+                            fixedParameter="--logo-falsa-width"
+                        />
+                        <AutoAdjustImgComponent
+                            alt="falsa escuadra logo"
+                            givenClassName={`${styles["letter-inner-container"]} ${styles["escuadra-inner-container"]}`}
+                            src="/assets/img/icons/Escuadra.svg"
+                            calculate="height"
+                            fixedParameter="--logo-escuadra-width"
+                        />
+                        <AutoAdjustImgComponent
+                            alt="falsa escuadra logo"
+                            givenClassName={`${styles["letter-inner-container"]} ${styles["estudio-inner-container"]}`}
+                            src="/assets/img/icons/Estudio.svg"
+                            calculate="height"
+                            fixedParameter="--logo-estudio-width"
+                        />
+                    </div>
+                </Link>
+            </motion.div>
         </motion.div>
     );
 };

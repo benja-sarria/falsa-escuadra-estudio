@@ -38,6 +38,7 @@
         "unique-slug": "^4.0.0"
     },
     "devDependencies": {
+        "node-loader": "^2.0.0",
         "prisma": "^5.2.0"
     }
 }

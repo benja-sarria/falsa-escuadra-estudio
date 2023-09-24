@@ -63,8 +63,8 @@ export const AdminFrameComponent = ({
                 {options[section]}
             </h2>
             <svg
-                width={`${screen.width * 1}`}
-                height={`${screen.height * 1}`}
+                width={`${screen?.width * 1}`}
+                height={`${screen?.height * 1}`}
                 style={{
                     position: "absolute",
                     left: "-4.9rem",
@@ -72,17 +72,17 @@ export const AdminFrameComponent = ({
                 }}
                 className={styles["animation-tilt"]}
                 ref={svg}
-                viewBox={`0 0 ${screen.width * 0.9} ${screen.height * 0.9}`}
+                viewBox={`0 0 ${screen?.width * 0.9} ${screen?.height * 0.9}`}
             >
                 <motion.path
                     d={`M100,100 h${
-                        open ? screen.width * 0.62 : screen.width * 0.72
+                        open ? screen?.width * 0.62 : screen?.width * 0.72
                     } a30,30 0 0 1 20,20 v${
-                        screen.height * 0.52
+                        screen?.height * 0.52
                     }  a30,30 0 0 1 -20,20 h-${
-                        open ? screen.width * 0.62 : screen.width * 0.72
+                        open ? screen?.width * 0.62 : screen?.width * 0.72
                     } a30,30 0 0 1 -20,-20 v-${
-                        screen.height * 0.52
+                        screen?.height * 0.52
                     } a30,30 0 0 1 20,-20 z`}
                     stroke="white"
                     fill={"transparent"}

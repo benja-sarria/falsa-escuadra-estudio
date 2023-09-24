@@ -58,6 +58,7 @@ export class ProjectPrismaDao {
 
         const projects: Product[] = await this.db.product.findMany({
             where: queryParams ? { ...queryParams } : {},
+            include: { photos: true, productType: true },
         });
         if (!projects) {
             throw new Error("There was a problem querying your data");

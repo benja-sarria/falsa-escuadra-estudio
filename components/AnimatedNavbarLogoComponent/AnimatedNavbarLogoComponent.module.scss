@@ -1,44 +1,47 @@
-.component-container {
-    --logo-min-width: 3.5rem;
-    --logo-falsa-width: 3.5rem;
-    --logo-escuadra-width: 6rem;
-    --logo-estudio-width: 4.5rem;
-    position: relative;
-    min-width: calc(var(--logo-min-width) * 1.1);
-    max-width: calc(var(--logo-min-width) * 1.1);
-    display: flex;
-    justify-content: flex-start;
-    overflow: hidden;
-    border-radius: calc(var(--logo-min-width) * 1.1);
-    a {
+.outer-container {
+    padding: 0.2rem;
+    .component-container {
+        --logo-min-width: 3.5rem;
+        --logo-falsa-width: 3.5rem;
+        --logo-escuadra-width: 6rem;
+        --logo-estudio-width: 4.5rem;
+        position: relative;
+        min-width: calc(var(--logo-min-width) * 1.1);
+        max-width: calc(var(--logo-min-width) * 1.1);
         display: flex;
-        align-items: center;
-        justify-content: center;
-        .logo-inner-container {
-            position: relative;
-            min-width: var(--logo-min-width);
-            max-width: var(--logo-min-width);
-        }
-        .letters-container {
-            position: absolute;
+        justify-content: flex-start;
+        overflow: hidden;
+        border-radius: calc(var(--logo-min-width) * 1.1);
+        a {
             display: flex;
-            flex-direction: column;
-            row-gap: 0.2rem;
-            .letter-inner-container {
+            align-items: center;
+            justify-content: center;
+            .logo-inner-container {
                 position: relative;
-                opacity: 0;
+                min-width: var(--logo-min-width);
+                max-width: var(--logo-min-width);
             }
-            .falsa-inner-container {
-                min-width: var(---logo-falsa-width);
-                max-width: var(--logo-falsa-width);
-            }
-            .escuadra-inner-container {
-                min-width: var(--logo-escuadra-width);
-                max-width: var(--logo-escuadra-width);
-            }
-            .estudio-inner-container {
-                min-width: var(--logo-estudio-width);
-                max-width: var(--logo-estudio-width);
+            .letters-container {
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                row-gap: 0.2rem;
+                .letter-inner-container {
+                    position: relative;
+                    opacity: 0;
+                }
+                .falsa-inner-container {
+                    min-width: var(---logo-falsa-width);
+                    max-width: var(--logo-falsa-width);
+                }
+                .escuadra-inner-container {
+                    min-width: var(--logo-escuadra-width);
+                    max-width: var(--logo-escuadra-width);
+                }
+                .estudio-inner-container {
+                    min-width: var(--logo-estudio-width);
+                    max-width: var(--logo-estudio-width);
+                }
             }
         }
     }

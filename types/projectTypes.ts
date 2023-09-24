@@ -44,3 +44,7 @@ export type PhotoQueryParamsType = {
 export interface UpdateOrDeletePhotoInterface extends PhotoDataInterface {
     id: number;
 }
+
+export interface ProductReceivedType extends Product {
+    photos: ProductPhotos[];
+}

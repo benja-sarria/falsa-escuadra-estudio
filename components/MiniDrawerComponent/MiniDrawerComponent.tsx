@@ -33,12 +33,14 @@ import styles from "@/components/MiniDrawerComponent/MiniDrawerComponent.module.
 import {
     selectActiveSection,
     resetActiveSection,
+    AvailableSectionsType,
 } from "@/redux/features/admin-slice";
 import { useDispatch } from "react-redux";
 import { AppDispatch, useAppSelector } from "@/redux/store";
 import { AdminFrameComponent } from "../AdminFrameComponent/AdminFrameComponent";
 import { Tooltip } from "@mui/material";
 import { FormStepperContainer } from "@/containers/FormStepperContainer/FormStepperContainer";
+import { ProductsSectionContainer } from "@/containers/ProductsSectionContainer/ProductsSectionContainer";
 
 const drawerWidth = 240;
 
@@ -168,6 +170,15 @@ export default function MiniDrawerComponent({
         }
     }, [section]);
 
+    React.useEffect(() => {
+        const activeSection = sessionStorage.getItem(
+            "currentSection"
+        ) as AvailableSectionsType;
+        if (activeSection) {
+            dispatch(selectActiveSection(activeSection));
+        }
+    }, []);
+
     return (
         <Box
             sx={{
@@ -260,7 +271,7 @@ export default function MiniDrawerComponent({
                             }}
                             onClick={() => {
                                 console.log("[CLICKED]", text);
-
+                                sessionStorage.setItem("currentSection", text);
                                 dispatch(selectActiveSection(text));
                             }}
                         >
@@ -354,14 +365,15 @@ export default function MiniDrawerComponent({
                 <AdminFrameComponent section={section} open={open}>
                     {" "}
                     {section === "products" ? (
-                        <FormStepperContainer
+                        <ProductsSectionContainer />
+                    ) : (
+                        /*    <FormStepperContainer
                             steps={[
                                 "Select campaign settings",
                                 "Create an ad group",
                                 "Create an ad",
                             ]}
-                        />
-                    ) : (
+                        /> */
                         <></>
                     )}
                 </AdminFrameComponent>

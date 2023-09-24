@@ -1,9 +1,10 @@
+import productsValue from "./features/products-slice";
 import { configureStore } from "@reduxjs/toolkit";
 import activeSection from "./features/admin-slice";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 
 export const store = configureStore({
-    reducer: { activeSection },
+    reducer: { activeSection, productsValue },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
