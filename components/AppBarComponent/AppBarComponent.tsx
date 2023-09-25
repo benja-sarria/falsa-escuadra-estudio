@@ -14,11 +14,13 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import SearchIcon from "@mui/icons-material/Search";
 import { Session } from "next-auth";
 import { AutoAdjustImgComponent } from "../AutoAdjustImgComponent/AutoAdjustImgComponent";
 import { AnimatedNavbarLogoComponent } from "../AnimatedNavbarLogoComponent/AnimatedNavbarLogoComponent";
 
 import styles from "@/components/AppBarComponent/AppBarComponent.module.scss";
+import { ClickAwayListener } from "@mui/material";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = [
@@ -44,6 +46,10 @@ function AppBarComponent({
         null
     );
 
+    const [openedSearch, setOpenedSearch] = React.useState<boolean>(false);
+
+    const searchInputRef = React.useRef(null);
+
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -58,6 +64,8 @@ function AppBarComponent({
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    React.useEffect(() => {}, [openedSearch]);
 
     return (
         <AppBar
@@ -154,14 +162,85 @@ function AppBarComponent({
                         }}
                     ></Box>
 
-                    <Box sx={{ flexGrow: 0 }}>
+                    <Box
+                        sx={{
+                            flexGrow: 0,
+                            display: "flex",
+                            alignItems: "center",
+                            columnGap: "2rem",
+                        }}
+                    >
+                        <ClickAwayListener
+                            onClickAway={() => {
+                                setOpenedSearch(false);
+                                if (searchInputRef.current) {
+                                    (
+                                        searchInputRef.current as HTMLElement
+                                    ).blur();
+                                }
+                            }}
+                        >
+                            <div
+                                className={`${styles["search-box-menu"]}${
+                                    openedSearch
+                                        ? ` ${styles["active-search-box"]}`
+                                        : ""
+                                }${
+                                    !openedSearch &&
+                                    searchInputRef.current &&
+                                    (
+                                        searchInputRef.current as unknown as HTMLFormElement
+                                    ).value !== ""
+                                        ? ` ${styles["has-value"]}`
+                                        : ""
+                                }`}
+                                onClick={
+                                    !openedSearch
+                                        ? () => {
+                                              setOpenedSearch(true);
+                                              if (searchInputRef.current) {
+                                                  (
+                                                      searchInputRef.current as HTMLElement
+                                                  ).focus();
+                                              }
+                                          }
+                                        : () => {}
+                                }
+                            >
+                                <label htmlFor="">
+                                    Búsqueda
+                                    <input type="text" ref={searchInputRef} />
+                                </label>
+                                <SearchIcon
+                                    id="search-icon"
+                                    onClick={
+                                        !openedSearch
+                                            ? () => {
+                                                  setOpenedSearch(true);
+                                                  if (searchInputRef.current) {
+                                                      (
+                                                          searchInputRef.current as HTMLElement
+                                                      ).focus();
+                                                  }
+                                              }
+                                            : () => {}
+                                    }
+                                />
+                            </div>
+                        </ClickAwayListener>
                         <Tooltip title="Open settings">
                             <IconButton
                                 onClick={handleOpenUserMenu}
                                 sx={{ p: 0 }}
                             >
                                 <Avatar
-                                    alt="Remy Sharp"
+                                    alt={
+                                        session &&
+                                        session.user &&
+                                        session?.user.name
+                                            ? `${session.user.name}`
+                                            : "Remy Sharp"
+                                    }
                                     src={
                                         session &&
                                         session.user &&

@@ -7,12 +7,14 @@
 
     --falsa-escuadra-black: #171717;
     --falsa-escuadra-white: #ffffff;
+    --falsa-escuadra-white-10: rgba(255, 255, 255, 0.1);
     --falsa-escuadra-gold: #b3762b;
     --falsa-escuadra-gold-mid: #d0a57b;
     --falsa-escuadra-gold-light: #e4dbcf;
     --falsa-escuadra-blue: #3d6983;
     --falsa-escuadra-blue-mid: #99b9c9;
     --falsa-escuadra-blue-light: #c9d7da;
+    --falsa-escuadra-blue-bright: #18ecff;
     --falsa-escuadra-blue-dark: #203246;
     --falsa-escuadra-green: #458374;
     --falsa-escuadra-green-mid: #8cc0b4;
@@ -23,6 +25,7 @@
     --falsa-escuadra-grey-light: #b9b9b9;
     --falsa-escuadra-grey-lighter: #ededed;
     --falsa-escuadra-brown: #49332a;
+    --falsa-escuadra-error: rgb(230, 0, 0);
 
     --foreground-rgb: 0, 0, 0;
     --background-start-rgb: 214, 219, 220;

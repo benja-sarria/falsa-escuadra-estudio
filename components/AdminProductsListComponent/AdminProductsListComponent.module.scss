@@ -3,6 +3,30 @@
     justify-content: center;
     min-width: 100%;
     min-height: 73vh;
+    max-height: 73vh;
+    overflow-y: auto;
+    ::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background-image: linear-gradient(
+            to bottom,
+            var(--falsa-escuadra-blue-mid),
+            var(--falsa-escuadra-blue)
+        );
+        margin: 0.3em 0em;
+        border-radius: 2rem;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: var(--falsa-escuadra-gold);
+        border-radius: 2rem;
+        transform: scale(0.3);
+    }
     .card-list-container {
         padding: 1rem 0rem;
         display: flex;

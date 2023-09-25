@@ -63,6 +63,7 @@ export const ProductCardComponent = ({
                 width={210}
                 height={118}
                 className={styles["product-card-img-outer-container"]}
+                data-type="skeleton"
             />
         </div>
     ) : (
@@ -99,7 +100,14 @@ export const ProductCardComponent = ({
                                             <DeleteForeverIcon />
                                         )
                                     }
-                                    text={siteTexts.messages ? "" : ""}
+                                    text={
+                                        siteTexts.messages
+                                            ? siteTexts.messages.adminTexts
+                                                  .productActionButtons[action]
+                                                  .text
+                                            : ""
+                                    }
+                                    styleVariants={["light-variant"]}
                                 />
                             </React.Fragment>
                         );

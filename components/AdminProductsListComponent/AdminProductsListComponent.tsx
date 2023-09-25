@@ -44,7 +44,10 @@ export const AdminProductsListComponent = ({
     }, [stateProducts]);
 
     return (
-        <div className={styles["outer-container"]}>
+        <div
+            className={styles["outer-container"]}
+            id="products-outer-container"
+        >
             <div className={styles["card-list-container"]}>
                 {loadingState
                     ? [1, 2, 3, 4, 5, 6, 7, 8].map(

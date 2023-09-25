@@ -21,6 +21,8 @@ export const AnimatedNavbarLogoComponent = ({
         <motion.div
             className={styles["outer-container"]}
             onHoverStart={() => {
+                console.log(["ANIMATION-ENTER"]);
+
                 animate(`.${styles["component-container"]}`, {
                     minWidth: "calc(var(--logo-min-width) * 4)",
                     maxWidth: "calc(var(--logo-min-width) * 4)",
@@ -119,94 +121,98 @@ export const AnimatedNavbarLogoComponent = ({
                 setEstudioAnimation(estudioAnimation);
             }}
             onHoverEnd={() => {
-                falsaAnimation && falsaAnimation.cancel();
-                escuadraAnimation && escuadraAnimation.cancel();
-                estudioAnimation && estudioAnimation.cancel();
-                animate(
-                    `.${styles["component-container"]}`,
-                    {
-                        minWidth: "calc(var(--logo-min-width) * 1.1)",
-                        maxWidth: "calc(var(--logo-min-width) * 1.1)",
-                        overflow: "invisible",
-                    },
-                    { delay: 0.4 }
-                );
-                animate(`.${styles["logo-inner-container"]}`, {
-                    rotate: -360,
-                });
-                animate(
-                    `.${styles["falsa-inner-container"]}`,
-                    {
-                        left: "unset",
-                    },
-                    {
-                        type: "spring",
-                        stiffness: 100,
-                        onPlay: () => {
-                            setTimeout(() => {
-                                animate(
-                                    `.${styles["falsa-inner-container"]}`,
-                                    {
-                                        opacity: 0,
-                                    },
-                                    { type: "spring", stiffness: 100 }
-                                );
-                            }, 20);
+                setTimeout(() => {
+                    console.log(["ANIMATION-EXIT"]);
+
+                    falsaAnimation && falsaAnimation.cancel();
+                    escuadraAnimation && escuadraAnimation.cancel();
+                    estudioAnimation && estudioAnimation.cancel();
+                    animate(
+                        `.${styles["component-container"]}`,
+                        {
+                            minWidth: "calc(var(--logo-min-width) * 1.1)",
+                            maxWidth: "calc(var(--logo-min-width) * 1.1)",
+                            overflow: "invisible",
                         },
-                    }
-                );
-                animate(
-                    `.${styles["escuadra-inner-container"]}`,
-                    {
-                        left: "unset",
-                    },
-                    {
-                        delay: 0.1,
-                        type: "spring",
-                        stiffness: 100,
-                        onPlay: () => {
-                            setTimeout(() => {
-                                animate(
-                                    `.${styles["escuadra-inner-container"]}`,
-                                    {
-                                        opacity: 0,
-                                    },
-                                    {
-                                        delay: 0.1,
-                                        type: "spring",
-                                        stiffness: 100,
-                                    }
-                                );
-                            }, 20);
+                        { delay: 0.4 }
+                    );
+                    animate(`.${styles["logo-inner-container"]}`, {
+                        rotate: -360,
+                    });
+                    animate(
+                        `.${styles["falsa-inner-container"]}`,
+                        {
+                            left: "unset",
                         },
-                    }
-                );
-                animate(
-                    `.${styles["estudio-inner-container"]}`,
-                    {
-                        left: "unset",
-                    },
-                    {
-                        delay: 0.2,
-                        type: "spring",
-                        stiffness: 100,
-                        onPlay: () => {
-                            setTimeout(() => {
-                                animate(
-                                    `.${styles["estudio-inner-container"]}`,
-                                    {
-                                        opacity: 0,
-                                    },
-                                    {
-                                        delay: 0.2,
-                                        type: "spring",
-                                        stiffness: 100,
-                                    }
-                                );
-                            }, 20);
+                        {
+                            type: "spring",
+                            stiffness: 100,
+                            onPlay: () => {
+                                setTimeout(() => {
+                                    animate(
+                                        `.${styles["falsa-inner-container"]}`,
+                                        {
+                                            opacity: 0,
+                                        },
+                                        { type: "spring", stiffness: 100 }
+                                    );
+                                }, 20);
+                            },
+                        }
+                    );
+                    animate(
+                        `.${styles["escuadra-inner-container"]}`,
+                        {
+                            left: "unset",
                         },
-                    }
-                );
+                        {
+                            delay: 0.1,
+                            type: "spring",
+                            stiffness: 100,
+                            onPlay: () => {
+                                setTimeout(() => {
+                                    animate(
+                                        `.${styles["escuadra-inner-container"]}`,
+                                        {
+                                            opacity: 0,
+                                        },
+                                        {
+                                            delay: 0.1,
+                                            type: "spring",
+                                            stiffness: 100,
+                                        }
+                                    );
+                                }, 20);
+                            },
+                        }
+                    );
+                    animate(
+                        `.${styles["estudio-inner-container"]}`,
+                        {
+                            left: "unset",
+                        },
+                        {
+                            delay: 0.2,
+                            type: "spring",
+                            stiffness: 100,
+                            onPlay: () => {
+                                setTimeout(() => {
+                                    animate(
+                                        `.${styles["estudio-inner-container"]}`,
+                                        {
+                                            opacity: 0,
+                                        },
+                                        {
+                                            delay: 0.2,
+                                            type: "spring",
+                                            stiffness: 100,
+                                        }
+                                    );
+                                }, 20);
+                            },
+                        }
+                    );
+                }, 100);
             }}
         >
             <motion.div

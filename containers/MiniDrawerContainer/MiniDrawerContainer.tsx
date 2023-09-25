@@ -1,3 +1,4 @@
+import { AdminMainContentComponent } from "@/components/AdminMainContentcomponent/AdminMainContentComponent";
 import MiniDrawerComponent from "@/components/MiniDrawerComponent/MiniDrawerComponent";
 import { AdminSectionType } from "@/types/adminSectionTypes";
 import { authOptions } from "@/utils/auth/authOptions";
@@ -18,6 +19,8 @@ export const MiniDrawerContainer = async () => {
         <MiniDrawerComponent
             session={session}
             enabledSections={enabledSections}
-        />
+        >
+            <AdminMainContentComponent />
+        </MiniDrawerComponent>
     );
 };

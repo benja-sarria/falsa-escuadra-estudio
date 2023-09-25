@@ -19,19 +19,26 @@ export default withAuth(
     function middleware(req) {
         // Check if there is any supported locale in the pathname
         const { pathname } = req.nextUrl;
-        const pathnameHasLocale = acceptedLocales.some(
-            (locale) =>
-                pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-        );
+        if (
+            !pathname.includes("api") &&
+            !pathname.includes("static") &&
+            !pathname.includes("assets")
+        ) {
+            const pathnameHasLocale = acceptedLocales.some(
+                (locale) =>
+                    pathname.startsWith(`/${locale}/`) ||
+                    pathname === `/${locale}`
+            );
 
-        if (pathnameHasLocale) return;
+            if (pathnameHasLocale) return;
 
-        // Redirect if there is no locale
-        const locale = getLocale(req);
-        req.nextUrl.pathname = `/${locale}${pathname}`;
-        // e.g. incoming request is /products
-        // The new URL is now /en-US/products
-        return Response.redirect(req.nextUrl);
+            // Redirect if there is no locale
+            const locale = getLocale(req);
+            req.nextUrl.pathname = `/${locale}${pathname}`;
+            // e.g. incoming request is /products
+            // The new URL is now /en-US/products
+            return Response.redirect(req.nextUrl);
+        }
     },
     {
         callbacks: {

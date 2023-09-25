@@ -13,12 +13,12 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
+
 import MailIcon from "@mui/icons-material/Mail";
 import { Session } from "next-auth";
 import AppBarComponent from "../AppBarComponent/AppBarComponent";
@@ -116,9 +116,11 @@ const Drawer = styled(MuiDrawer, {
 export default function MiniDrawerComponent({
     session,
     enabledSections,
+    children,
 }: {
     session: Session | null;
     enabledSections: AdminSectionType;
+    children: React.ReactNode;
 }) {
     const section = useAppSelector((state) => state.activeSection.value);
     const theme = useTheme();
@@ -351,6 +353,7 @@ export default function MiniDrawerComponent({
             </Drawer>
             <Box
                 component="main"
+                id="admin-main-content"
                 sx={{
                     flexGrow: 1,
                     padding: "6rem 3rem 2rem 2rem",
@@ -363,19 +366,7 @@ export default function MiniDrawerComponent({
             >
                 <AppBarComponent session={session} open={open} />
                 <AdminFrameComponent section={section} open={open}>
-                    {" "}
-                    {section === "products" ? (
-                        <ProductsSectionContainer />
-                    ) : (
-                        /*    <FormStepperContainer
-                            steps={[
-                                "Select campaign settings",
-                                "Create an ad group",
-                                "Create an ad",
-                            ]}
-                        /> */
-                        <></>
-                    )}
+                    {children}
                 </AdminFrameComponent>
             </Box>
         </Box>

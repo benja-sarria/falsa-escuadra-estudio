@@ -1,3 +1,5 @@
+@import "/app/[lang]/mixins";
+
 .reusable-btn-base {
     display: inline-flex;
     padding: 0.8rem 2rem;
@@ -35,4 +37,32 @@
 }
 .dark-blue-hover {
     cursor: pointer;
+}
+
+div:is([class*="log-in-btn-container"]):has(.glowing-btn) {
+    --mixin-opacity: 0;
+    position: relative;
+    &::after {
+        transition: all 500ms ease-out;
+    }
+    @include backlightButton(
+        0,
+        0,
+        1rem,
+        1.2,
+        #0fffc3a3,
+        #7f0fffac,
+        5s,
+        var(--mixin-opacity)
+    );
+    &:hover {
+        --mixin-opacity: 1;
+        .glowing-btn {
+            border-color: transparent;
+        }
+    }
+    .glowing-btn {
+        z-index: 1;
+        position: relative;
+    }
 }

@@ -5,7 +5,7 @@ import styles from "@/components/AdminFrameComponent/AdminFrameComponent.module.
 import { motion, useAnimationControls } from "framer-motion";
 
 import { AvailableSectionsType } from "@/redux/features/admin-slice";
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 
 export const AdminFrameComponent = ({
     children,
@@ -22,6 +22,7 @@ export const AdminFrameComponent = ({
         profile: "Perfil",
         users: "Usuarios",
     };
+    const [screenState, setScreenState] = useState<undefined | any>(undefined);
     const title = useRef(null);
     const svg = useRef(null);
     const controls = useAnimationControls();
@@ -46,6 +47,18 @@ export const AdminFrameComponent = ({
         }
     }, [section]);
 
+    useEffect(() => {
+        setTimeout(() => {
+            const handleSetScreen = () => {
+                console.log("SETTING-screen");
+
+                setScreenState(screen);
+            };
+            handleSetScreen();
+        }, 600);
+    }, []);
+    useEffect(() => {}, [screenState]);
+
     const icon = {
         hidden: {
             pathLength: 0,
@@ -63,8 +76,8 @@ export const AdminFrameComponent = ({
                 {options[section]}
             </h2>
             <svg
-                width={`${screen?.width * 1}`}
-                height={`${screen?.height * 1}`}
+                width={`${screenState ? screenState?.width * 1 : 100}`}
+                height={`${screenState ? screenState?.height * 1 : 100}`}
                 style={{
                     position: "absolute",
                     left: "-4.9rem",
@@ -72,17 +85,23 @@ export const AdminFrameComponent = ({
                 }}
                 className={styles["animation-tilt"]}
                 ref={svg}
-                viewBox={`0 0 ${screen?.width * 0.9} ${screen?.height * 0.9}`}
+                viewBox={`0 0 ${screenState ? screenState?.width * 0.9 : 100} ${
+                    screenState ? screenState?.height * 0.9 : 100
+                }`}
             >
                 <motion.path
                     d={`M100,100 h${
-                        open ? screen?.width * 0.62 : screen?.width * 0.72
+                        open && screenState
+                            ? screenState?.width * 0.62
+                            : screenState?.width * 0.72
                     } a30,30 0 0 1 20,20 v${
-                        screen?.height * 0.52
+                        screenState ? screenState?.height * 0.52 : 100
                     }  a30,30 0 0 1 -20,20 h-${
-                        open ? screen?.width * 0.62 : screen?.width * 0.72
+                        open && screenState
+                            ? screenState?.width * 0.62
+                            : screenState?.width * 0.72
                     } a30,30 0 0 1 -20,-20 v-${
-                        screen?.height * 0.52
+                        screenState ? screenState?.height * 0.52 : 100
                     } a30,30 0 0 1 20,-20 z`}
                     stroke="white"
                     fill={"transparent"}
