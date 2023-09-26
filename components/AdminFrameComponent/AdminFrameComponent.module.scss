@@ -7,6 +7,8 @@
     margin: 1rem 0.5rem 0rem 0.5rem;
     border-radius: 2rem;
     position: relative;
+    pointer-events: none;
+    z-index: 0;
     .frame-title {
         position: absolute;
         top: -2rem;
@@ -24,6 +26,9 @@
         animation-name: tilt;
         animation-duration: 800ms;
         animation-iteration-count: infinite;
+    }
+    .frame-content {
+        pointer-events: all;
     }
 }
 

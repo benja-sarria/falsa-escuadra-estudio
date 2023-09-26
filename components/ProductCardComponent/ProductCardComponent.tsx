@@ -13,7 +13,10 @@ import { Skeleton } from "@mui/material";
 import { ReusableActionButtonComponent } from "../ReusableActionButtonComponent/ReusableActionButtonComponent";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { useAppSelector } from "@/redux/store";
+import { AppDispatch, useAppSelector } from "@/redux/store";
+import { useDispatch } from "react-redux";
+import { setAdminDetailOpened } from "@/redux/features/admin-detail-open";
+import { setOpenedProduct } from "@/redux/features/admin-opened-product-slice";
 
 export const ProductCardComponent = ({
     product,
@@ -32,6 +35,7 @@ export const ProductCardComponent = ({
     }>({ src: "/img.png", alt: "string" });
     const availableActions = ["edit", "remove"];
     const siteTexts = useAppSelector((state) => state.globalLanguage.value);
+    const dispatch = useDispatch<AppDispatch>();
     useEffect(() => {
         if (product) {
             const portrait = product.photos.find((photo: ProductPhotos) => {
@@ -93,6 +97,25 @@ export const ProductCardComponent = ({
                                     action={
                                         action as AvailableProductActionsType
                                     }
+                                    execute={(() => {
+                                        const availableActions = {
+                                            edit: () => {
+                                                console.log("[OPENING-DETAIL]");
+
+                                                dispatch(
+                                                    setAdminDetailOpened(true)
+                                                );
+                                                dispatch(
+                                                    setOpenedProduct(product)
+                                                );
+                                            },
+                                            remove: () => {},
+                                        };
+
+                                        return availableActions[
+                                            action as keyof typeof availableActions
+                                        ];
+                                    })()}
                                     icon={
                                         action === "edit" ? (
                                             <EditIcon />

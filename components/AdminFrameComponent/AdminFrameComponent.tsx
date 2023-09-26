@@ -62,11 +62,11 @@ export const AdminFrameComponent = ({
     const icon = {
         hidden: {
             pathLength: 0,
-            strokeWidht: "2",
+            strokeWidth: "2",
         },
         visible: {
             pathLength: 1,
-            strokeWidht: "2",
+            strokeWidth: "2",
         },
     };
 
@@ -82,6 +82,7 @@ export const AdminFrameComponent = ({
                     position: "absolute",
                     left: "-4.9rem",
                     top: "-6.5rem",
+                    pointerEvents: "none",
                 }}
                 className={styles["animation-tilt"]}
                 ref={svg}
@@ -105,7 +106,7 @@ export const AdminFrameComponent = ({
                     } a30,30 0 0 1 20,-20 z`}
                     stroke="white"
                     fill={"transparent"}
-                    stroke-width="2"
+                    strokeWidth="2"
                     variants={icon}
                     initial="hidden"
                     animate={controls}

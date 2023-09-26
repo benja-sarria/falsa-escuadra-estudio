@@ -1,3 +1,5 @@
+import openedProductValue from "./features/admin-opened-product-slice";
+import adminDetailOpened from "./features/admin-detail-open";
 import globalLanguage from "./features/siteTexts-slice";
 import loading from "./features/loading-slice";
 import productsValue from "./features/products-slice";
@@ -6,7 +8,14 @@ import activeSection from "./features/admin-slice";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 
 export const store = configureStore({
-    reducer: { activeSection, productsValue, loading, globalLanguage },
+    reducer: {
+        activeSection,
+        productsValue,
+        loading,
+        globalLanguage,
+        adminDetailOpened,
+        openedProductValue,
+    },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

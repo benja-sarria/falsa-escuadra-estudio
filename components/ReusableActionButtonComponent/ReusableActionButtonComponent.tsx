@@ -1,23 +1,28 @@
 import styles from "@/components/ReusableActionButtonComponent/ReusableActionButtonComponent.module.scss";
-import { AvailableProductActionsType } from "@/types/projectTypes";
+import { setAdminDetailOpened } from "@/redux/features/admin-detail-open";
+import { setOpenedProduct } from "@/redux/features/admin-opened-product-slice";
+import { AppDispatch } from "@/redux/store";
+import {
+    AvailableProductActionsType,
+    ProductReceivedType,
+} from "@/types/projectTypes";
 import { parseVariants } from "@/utils/styles/parseVariants";
-import { ReactNode } from "react";
+import { MouseEventHandler, ReactNode } from "react";
+import { useDispatch } from "react-redux";
 
 export const ReusableActionButtonComponent = ({
     icon,
     text,
     action,
     styleVariants,
+    execute,
 }: {
     icon: ReactNode;
     text: string;
     action: AvailableProductActionsType;
     styleVariants?: string[];
+    execute: MouseEventHandler;
 }) => {
-    const availableActions = {
-        edit: () => {},
-        remove: () => {},
-    };
     return (
         <button
             className={`${styles["action-button-container"]}${
@@ -25,7 +30,7 @@ export const ReusableActionButtonComponent = ({
                     ? parseVariants(styleVariants, styles)
                     : ""
             }`}
-            onClick={availableActions[action]}
+            onClick={execute}
             data-action={`${action}`}
         >
             {icon}
