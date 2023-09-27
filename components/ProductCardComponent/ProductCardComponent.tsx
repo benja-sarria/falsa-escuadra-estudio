@@ -106,7 +106,9 @@ export const ProductCardComponent = ({
                                                     setAdminDetailOpened(true)
                                                 );
                                                 dispatch(
-                                                    setOpenedProduct(product)
+                                                    setOpenedProduct({
+                                                        set: product,
+                                                    })
                                                 );
                                             },
                                             remove: () => {},

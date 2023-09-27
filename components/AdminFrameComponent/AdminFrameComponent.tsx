@@ -6,6 +6,7 @@ import { motion, useAnimationControls } from "framer-motion";
 
 import { AvailableSectionsType } from "@/redux/features/admin-slice";
 import { ReactNode, useEffect, useRef, useState } from "react";
+import { useAppSelector } from "@/redux/store";
 
 export const AdminFrameComponent = ({
     children,
@@ -22,6 +23,12 @@ export const AdminFrameComponent = ({
         profile: "Perfil",
         users: "Usuarios",
     };
+    const openedDetail = useAppSelector(
+        (state) => state.adminDetailOpened.value
+    );
+    const openedProduct = useAppSelector(
+        (state) => state.openedProductValue.value
+    );
     const [screenState, setScreenState] = useState<undefined | any>(undefined);
     const title = useRef(null);
     const svg = useRef(null);
@@ -73,7 +80,9 @@ export const AdminFrameComponent = ({
     return (
         <div className={styles["frame-container"]}>
             <h2 ref={title} className={styles["frame-title"]}>
-                {options[section]}
+                {openedDetail
+                    ? openedProduct?.original?.title
+                    : options[section]}
             </h2>
             <svg
                 width={`${screenState ? screenState?.width * 1 : 100}`}
