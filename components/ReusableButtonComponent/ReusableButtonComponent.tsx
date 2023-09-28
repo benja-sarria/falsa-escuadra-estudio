@@ -1,5 +1,5 @@
 "use client";
-import { MouseEventHandler, useEffect } from "react";
+import { MouseEventHandler, ReactNode, useEffect } from "react";
 import styles from "./ReusableButtonComponent.module.scss";
 import { parseVariants } from "@/utils/styles/parseVariants";
 
@@ -8,7 +8,7 @@ export const ReusableButtonComponent = ({
     onClickHandler,
     styleVariants,
 }: {
-    text: string;
+    text: string | ReactNode;
     onClickHandler: Function & MouseEventHandler;
     styleVariants: string[];
 }) => {
