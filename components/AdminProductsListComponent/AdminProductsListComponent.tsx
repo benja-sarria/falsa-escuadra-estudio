@@ -13,7 +13,7 @@ import { setLoading } from "@/redux/features/loading-slice";
 export const AdminProductsListComponent = ({
     products,
 }: {
-    products: Promise<Response>;
+    products: StandardSuccessResponse | undefined;
 }) => {
     const dispatch = useDispatch<AppDispatch>();
     const stateProducts = useAppSelector((state) => state.productsValue.value);
@@ -21,22 +21,18 @@ export const AdminProductsListComponent = ({
 
     useEffect(() => {
         dispatch(setLoading(true));
-        (async () => {
-            const awaitedResponse = await products;
-            if (!awaitedResponse.bodyUsed) {
-                const parsedResponse =
-                    (await awaitedResponse.json()) as StandardSuccessResponse;
-                dispatch(
-                    setProducts({
-                        products: parsedResponse.data,
-                        sortCriteria: "id",
-                    })
-                );
-                setTimeout(() => {
-                    dispatch(setLoading(false));
-                }, 1000);
-            }
-        })();
+        console.log("[PRODUCTS]", products);
+        if (products) {
+            dispatch(
+                setProducts({
+                    products: products.data,
+                    sortCriteria: "id",
+                })
+            );
+            setTimeout(() => {
+                dispatch(setLoading(false));
+            }, 1000);
+        }
     }, [products]);
 
     useEffect(() => {

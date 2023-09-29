@@ -3,8 +3,13 @@ import MiniDrawerComponent from "@/components/MiniDrawerComponent/MiniDrawerComp
 import { AdminSectionType } from "@/types/adminSectionTypes";
 import { authOptions } from "@/utils/auth/authOptions";
 import { getServerSession } from "next-auth";
+import { ReactNode } from "react";
 
-export const MiniDrawerContainer = async () => {
+export const MiniDrawerContainer = async ({
+    children,
+}: {
+    children: ReactNode;
+}) => {
     const session = await getServerSession(authOptions);
     const enabledSections: AdminSectionType = (() => {
         if ((session?.user as any).roleLvl === 2) {
@@ -20,7 +25,7 @@ export const MiniDrawerContainer = async () => {
             session={session}
             enabledSections={enabledSections}
         >
-            <AdminMainContentComponent />
+            {children}
         </MiniDrawerComponent>
     );
 };

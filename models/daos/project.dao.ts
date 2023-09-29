@@ -7,9 +7,11 @@ import { NewProjectDTO } from "../dtos/NewProject.dto";
 import {
     PhotoQueryParamsType,
     PhotosObjectInterface,
+    ProductReceivedType,
     ProjectQueryParamsType,
 } from "@/types/projectTypes";
 import { NewPhotoDTO } from "../dtos/NewPhoto.dto";
+import { ParsedProjectDTO } from "../dtos/ParsedProject.dto";
 
 export class ProjectPrismaDao {
     db: PrismaClient<Prisma.PrismaClientOptions, never, DefaultArgs>;
@@ -56,15 +58,32 @@ export class ProjectPrismaDao {
     async getProjects(queryParams: ProjectQueryParamsType | undefined) {
         console.log("DAO", queryParams);
 
-        const projects: Product[] = await this.db.product.findMany({
+        const projects: ProductReceivedType[] = await this.db.product.findMany({
             where: queryParams ? { ...queryParams } : {},
             include: { photos: true, productType: true },
         });
         if (!projects) {
             throw new Error("There was a problem querying your data");
         }
-
-        return projects;
+        const parsedProjects = projects.map((project: any) => {
+            const photos = (project as ProductReceivedType).photos.map(
+                (photo) => {
+                    return {
+                        ...photo,
+                        createdAt: new Date(photo.createdAt)
+                            .toLocaleDateString("en-GB")
+                            .toString(),
+                        updatedAt: new Date(photo.updatedAt)
+                            .toLocaleDateString("en-GB")
+                            .toString(),
+                    };
+                }
+            );
+            project.photos = photos;
+            const parsed = new ParsedProjectDTO(project);
+            return parsed.parsed;
+        });
+        return parsedProjects;
     }
 
     async updateProject(parsedData: NewProjectDTO, id: number) {

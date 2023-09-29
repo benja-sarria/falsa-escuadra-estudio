@@ -75,6 +75,14 @@ export const ProductCardComponent = ({
             className={`${styles["product-card-container"]} ${
                 type === "large" ? styles["large-card"] : styles["small-card"]
             }`}
+            onClick={() => {
+                dispatch(setAdminDetailOpened(true));
+                dispatch(
+                    setOpenedProduct({
+                        set: product,
+                    })
+                );
+            }}
         >
             <div className={styles["product-card-img-outer-container"]}>
                 <AutoAdjustImgComponent
