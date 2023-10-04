@@ -59,7 +59,7 @@ export const AdminFrameComponent = ({
             const handleSetScreen = () => {
                 console.log("SETTING-screen");
 
-                setScreenState(screen);
+                setScreenState(window);
             };
             handleSetScreen();
         }, 600);
@@ -85,8 +85,8 @@ export const AdminFrameComponent = ({
                     : options[section]}
             </h2>
             <svg
-                width={`${screenState ? screenState?.width * 1 : 100}`}
-                height={`${screenState ? screenState?.height * 1 : 100}`}
+                width={`${screenState ? screenState?.innerWidth * 1 : 100}`}
+                height={`${screenState ? screenState?.innerHeight * 1 : 100}`}
                 style={{
                     position: "absolute",
                     left: "-4.9rem",
@@ -95,23 +95,23 @@ export const AdminFrameComponent = ({
                 }}
                 className={styles["animation-tilt"]}
                 ref={svg}
-                viewBox={`0 0 ${screenState ? screenState?.width * 0.9 : 100} ${
-                    screenState ? screenState?.height * 0.9 : 100
-                }`}
+                viewBox={`0 0 ${
+                    screenState ? screenState?.innerWidth * 0.9 : 100
+                } ${screenState ? screenState?.innerHeight * 0.9 : 100}`}
             >
                 <motion.path
                     d={`M100,100 h${
                         open && screenState
-                            ? screenState?.width * 0.62
-                            : screenState?.width * 0.72
+                            ? screenState?.innerWidth * 0.8
+                            : screenState?.innerWidth * 0.8
                     } a30,30 0 0 1 20,20 v${
-                        screenState ? screenState?.height * 0.52 : 100
+                        screenState ? screenState?.innerHeight * 0.7 : 100
                     }  a30,30 0 0 1 -20,20 h-${
                         open && screenState
-                            ? screenState?.width * 0.62
-                            : screenState?.width * 0.72
+                            ? screenState?.innerWidth * 0.8
+                            : screenState?.innerWidth * 0.8
                     } a30,30 0 0 1 -20,-20 v-${
-                        screenState ? screenState?.height * 0.52 : 100
+                        screenState ? screenState?.innerHeight * 0.7 : 100
                     } a30,30 0 0 1 20,-20 z`}
                     stroke="white"
                     fill={"transparent"}
