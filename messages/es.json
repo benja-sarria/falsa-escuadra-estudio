@@ -1,0 +1,23 @@
+{
+    "adminTexts": {
+        "productActionButtons": {
+            "edit": {
+                "text": "Editar"
+            },
+            "remove": {
+                "text": "Eliminar"
+            }
+        },
+        "editProductForm": {
+            "title": {
+                "label": "Título"
+            },
+            "content": {
+                "label": "Contenido"
+            },
+            "productType": {
+                "label": "Tipo de producto"
+            }
+        }
+    }
+}

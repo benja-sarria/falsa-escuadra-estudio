@@ -1,0 +1,58 @@
+.action-button-container {
+    --max-icon-size: 1rem;
+    background-color: transparent;
+    border: 2px solid black;
+    border-radius: calc(var(--max-icon-size) * 1.2);
+    border-color: transparent;
+
+    max-width: var(--max-icon-size);
+    max-height: var(--max-icon-size);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    column-gap: 0.25rem;
+    align-items: center;
+    padding: 0.75rem;
+    cursor: pointer;
+    transition: all 200ms ease-out;
+    background-color: var(--falsa-escuadra-blue);
+
+    h5 {
+        font-size: 0px;
+        opacity: 0;
+        transition: all 200ms ease-out;
+    }
+    &:hover {
+        max-width: calc(var(--max-icon-size) * 20);
+        border-color: transparent;
+        transition: all 400ms ease-out;
+
+        h5 {
+            opacity: 1;
+            font-size: 0.65rem;
+            color: var(--falsa-escuadra-white);
+            transition: all 400ms ease-out;
+        }
+        svg {
+            left: 0rem;
+        }
+    }
+    svg {
+        max-width: var(--max-icon-size);
+        max-height: var(--max-icon-size);
+        position: relative;
+        left: 0.13rem;
+        transition: all 400ms ease-out;
+    }
+    &:is([data-action="remove"]) {
+        background-color: var(--falsa-escuadra-error);
+        &:hover {
+        }
+    }
+}
+
+.light-variant {
+    svg {
+        color: var(--falsa-escuadra-white);
+    }
+}

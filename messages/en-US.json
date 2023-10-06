@@ -1,0 +1,12 @@
+{
+    "adminTexts": {
+        "productActionButtons": {
+            "edit": {
+                "text": "Editar"
+            },
+            "remove": {
+                "text": "Eliminar"
+            }
+        }
+    }
+}

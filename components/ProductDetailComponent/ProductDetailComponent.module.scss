@@ -1,0 +1,52 @@
+.product-detail-container {
+    display: flex;
+    z-index: 1;
+
+    .product-detail-left-column {
+        min-width: 30%;
+        max-width: 30%;
+    }
+    .product-detail-right-column {
+        position: relative;
+        padding: 1rem;
+        .product-detail-form-component {
+            display: flex;
+            flex-wrap: wrap;
+            row-gap: 2rem;
+            .form-label-item {
+                min-width: 50%;
+                position: relative;
+                .label-title {
+                    position: absolute;
+                    top: -0.8rem;
+                    background-color: var(--falsa-escuadra-blue-dark);
+                    padding: 0rem 0.5rem;
+                }
+                .form-input-item {
+                    min-width: 90%;
+                    background-color: transparent;
+                    border-radius: 0.25rem;
+                    padding: 0.75rem 1rem;
+                    color: var(--falsa-escuadra-white);
+                    font-size: 1.1rem;
+                    border: 1px solid var(--falsa-escuadra-white);
+                }
+                &:has([class*="text-area"]) {
+                    min-width: 100%;
+                    .text-area {
+                        min-height: 40vh;
+                        background-color: transparent;
+                    }
+                }
+                .text-area {
+                    background-color: transparent;
+                }
+            }
+        }
+        .close-detail-button {
+            position: absolute;
+            right: -0.75rem;
+            top: -0.75rem;
+        }
+    }
+}

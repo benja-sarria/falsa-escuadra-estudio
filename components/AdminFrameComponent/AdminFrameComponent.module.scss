@@ -1,0 +1,60 @@
+.frame-container {
+    min-width: 100%;
+    min-height: 100%;
+
+    padding: 2rem;
+    // border: 2px solid var(--falsa-escuadra-white);
+    margin: 1rem 0.5rem 0rem 0.5rem;
+    border-radius: 2rem;
+    position: relative;
+    pointer-events: none;
+    z-index: 0;
+    .frame-title {
+        position: absolute;
+        top: -2rem;
+        font-size: 2.5rem;
+        background-color: var(--falsa-escuadra-blue-dark);
+        padding: 0rem 1rem;
+        z-index: 2;
+    }
+    .animate-title {
+        animation-name: appear;
+        animation-iteration-count: 1;
+        animation-duration: 300ms;
+    }
+    .animation-tilt {
+        animation-name: tilt;
+        animation-duration: 800ms;
+        animation-iteration-count: infinite;
+    }
+    .frame-content {
+        pointer-events: all;
+    }
+}
+
+@keyframes appear {
+    0% {
+        font-size: 0.1px;
+
+        top: 0rem;
+    }
+    100% {
+        font-size: 2.5rem;
+
+        top: -2rem;
+    }
+}
+
+@keyframes tilt {
+    0% {
+        opacity: 0.2;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 0.2;
+    }
+}

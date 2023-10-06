@@ -1,0 +1,44 @@
+.page-container {
+    background-color: black;
+    min-height: 100vh;
+    min-width: 100vw;
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .logo-outer-container {
+        --logo-min-width: 25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        transform: scale(1);
+        transition: all 600ms ease-out;
+        cursor: pointer;
+        .logo-inner-container {
+            position: relative;
+            min-width: var(--logo-min-width);
+            max-width: var(--logo-min-width);
+            filter: invert(1);
+        }
+        .ring-outer-container {
+            position: absolute;
+            top: -0.2rem;
+            pointer-events: none;
+            .ring-inner-container {
+                position: relative;
+                min-width: var(--logo-min-width);
+                max-width: var(--logo-min-width);
+                opacity: 0;
+                filter: invert(1);
+            }
+        }
+    }
+    .log-in-btn-container {
+        opacity: 0;
+    }
+}

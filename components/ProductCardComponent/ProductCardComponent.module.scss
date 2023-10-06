@@ -1,0 +1,138 @@
+.product-card-container {
+    --large-card-img-max-width: 20rem;
+    --large-card-img-max-height: calc(var(--large-card-img-max-width) * 0.68);
+    --small-card-img-max-width: calc(var(--large-card-img-max-width) * 0.75);
+    --small-card-img-max-height: calc(var(--small-card-img-max-width) * 0.68);
+    overflow: hidden;
+    box-shadow: 0px 10px 60px 0px rgba(0, 0, 0, 0);
+    transition: box-shadow 200ms ease-out, transform 300ms ease-in-out;
+    &:has(div:not([data-type="skeleton"])) {
+        cursor: pointer;
+    }
+    .product-card-img-outer-container {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        z-index: 2;
+        position: relative;
+        .product-img-inner-container {
+            position: relative;
+        }
+        .card-action-buttons-container {
+            position: absolute;
+            bottom: 0.5rem;
+            right: 0.5rem;
+            display: flex;
+            column-gap: 0.3rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 400ms ease-out;
+        }
+    }
+    .text-contents {
+        background-color: var(--falsa-escuadra-white);
+        min-height: 1px;
+        max-height: 1px;
+        position: relative;
+        bottom: 2rem;
+        pointer-events: none;
+        transition: all 400ms ease-out;
+        z-index: 1;
+        overflow: hidden;
+
+        h5,
+        p {
+            color: var(--falsa-escuadra-black);
+            font-size: 1px;
+            transition: all 300ms ease-in-out;
+        }
+    }
+    &:has(div:not([data-type="skeleton"])):hover {
+        box-shadow: 0px 10px 60px 0px rgba(0, 0, 0, 0.25);
+        transition: box-shadow 900ms ease-out, transform 300ms ease-in-out;
+        z-index: 10;
+        .product-card-img-outer-container {
+            .card-action-buttons-container {
+                opacity: 1;
+                pointer-events: all;
+                transition: all 400ms 400ms ease-out;
+            }
+        }
+        .text-contents {
+            position: relative;
+            bottom: 0rem;
+            pointer-events: all;
+            h5,
+            p {
+                color: var(--falsa-escuadra-black);
+            }
+            p {
+                font-size: 0.75rem;
+            }
+            h5 {
+                font-size: 0.9rem;
+            }
+        }
+    }
+}
+
+.large-card {
+    &:has(div:not([data-type="skeleton"])):hover {
+        transform: scale(1.2) translate(2rem, 2rem) rotate(-4deg);
+        .text-contents {
+            min-height: calc(var(--large-card-img-max-height) * 0.3);
+            max-height: calc(var(--large-card-img-max-height) * 0.3);
+        }
+    }
+    max-height: calc(
+        var(--large-card-img-max-height) * 0.3 +
+            var(--large-card-img-max-height)
+    );
+    .product-card-img-outer-container {
+        max-width: var(--large-card-img-max-width);
+        max-height: var(--large-card-img-max-height);
+        min-width: var(--large-card-img-max-width);
+        min-height: var(--large-card-img-max-height);
+        .product-img-inner-container {
+            min-width: var(--large-card-img-max-width);
+            max-width: var(--large-card-img-max-width);
+        }
+    }
+    .text-contents {
+        padding: calc(var(--large-card-img-max-height) * 0.3 * 0.2)
+            calc(var(--large-card-img-max-height) * 0.3 * 0.3);
+    }
+}
+
+.small-card {
+    &:has(div:not([data-type="skeleton"])):hover {
+        transform: scale(1.2) translate(2rem, 2rem) rotate(4deg);
+        .text-contents {
+            min-height: calc(var(--small-card-img-max-height) * 0.3);
+            max-height: calc(var(--small-card-img-max-height) * 0.3);
+        }
+    }
+    max-height: calc(
+        var(--small-card-img-max-height) * 0.3 +
+            var(--small-card-img-max-height)
+    );
+
+    .product-card-img-outer-container {
+        max-width: var(--small-card-img-max-width);
+        max-height: var(--small-card-img-max-height);
+        min-width: var(--small-card-img-max-width);
+        min-height: var(--small-card-img-max-height);
+        .product-img-inner-container {
+            min-width: var(--small-card-img-max-width);
+            max-width: var(--small-card-img-max-width);
+        }
+    }
+    .text-contents {
+        padding: calc(var(--small-card-img-max-height) * 0.3 * 0.1)
+            calc(var(--small-card-img-max-height) * 0.3 * 0.2);
+    }
+}
+
+.loader {
+    opacity: 0.4;
+}
