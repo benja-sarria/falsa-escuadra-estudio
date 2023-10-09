@@ -6,9 +6,11 @@ import { ReactNode, useEffect, useState } from "react";
 export const AnimatedLogoComponent = ({
     children,
     styles,
+    staticBehaviour,
 }: {
     children: ReactNode;
     styles?: any;
+    staticBehaviour?: boolean | undefined;
 }) => {
     const [stopAnimating, setStopAnimating] = useState<Boolean>(false);
     // useEffect(() => {}, [stopAnimating]);
@@ -16,7 +18,9 @@ export const AnimatedLogoComponent = ({
     return (
         <motion.div
             onClick={
-                !stopAnimating
+                staticBehaviour
+                    ? () => {}
+                    : !stopAnimating
                     ? () => {
                           setStopAnimating(true);
                           animate(

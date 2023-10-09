@@ -15,7 +15,7 @@ RUN npm run build
 #PRODUCCIÓN
 # CMD ["npm", "run","start"]
 # CMD ["npm", "run", "start-express"]
-CMD ["pm2-runtime", "ecosystem.config.js"]
+ CMD ["pm2-runtime", "ecosystem.config.js"]
 
 #DESARROLLO
 #CMD ["npm", "run", "dev"]
