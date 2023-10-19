@@ -4,7 +4,6 @@ import { EventHandler, useEffect, useRef } from "react";
 import style from "./AutoAdjustImgComponent.module.scss";
 import {
     caclulateHeightPropsWithoutLoader,
-    caclulateHeightWithHolderLoader,
     caclulateWidthPropsWithoutLoader,
 } from "@/utils/img/proportions";
 
@@ -49,9 +48,7 @@ export const AutoAdjustImgComponent = ({
     (AutoAdjustImgCustomCallbackInterface | AutoAdjustImgDefaulInterface)) => {
     const image = useRef(null);
     const availableActions = {
-        height: !holdLogoUntilLoad
-            ? caclulateHeightPropsWithoutLoader
-            : caclulateHeightWithHolderLoader,
+        height: caclulateHeightPropsWithoutLoader,
         width: caclulateWidthPropsWithoutLoader,
     };
 

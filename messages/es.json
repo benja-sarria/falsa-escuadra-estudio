@@ -16,7 +16,16 @@
                 "label": "Contenido"
             },
             "productType": {
-                "label": "Tipo de producto"
+                "label": "Tipo de producto",
+                "options": {
+                    "own": { "text": "Propios" },
+                    "custom": { "text": "A pedido" }
+                }
+            }
+        },
+        "editProductLayout": {
+            "isPortraitSign": {
+                "text": "Portada"
             }
         }
     }

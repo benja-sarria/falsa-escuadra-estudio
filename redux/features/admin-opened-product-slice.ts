@@ -5,7 +5,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export type PossibleFormValuesType = {
     title?: string | undefined;
     content?: string | undefined;
-    photos?: File[] | undefined;
+    photos?: { file: File; active: boolean }[] | undefined;
     productType?: string | undefined;
 };
 
@@ -13,12 +13,7 @@ type InitialOpenedProductValueType = {
     value:
         | {
               original?: ProductReceivedType | undefined;
-              toUpdate?: {
-                  title?: string | undefined;
-                  content?: string | undefined;
-                  photos?: File[] | undefined;
-                  productType?: string | undefined;
-              };
+              toUpdate?: PossibleFormValuesType;
           }
         | undefined;
 };
