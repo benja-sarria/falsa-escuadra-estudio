@@ -3,7 +3,7 @@ const next = require("next");
 const nodeCleanup = require("node-cleanup");
 const nodemailer = require("nodemailer");
 
-const port = /*  parseInt(process.env.PORT, 10) || */ 3019;
+const port = /*  parseInt(process.env.PORT, 10) || */ 3000;
 // const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev: false });
 const handle = app.getRequestHandler();
