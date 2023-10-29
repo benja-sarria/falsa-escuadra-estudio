@@ -47,5 +47,65 @@
             "about-us": { "text": "Nosotros", "link": "#" },
             "contact": { "text": "Contacto", "link": "#" }
         }
+    },
+    "home": {
+        "homePortrait": {
+            "title": {
+                "firstLine": "Especialmente",
+                "secondLine": "diseñado",
+                "thirdLine": "para vos"
+            },
+            "leftColumn": {
+                "content": {
+                    "text": "Diseño y producción de mobiliario."
+                },
+                "images": {
+                    "patternOne": {
+                        "src": "/assets/img/site/pattern.svg",
+                        "alt": "pattern"
+                    },
+                    "patternTwo": {
+                        "src": "/assets/img/site/pattern2.svg",
+                        "alt": "pattern"
+                    },
+                    "patternThree": {
+                        "src": "/assets/img/site/pattern3.svg",
+                        "alt": "pattern"
+                    }
+                }
+            },
+            "rightColumn": {
+                "image": {
+                    "src": "/assets/img/site/portrait-photo.jpeg",
+                    "alt": "project photo"
+                },
+                "content": {
+                    "text": "Habitar la rutina"
+                }
+            }
+        },
+        "videoSection": {
+            "textContent": {
+                "text": "<b>Introducción breve contando quienes somos y qué hacemos.</b> | Se puede mostrar en números los proyectos finalizados y todas las | <b>ciudades a las que se ha enviado.</b>"
+            },
+            "indicators": {
+                "projects": {
+                    "number": "100",
+                    "subtitle": "Proyectos Finalizados"
+                },
+                "designs": {
+                    "number": "300",
+                    "subtitle": "Diseños únicos"
+                },
+                "cities": {
+                    "number": "50",
+                    "subtitle": "Ciudades"
+                }
+            },
+            "button": {
+                "text": "Conocenos",
+                "link": "#"
+            }
+        }
     }
 }

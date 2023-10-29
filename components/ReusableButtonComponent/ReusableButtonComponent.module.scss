@@ -32,6 +32,11 @@
     border-color: #fff;
     color: #fff;
 }
+.dark {
+    border-color: var(--falsa-escuadra-black);
+    background-color: var(--falsa-escuadra-black);
+    color: var(--falsa-escuadra-white);
+}
 .green-hover {
     cursor: pointer;
 }

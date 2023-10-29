@@ -12,6 +12,7 @@ import { setLanguage } from "@/redux/features/siteTexts-slice";
 import { LanguageProvider } from "@/context/languageProvider";
 import { acceptedLocales } from "@/utils/api/getLocale";
 import { NavbarContainer } from "@/containers/NavbarContainer/NavbarContainer";
+import { SearchBoxContainer } from "@/containers/SearchBoxContainer/SearchBoxContainer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,7 +38,6 @@ export default async function RootLayout({
                 <body className={inter.className}>
                     <ReduxProvider>
                         <LanguageProvider lang={lang}>
-                            <NavbarContainer />
                             {children}
                         </LanguageProvider>
                     </ReduxProvider>

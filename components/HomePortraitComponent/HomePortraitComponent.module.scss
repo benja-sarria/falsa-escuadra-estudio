@@ -1,0 +1,132 @@
+.home-portrait-container {
+    --section-height: 125vh;
+    min-height: var(--section-height);
+    padding: 4rem 4rem;
+    display: flex;
+    position: relative;
+    @media (min-width: 1024px) and (max-width: 1660px) {
+        --section-height: 135vh;
+    }
+    .home-portrait-title-container {
+        position: absolute;
+        top: 2rem;
+        left: 6rem;
+        z-index: 2;
+        @media (min-width: 1024px) and (max-width: 1660px) {
+            top: 1rem;
+            left: 5rem;
+        }
+        .home-portrait-title-element {
+            --font-size: 8rem;
+            font-size: var(--font-size);
+            font-weight: 400;
+            text-align: center;
+            max-width: 60vw;
+            line-height: calc(var(--font-size) + 0.5rem);
+
+            .home-portrait-title-line {
+                line-height: calc(var(--font-size) + 0.5rem);
+                margin: 0rem;
+                span {
+                    opacity: 0;
+                    font-size: calc(var(--font-size) - 5rem);
+                }
+                &:last-child {
+                    position: relative;
+                    bottom: 2rem;
+                }
+            }
+            @media (min-width: 1024px) and (max-width: 1660px) {
+                --font-size: 6rem;
+                .home-portrait-title-line {
+                    span {
+                        font-size: calc(var(--font-size) - 3rem);
+                    }
+                }
+            }
+        }
+    }
+    .home-portrait-left-column {
+        min-width: 50%;
+        max-width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        z-index: 1;
+        .home-portrait-left-text-content {
+            .home-portrait-left-text-element {
+                border-top: 2px solid var(--falsa-escuadra-blue-mid);
+                max-width: 12rem;
+                font-size: 1.15rem;
+                padding: 0.75rem 0rem 1rem;
+                @media (min-width: 1024px) and (max-width: 1660px) {
+                    font-size: 1.05rem;
+                }
+            }
+        }
+        .home-portrait-left-images-container {
+            display: flex;
+            column-gap: 1.5rem;
+            .image-outer-canvas {
+                --pattern-min-height: 20.5rem;
+                --pattern-min-width: 12rem;
+                min-width: var(--pattern-min-width);
+                max-width: var(--pattern-min-width);
+                min-height: var(--pattern-min-height);
+                max-height: var(--pattern-min-height);
+                overflow: hidden;
+                @media (min-width: 1024px) and (max-width: 1660px) {
+                    --pattern-min-height: 17.5rem;
+                    --pattern-min-width: 9rem;
+                }
+                .pattern-image-inner {
+                    position: relative;
+                    min-height: var(--pattern-min-height);
+                    max-height: var(--pattern-min-height);
+                }
+            }
+        }
+    }
+    .home-portrait-right-column {
+        --img-min-height: calc(var(--section-height) * 0.6);
+        min-width: 50%;
+        max-width: 50%;
+        display: flex;
+        padding: 5.2% 0rem;
+        position: relative;
+        z-index: 1;
+        .home-portrait-img-outer {
+            max-width: calc(var(--img-min-height) * 1);
+            max-height: var(--img-min-height);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 10rem;
+            .portrait-image-inner {
+                position: relative;
+                min-height: var(--img-min-height);
+                max-height: var(--img-min-height);
+            }
+        }
+        .home-portrait-right-text-content {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            .home-portrait-right-text-element {
+                border-top: 2px solid var(--falsa-escuadra-blue-mid);
+                max-width: 6rem;
+                text-align: right;
+                font-size: 1.15rem;
+            }
+        }
+    }
+    .home-portrait-background-rectangle {
+        position: absolute;
+        top: -6rem;
+        right: 0rem;
+        min-height: calc(var(--section-height) * 0.65);
+        min-width: 25vw;
+        background-color: var(--falsa-escuadra-gold-light);
+    }
+}

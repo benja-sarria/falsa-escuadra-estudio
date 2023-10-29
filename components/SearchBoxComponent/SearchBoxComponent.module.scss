@@ -1,0 +1,16 @@
+.search-box-container {
+    --icon-min-width: 3rem;
+    z-index: 3;
+    .search-box-button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        .search-icon-inner {
+            position: relative;
+            min-width: var(--icon-min-width);
+            max-width: var(--icon-min-width);
+            min-height: 1px;
+            max-height: 1px;
+        }
+    }
+}
