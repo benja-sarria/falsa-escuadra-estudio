@@ -1,7 +1,7 @@
 import { PhotoDataInterface } from "@/types/projectTypes";
 
 export class NewPhotoDTO {
-    src: string;
+    src: string | null;
     alt: string;
     productId: number;
     isPortrait: boolean;

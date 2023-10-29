@@ -16,12 +16,14 @@ export const ReusableActionButtonComponent = ({
     action,
     styleVariants,
     execute,
+    invertOrder,
 }: {
     icon: ReactNode;
     text: string;
     action: AvailableProductActionsType;
     styleVariants?: string[];
     execute: MouseEventHandler;
+    invertOrder?: boolean;
 }) => {
     return (
         <button
@@ -29,12 +31,21 @@ export const ReusableActionButtonComponent = ({
                 styleVariants && styleVariants.length > 0
                     ? parseVariants(styleVariants, styles)
                     : ""
-            }`}
+            }${invertOrder ? ` ${styles["inverted-order"]}` : ""}`}
             onClick={execute}
             data-action={`${action}`}
         >
-            {icon}
-            <h5>{text}</h5>
+            {invertOrder ? (
+                <>
+                    <h5>{text}</h5>
+                    {icon}
+                </>
+            ) : (
+                <>
+                    {icon}
+                    <h5>{text}</h5>
+                </>
+            )}
         </button>
     );
 };

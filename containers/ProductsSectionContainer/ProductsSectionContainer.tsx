@@ -10,7 +10,11 @@ export const ProductsSectionContainer = async () => {
     return (
         <div>
             <AdminProductsListComponent
-                products={products.success ? products : undefined}
+                products={
+                    products.success
+                        ? JSON.parse(JSON.stringify(products))
+                        : undefined
+                }
             />
         </div>
     );

@@ -26,7 +26,26 @@
         "editProductLayout": {
             "isPortraitSign": {
                 "text": "Portada"
+            },
+            "photoEditButtons": {
+                "change": {
+                    "text": "Cambiar foto"
+                },
+                "remove": {
+                    "text": "Eliminar foto"
+                }
+            },
+            "saveUpdatedImg": {
+                "text": "Guardar imagen"
             }
+        }
+    },
+    "layout": {
+        "navbar": {
+            "home": { "text": "Inicio", "link": "#" },
+            "projects": { "text": "Proyectos", "link": "#" },
+            "about-us": { "text": "Nosotros", "link": "#" },
+            "contact": { "text": "Contacto", "link": "#" }
         }
     }
 }

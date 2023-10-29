@@ -4,12 +4,14 @@ import Link from "next/link";
 import styles from "./AnimatedNavbarLogoComponent.module.scss";
 import { AutoAdjustImgComponent } from "../AutoAdjustImgComponent/AutoAdjustImgComponent";
 import { parseVariants } from "@/utils/styles/parseVariants";
-import { useEffect, useState } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
 
 export const AnimatedNavbarLogoComponent = ({
     variants,
+    onClick,
 }: {
     variants?: string[];
+    onClick?: MouseEventHandler;
 }) => {
     const [falsaAnimation, setFalsaAnimation] = useState<any>(undefined);
     const [escuadraAnimation, setEscuadraAnimation] = useState<any>(undefined);

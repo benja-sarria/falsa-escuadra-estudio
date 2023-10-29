@@ -1,11 +1,19 @@
 import { ProductReceivedType } from "@/types/projectTypes";
-import { Product } from "@prisma/client";
+import { Product, ProductPhotos } from "@prisma/client";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type PossibleFormValuesType = {
+export interface UpdatedPhotosInterface extends ProductPhotos {
+    file?: { data: string; prefix: string };
+    active?: boolean;
+    isUpdated?: boolean;
+}
+
+export type PossibleFormValuesType = Partial<
+    Omit<ProductReceivedType, "photos">
+> & {
     title?: string | undefined;
     content?: string | undefined;
-    photos?: { file: File; active: boolean }[] | undefined;
+    photos?: UpdatedPhotosInterface[] | undefined;
     productType?: string | undefined;
 };
 
@@ -27,6 +35,11 @@ export const openedProductValue = createSlice({
     reducers: {
         resetOpenedProduct: () => {
             return openedProductInitialValue;
+        },
+        resetUpdatedProduct: (state, action) => {
+            if (state.value && state.value.original) {
+                state.value.toUpdate = { ...state.value.original };
+            }
         },
         setOpenedProduct: (
             state,
@@ -52,6 +65,6 @@ export const openedProductValue = createSlice({
     },
 });
 
-export const { resetOpenedProduct, setOpenedProduct } =
+export const { resetOpenedProduct, setOpenedProduct, resetUpdatedProduct } =
     openedProductValue.actions;
 export default openedProductValue.reducer;

@@ -3,9 +3,9 @@
 import { ReactNode, createContext, useEffect } from "react";
 
 import { Provider, useDispatch } from "react-redux";
-import { acceptedLocales } from "@/middleware";
 import { AppDispatch } from "@/redux/store";
 import { setLanguage } from "@/redux/features/siteTexts-slice";
+import { acceptedLocales } from "@/utils/api/getLocale";
 
 export const LanguageContext = createContext({});
 

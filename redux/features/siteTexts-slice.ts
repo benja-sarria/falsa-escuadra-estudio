@@ -1,5 +1,5 @@
-import { acceptedLocales } from "./../../middleware";
 import { ProductReceivedType } from "@/types/projectTypes";
+import { acceptedLocales } from "@/utils/api/getLocale";
 import { Product } from "@prisma/client";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
