@@ -5,6 +5,8 @@
     min-width: 100vw;
     padding: 0rem 4rem;
     margin-bottom: 4rem;
+    display: flex;
+    align-items: center;
     .video-section-background {
         position: absolute;
         min-height: calc(var(--section-height));
@@ -36,5 +38,11 @@
         }
     }
     .right-column {
+        z-index: 2;
+        .right-column-video {
+            z-index: 2;
+            min-width: calc((var(--section-height) * 0.8) * 1.5);
+            min-height: calc(var(--section-height) * 0.8);
+        }
     }
 }

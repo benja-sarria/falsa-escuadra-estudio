@@ -6,12 +6,14 @@ import { ReusableButtonContainer } from "@/containers/ReusableButtonContainer/Re
 import { TemporarySignComponent } from "@/components/TemporarySignComponent/TemporarySignComponent";
 import { HomePortraitComponent } from "@/components/HomePortraitComponent/HomePortraitComponent";
 import { HomeVideoSectionComponent } from "@/components/HomeVideoSectionComponent/HomeVideoSectionComponent";
+import { HomeProductCarouselContainer } from "@/containers/HomeProductCarouselContainer/HomeProductCarouselContainer";
 
 export default function Home() {
     return (
         <main className={""}>
             <HomePortraitComponent />
             <HomeVideoSectionComponent />
+            <HomeProductCarouselContainer />
             {/*       <TemporarySignComponent /> */}
         </main>
     );

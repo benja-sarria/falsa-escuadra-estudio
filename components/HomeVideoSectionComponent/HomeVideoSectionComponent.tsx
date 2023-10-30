@@ -4,6 +4,7 @@ import { ReusableButtonContainer } from "@/containers/ReusableButtonContainer/Re
 import { useAppSelector } from "@/redux/store";
 import { SvgIcon } from "@mui/material";
 import { IndicatorComponent } from "../IndicatorComponent/IndicatorComponent";
+import { parseTags } from "@/utils/text/parseTags";
 
 export const HomeVideoSectionComponent = () => {
     const siteTexts = useAppSelector((state) => state.globalLanguage.value);
@@ -13,31 +14,9 @@ export const HomeVideoSectionComponent = () => {
         <div className={styles["video-section-container"]}>
             <div className={styles["video-section-background"]}></div>
             <div className={styles["left-column"]}>
-                <p className={styles["left-column-text"]}>
-                    {videoSection &&
-                        (() => {
-                            const text = videoSection.textContent.text;
-                            const parts = text.split("|");
-                            return parts.map((part: string, index: number) => {
-                                console.log(
-                                    "PART",
-                                    part,
-                                    part.startsWith("<b>")
-                                );
-
-                                return part.startsWith("<b>") ||
-                                    part.endsWith("</b>") ? (
-                                    <strong key={`${index}`}>
-                                        {part
-                                            .replaceAll("<b>", "")
-                                            .replaceAll("</b>", "")}
-                                    </strong>
-                                ) : (
-                                    <p key={`${index}`}>{part}</p>
-                                );
-                            });
-                        })()}
-                </p>
+                <div className={styles["left-column-text"]}>
+                    {videoSection && parseTags(videoSection.textContent.text)}
+                </div>
                 <div className={styles["left-column-indicators"]}>
                     {videoSection &&
                         Object.keys(videoSection.indicators).map(
@@ -78,7 +57,12 @@ export const HomeVideoSectionComponent = () => {
                     </SvgIcon>
                 </ReusableButtonContainer>
             </div>
-            <div className={styles["right-column"]}></div>
+            <div className={styles["right-column"]}>
+                <iframe
+                    className={styles["right-column-video"]}
+                    src="https://video.fluq5-1.fna.fbcdn.net/v/t42.1790-2/243038183_292697318996259_9069813821112399010_n.mp4?_nc_cat=103&ccb=1-7&_nc_sid=55d0d3&efg=eyJ2ZW5jb2RlX3RhZyI6InN2ZV9zZCJ9&_nc_ohc=_ozULHiCS1AAX9ws7iK&_nc_rml=0&_nc_ht=video.fluq5-1.fna&oh=00_AfDYst8fnOp5vjqqK4vYa8BmMvJdUKtxccnpzbg-gH1ZKA&oe=65430CF3"
+                />
+            </div>
         </div>
     );
 };
