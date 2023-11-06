@@ -13,6 +13,7 @@
         "@emotion/react": "^11.11.1",
         "@emotion/styled": "^11.11.0",
         "@formatjs/intl-localematcher": "^0.4.2",
+        "@glidejs/glide": "^3.6.0",
         "@mui/icons-material": "^5.14.8",
         "@mui/material": "^5.14.8",
         "@prisma/client": "^5.2.0",
@@ -45,6 +46,7 @@
     },
     "devDependencies": {
         "@types/compress.js": "^1.1.2",
+        "@types/glidejs__glide": "^3.6.3",
         "@types/negotiator": "^0.6.1",
         "@welldone-software/why-did-you-render": "^7.0.1",
         "node-loader": "^2.0.0",

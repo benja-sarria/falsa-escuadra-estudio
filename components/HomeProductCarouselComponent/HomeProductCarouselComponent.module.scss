@@ -1,9 +1,9 @@
 .home-carousel-container {
-    .home-carousel-title {
-        font-weight: 400;
+    padding-bottom: 8rem;
+    .home-carousel-title-container {
+        min-width: 100%;
         display: flex;
-        column-gap: 0.5rem;
-        font-size: 1.5rem;
+        justify-content: center;
     }
     .home-carousel-carousel-container {
         .home-carousel-carousel {
@@ -16,6 +16,26 @@
             --squarer-min-height: 22.14rem;
             --squarer-min-width: 22.14rem;
             --slider-min-width: 30rem;
+            &:has(.swiper-slide:hover) {
+                .swiper-slide {
+                    filter: saturate(0.5);
+                    opacity: 0.5;
+                    &:hover {
+                        filter: saturate(1);
+                        opacity: 1;
+                        .image-inner {
+                            transform: scale(1.2);
+                        }
+                    }
+                }
+            }
+            .swiper-slide {
+                transition: all 400ms ease-out;
+                cursor: pointer;
+                .image-inner {
+                    transition: all 400ms ease-out;
+                }
+            }
             .taller-slide {
                 min-width: var(--slider-min-width);
                 max-width: var(--slider-min-width);

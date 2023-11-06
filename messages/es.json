@@ -111,6 +111,61 @@
             "title": {
                 "text": "Nuestros |<b>proyectos</b>"
             }
+        },
+        "whiteboardSection": {
+            "title": {
+                "text": "Así |<b>trabajamos</b>"
+            },
+            "stages": {
+                "first": {
+                    "title": "Idea, materiales y dimensiones",
+                    "number": "01",
+                    "image": {
+                        "src": "/static/placeholder.webp",
+                        "alt": ""
+                    }
+                },
+                "second": {
+                    "title": "Creamos un diseño detallado",
+                    "number": "02",
+                    "image": {
+                        "src": "/static/placeholder.webp",
+                        "alt": ""
+                    }
+                },
+                "third": {
+                    "title": "Envío de presupuesto",
+                    "number": "03",
+                    "image": {
+                        "src": "/static/placeholder.webp",
+                        "alt": ""
+                    }
+                },
+                "fourth": {
+                    "title": "Aprobación y planificación",
+                    "number": "04",
+                    "image": {
+                        "src": "/static/placeholder.webp",
+                        "alt": ""
+                    }
+                },
+                "fifth": {
+                    "title": "Fabricamos",
+                    "number": "05",
+                    "image": {
+                        "src": "/static/placeholder.webp",
+                        "alt": ""
+                    }
+                },
+                "sixth": {
+                    "title": "Instalamos",
+                    "number": "06",
+                    "image": {
+                        "src": "/static/placeholder.webp",
+                        "alt": ""
+                    }
+                }
+            }
         }
     }
 }

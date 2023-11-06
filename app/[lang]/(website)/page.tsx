@@ -7,6 +7,7 @@ import { TemporarySignComponent } from "@/components/TemporarySignComponent/Temp
 import { HomePortraitComponent } from "@/components/HomePortraitComponent/HomePortraitComponent";
 import { HomeVideoSectionComponent } from "@/components/HomeVideoSectionComponent/HomeVideoSectionComponent";
 import { HomeProductCarouselContainer } from "@/containers/HomeProductCarouselContainer/HomeProductCarouselContainer";
+import { WhiteBoardComponent } from "@/components/WhiteBoardComponent/WhiteBoardComponent";
 
 export default function Home() {
     return (
@@ -14,6 +15,7 @@ export default function Home() {
             <HomePortraitComponent />
             <HomeVideoSectionComponent />
             <HomeProductCarouselContainer />
+            <WhiteBoardComponent />
             {/*       <TemporarySignComponent /> */}
         </main>
     );

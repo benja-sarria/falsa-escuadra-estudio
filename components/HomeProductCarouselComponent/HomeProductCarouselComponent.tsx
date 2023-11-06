@@ -15,8 +15,15 @@ import "swiper/scss";
 import "swiper/scss/navigation";
 import "swiper/scss/pagination";
 import { useEffect, useRef, useState } from "react";
+import { ProductReceivedType } from "@/types/projectTypes";
+import { ProductPhotos } from "@prisma/client";
+import { SectionTitleComponent } from "../SectionTitleComponent/SectionTitleComponent";
 
-export const HomeProductCarouselComponent = () => {
+export const HomeProductCarouselComponent = ({
+    products,
+}: {
+    products: ProductReceivedType[];
+}) => {
     const siteTexts = useAppSelector((state) => state.globalLanguage.value);
     const [mainSwiper, setMainSwiper] = useState<any>(undefined);
 
@@ -35,9 +42,9 @@ export const HomeProductCarouselComponent = () => {
                 console.log("[stopping]", mainSwiper, mainSwiper.translate);
 
                 mainSwiper.autoplay.stop();
-                const target = evt.target as HTMLElement;
+                /*   const target = evt.target as HTMLElement;
                 mainSwiper.params.autoplay.delay = 0;
-                mainSwiper.params.speed = 0;
+                mainSwiper.params.speed = 0; */
             }
         };
         const leave = (evt: Event) => {
@@ -48,9 +55,9 @@ export const HomeProductCarouselComponent = () => {
                     mainSwiper.autoplay.start
                 );
                 mainSwiper.autoplay.start();
-                const target = evt.target as HTMLElement;
+                /*       const target = evt.target as HTMLElement;
                 mainSwiper.params.autoplay.delay = 5000; // Back to default
-                mainSwiper.params.speed = 5000; // Back to default
+                mainSwiper.params.speed = 5000; // Back to default */
             }
         };
         if (mainSwiper && swiperRef.current) {
@@ -77,45 +84,83 @@ export const HomeProductCarouselComponent = () => {
 
     return (
         <div className={styles["home-carousel-container"]}>
-            <h2 className={styles["home-carousel-title"]}>
-                {carouselSection && parseTags(carouselSection.title.text)}
-            </h2>
+            <div className={styles["home-carousel-title-container"]}>
+                <SectionTitleComponent text={carouselSection?.title?.text} />
+            </div>
             <div className={styles["home-carousel-carousel-container"]}>
                 <Swiper
                     spaceBetween={0}
-                    slidesPerView={3}
-                    slidesPerGroup={1}
+                    slidesPerView={4}
                     //@ts-ignore
-                    loopaddblankslides="true"
-                    loopfillgroupwithblank="false"
+                    loopaddblankslides={true}
                     onSwiper={setMainSwiper}
                     loop={true}
                     ref={swiperRef}
-                    freeMode={true}
                     autoplay={{
                         delay: 1,
-                        waitForTransition: false,
+                        waitForTransition: true,
                     }}
-                    speed={6000}
+                    speed={3000}
+                    freeMode={true}
                     modules={[Autoplay, FreeMode]}
                     className={styles["home-carousel-carousel"]}
                 >
-                    {[
-                        "Slide 1",
-                        "Slide 2",
-                        "Slide 3",
-                        "Slide 4",
-                        "Slide 5",
-                        "Slide 6",
-                        "Slide 7",
-                        "Slide 8",
-                    ].map((swipe: string, index: number) => {
-                        const baseOne = index + 1;
-                        if (baseOne % 3 === 0) {
+                    {products &&
+                        products.length > 0 &&
+                        products.map((swipe, index: number) => {
+                            const baseOne = index + 1;
+                            const portrait = swipe.photos.find(
+                                (photo: ProductPhotos) => photo.isPortrait
+                            );
+                            if (baseOne % 3 === 0) {
+                                return (
+                                    <SwiperSlide
+                                        key={swipe.id}
+                                        className={`${styles["taller-slide"]} ${styles["swiper-slide"]}`}
+                                    >
+                                        <div className={styles["img-outer"]}>
+                                            <AutoAdjustImgComponent
+                                                alt="project slide"
+                                                givenClassName={
+                                                    styles["image-inner"]
+                                                }
+                                                src={`${
+                                                    portrait?.src ||
+                                                    "/static/placeholder.webp"
+                                                }`}
+                                                calculate="width"
+                                                fixedParameter="--img-min-height"
+                                            />
+                                        </div>
+                                    </SwiperSlide>
+                                );
+                            } else if (baseOne % 2 === 0) {
+                                return (
+                                    <SwiperSlide
+                                        className={`${styles["wider-slide"]} ${styles["swiper-slide"]}`}
+                                        key={swipe.id}
+                                    >
+                                        <div className={styles["img-outer"]}>
+                                            <AutoAdjustImgComponent
+                                                alt="project slide"
+                                                givenClassName={
+                                                    styles["image-inner"]
+                                                }
+                                                src={`${
+                                                    portrait?.src ||
+                                                    "/static/placeholder.webp"
+                                                }`}
+                                                calculate="height"
+                                                fixedParameter="--img-min-width"
+                                            />
+                                        </div>
+                                    </SwiperSlide>
+                                );
+                            }
                             return (
                                 <SwiperSlide
-                                    key={swipe}
-                                    className={`${styles["taller-slide"]}`}
+                                    className={`${styles["squarer-slide"]} ${styles["swiper-slide"]}`}
+                                    key={swipe.id}
                                 >
                                     <div className={styles["img-outer"]}>
                                         <AutoAdjustImgComponent
@@ -123,58 +168,25 @@ export const HomeProductCarouselComponent = () => {
                                             givenClassName={
                                                 styles["image-inner"]
                                             }
-                                            src="/static/placeholder.webp"
-                                            calculate="width"
-                                            fixedParameter="--img-min-height"
+                                            src={`${
+                                                portrait?.src ||
+                                                "/static/placeholder.webp"
+                                            }`}
+                                            customCallback={(
+                                                imgNode: HTMLImageElement
+                                            ) => {
+                                                autoFigureItOutMeasureLimit(
+                                                    imgNode,
+                                                    "--squarer-min-width",
+                                                    "--squarer-min-height",
+                                                    true
+                                                );
+                                            }}
                                         />
                                     </div>
                                 </SwiperSlide>
                             );
-                        } else if (baseOne % 2 === 0) {
-                            return (
-                                <SwiperSlide
-                                    className={`${styles["wider-slide"]}`}
-                                    key={swipe}
-                                >
-                                    <div className={styles["img-outer"]}>
-                                        <AutoAdjustImgComponent
-                                            alt="project slide"
-                                            givenClassName={
-                                                styles["image-inner"]
-                                            }
-                                            src="/static/placeholder.webp"
-                                            calculate="height"
-                                            fixedParameter="--img-min-width"
-                                        />
-                                    </div>
-                                </SwiperSlide>
-                            );
-                        }
-                        return (
-                            <SwiperSlide
-                                className={`${styles["squarer-slide"]}`}
-                                key={swipe}
-                            >
-                                <div className={styles["img-outer"]}>
-                                    <AutoAdjustImgComponent
-                                        alt="project slide"
-                                        givenClassName={styles["image-inner"]}
-                                        src="/static/placeholder.webp"
-                                        customCallback={(
-                                            imgNode: HTMLImageElement
-                                        ) => {
-                                            autoFigureItOutMeasureLimit(
-                                                imgNode,
-                                                "--squarer-min-width",
-                                                "--squarer-min-height",
-                                                true
-                                            );
-                                        }}
-                                    />
-                                </div>
-                            </SwiperSlide>
-                        );
-                    })}
+                        })}
                 </Swiper>
             </div>
         </div>
