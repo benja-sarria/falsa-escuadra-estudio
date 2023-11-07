@@ -85,14 +85,17 @@ export const HomeProductCarouselComponent = ({
     return (
         <div className={styles["home-carousel-container"]}>
             <div className={styles["home-carousel-title-container"]}>
-                <SectionTitleComponent text={carouselSection?.title?.text} />
+                <SectionTitleComponent
+                    text={carouselSection?.title?.text}
+                    styleVariants={[]}
+                />
             </div>
             <div className={styles["home-carousel-carousel-container"]}>
                 <Swiper
                     spaceBetween={0}
                     slidesPerView={4}
                     //@ts-ignore
-                    loopaddblankslides={true}
+                    loopaddblankslides={"true"}
                     onSwiper={setMainSwiper}
                     loop={true}
                     ref={swiperRef}
@@ -132,6 +135,21 @@ export const HomeProductCarouselComponent = ({
                                                 fixedParameter="--img-min-height"
                                             />
                                         </div>
+                                        <div
+                                            className={
+                                                styles["card-title-container"]
+                                            }
+                                        >
+                                            <h5>{swipe.title}</h5>
+                                            <p>
+                                                {swipe.content.length > 50
+                                                    ? `${swipe.content.slice(
+                                                          0,
+                                                          50
+                                                      )}...`
+                                                    : `${swipe.content}`}
+                                            </p>
+                                        </div>
                                     </SwiperSlide>
                                 );
                             } else if (baseOne % 2 === 0) {
@@ -153,6 +171,21 @@ export const HomeProductCarouselComponent = ({
                                                 calculate="height"
                                                 fixedParameter="--img-min-width"
                                             />
+                                        </div>
+                                        <div
+                                            className={
+                                                styles["card-title-container"]
+                                            }
+                                        >
+                                            <h5>{swipe.title}</h5>
+                                            <p>
+                                                {swipe.content.length > 50
+                                                    ? `${swipe.content.slice(
+                                                          0,
+                                                          50
+                                                      )}...`
+                                                    : `${swipe.content}`}
+                                            </p>
                                         </div>
                                     </SwiperSlide>
                                 );
@@ -183,6 +216,21 @@ export const HomeProductCarouselComponent = ({
                                                 );
                                             }}
                                         />
+                                    </div>
+                                    <div
+                                        className={
+                                            styles["card-title-container"]
+                                        }
+                                    >
+                                        <h5>{swipe.title}</h5>
+                                        <p>
+                                            {swipe.content.length > 50
+                                                ? `${swipe.content.slice(
+                                                      0,
+                                                      50
+                                                  )}...`
+                                                : `${swipe.content}`}
+                                        </p>
                                     </div>
                                 </SwiperSlide>
                             );

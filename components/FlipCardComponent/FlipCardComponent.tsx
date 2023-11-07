@@ -2,6 +2,7 @@ import type { ComponentType, ReactNode } from "react";
 import { motion, useSpring } from "framer-motion";
 import React, { useState, useRef, useEffect } from "react";
 import { debounce } from "@mui/material";
+import { FlippedStateType } from "../ProcessGridComponent/ProcessGridComponent";
 
 // Learn more: https://www.framer.com/docs/guides/overrides/
 
@@ -24,11 +25,17 @@ export const FlipCardComponent = ({
     width,
     height,
     enableHover,
+    externalHandler,
 }: {
     children: ReactNode;
     width: number;
     height: number;
     enableHover: boolean;
+    externalHandler: {
+        handler: Function;
+        key: string;
+        state: FlippedStateType;
+    };
 }) => {
     const [isFlipped, setIsFlipped] = useState(false);
 
@@ -45,8 +52,8 @@ export const FlipCardComponent = ({
         const elementRect = element.getBoundingClientRect();
         const elementWidth = elementRect.width;
         const elementHeight = elementRect.height;
-        const elementCenterX = elementWidth / 2;
-        const elementCenterY = elementHeight / 2;
+        const elementCenterX = elementWidth / 5;
+        const elementCenterY = elementHeight / 5;
         const mouseX = event.clientY - elementRect.y - elementCenterY;
         const mouseY = event.clientX - elementRect.x - elementCenterX;
         const degreeX = (mouseX / elementWidth) * 20; //The number is the rotation factor
@@ -64,13 +71,37 @@ export const FlipCardComponent = ({
     const dy = useSpring(0, spring);
 
     useEffect(() => {
-        dx.set(-rotateXaxis);
-        dy.set(rotateYaxis);
+        dx.set(rotateXaxis);
+        dy.set(-rotateYaxis);
     }, [rotateXaxis, rotateYaxis]);
 
     return (
         <motion.div
-            onClick={handleClick}
+            /* onClick={handleClick} */
+            onMouseEnter={() => {
+                if (
+                    !externalHandler ||
+                    (externalHandler.state &&
+                        !externalHandler.state.hasOwnProperty(
+                            externalHandler.key
+                        ) &&
+                        !isFlipped)
+                ) {
+                    handleClick();
+                }
+            }}
+            onMouseLeave={() => {
+                if (
+                    !externalHandler ||
+                    (externalHandler.state &&
+                        !externalHandler.state.hasOwnProperty(
+                            externalHandler.key
+                        ) &&
+                        isFlipped)
+                ) {
+                    handleClick();
+                }
+            }}
             transition={spring}
             style={{
                 perspective: "1200px",
@@ -101,31 +132,100 @@ export const FlipCardComponent = ({
                     }}
                 >
                     <motion.div
-                        animate={{ rotateY: isFlipped ? -180 : 0 }}
+                        animate={{
+                            rotateY:
+                                !externalHandler ||
+                                (externalHandler.state &&
+                                    !externalHandler.state.hasOwnProperty(
+                                        externalHandler.key
+                                    ))
+                                    ? isFlipped
+                                        ? 180
+                                        : 0
+                                    : externalHandler.state[
+                                          externalHandler.key as keyof typeof externalHandler.state
+                                      ]
+                                    ? 180
+                                    : 0,
+                        }}
                         transition={spring}
                         style={{
                             width: "100%",
                             height: "100%",
-                            zIndex: isFlipped ? 0 : 1,
+                            zIndex:
+                                !externalHandler ||
+                                (externalHandler.state &&
+                                    !externalHandler.state.hasOwnProperty(
+                                        externalHandler.key
+                                    ))
+                                    ? isFlipped
+                                        ? 0
+                                        : 1
+                                    : externalHandler.state[
+                                          externalHandler.key as keyof typeof externalHandler.state
+                                      ]
+                                    ? 0
+                                    : 1,
                             backfaceVisibility: "hidden",
                             position: "absolute",
                         }}
                     >
-                        {children}
+                        <div
+                            style={{
+                                minWidth: "20rem",
+                                minHeight: "20rem",
+                                backgroundColor: "red",
+                            }}
+                        ></div>
                     </motion.div>
                     <motion.div
                         initial={{ rotateY: 180 }}
-                        animate={{ rotateY: isFlipped ? 0 : 180 }}
+                        animate={{
+                            rotateY:
+                                !externalHandler ||
+                                (externalHandler.state &&
+                                    !externalHandler.state.hasOwnProperty(
+                                        externalHandler.key
+                                    ))
+                                    ? isFlipped
+                                        ? 0
+                                        : -180
+                                    : externalHandler.state[
+                                          externalHandler.key as keyof typeof externalHandler.state
+                                      ]
+                                    ? -180
+                                    : 0,
+                        }}
                         transition={spring}
                         style={{
                             width: "100%",
                             height: "100%",
-                            zIndex: isFlipped ? 1 : 0,
+                            zIndex:
+                                !externalHandler ||
+                                (externalHandler.state &&
+                                    !externalHandler.state.hasOwnProperty(
+                                        externalHandler.key
+                                    ))
+                                    ? isFlipped
+                                        ? 1
+                                        : 0
+                                    : externalHandler.state[
+                                          externalHandler.key as keyof typeof externalHandler.state
+                                      ]
+                                    ? 1
+                                    : 0,
                             backfaceVisibility: "hidden",
                             position: "absolute",
                         }}
                     >
-                        {/*  {children} */}
+                        {/*  {children}  */}
+                        <div
+                            style={{
+                                minWidth: "20rem",
+                                minHeight: "20rem",
+                                backgroundColor: "blue",
+                            }}
+                        ></div>
                     </motion.div>
                 </div>
             </motion.div>

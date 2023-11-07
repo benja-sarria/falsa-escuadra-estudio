@@ -9,6 +9,7 @@ import {
 import { useState } from "react";
 import { SectionTitleComponent } from "../SectionTitleComponent/SectionTitleComponent";
 import { useAppSelector } from "@/redux/store";
+import { ProcessGridComponent } from "../ProcessGridComponent/ProcessGridComponent";
 
 export const WhiteBoardComponent = () => {
     const [revealed, setRevealed] = useState(false);
@@ -26,9 +27,7 @@ export const WhiteBoardComponent = () => {
                 text={whiteboardSection?.title?.text}
                 styleVariants={["white-variant"]}
             />
-            {/*   <FlipCardComponent height={20} width={20} enableHover>
-                <img src="/static/placeholder.webp" alt="" />
-            </FlipCardComponent> */}
+            <ProcessGridComponent />
         </div>
     );
 };

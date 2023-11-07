@@ -8,6 +8,7 @@ import { HomePortraitComponent } from "@/components/HomePortraitComponent/HomePo
 import { HomeVideoSectionComponent } from "@/components/HomeVideoSectionComponent/HomeVideoSectionComponent";
 import { HomeProductCarouselContainer } from "@/containers/HomeProductCarouselContainer/HomeProductCarouselContainer";
 import { WhiteBoardComponent } from "@/components/WhiteBoardComponent/WhiteBoardComponent";
+import { AboutUsHomeContainer } from "@/containers/AboutUsHomeContainer/AboutUsHomeContainer";
 
 export default function Home() {
     return (
@@ -16,6 +17,7 @@ export default function Home() {
             <HomeVideoSectionComponent />
             <HomeProductCarouselContainer />
             <WhiteBoardComponent />
+            <AboutUsHomeContainer />
             {/*       <TemporarySignComponent /> */}
         </main>
     );

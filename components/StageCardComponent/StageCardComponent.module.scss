@@ -1,0 +1,23 @@
+.stage-card-component {
+    min-height: var(--card-min-height);
+
+    z-index: 20;
+    position: relative;
+    min-width: 100%;
+    .stage-card-number {
+        position: absolute;
+        top: 0.5rem;
+        left: 1rem;
+        font-weight: 400;
+        font-size: 1.2rem;
+    }
+    .stage-card-title {
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        font-size: 1.3rem;
+        font-weight: 500;
+        max-width: 50%;
+        text-align: right;
+    }
+}

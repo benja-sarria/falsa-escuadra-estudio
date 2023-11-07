@@ -121,7 +121,7 @@
                     "title": "Idea, materiales y dimensiones",
                     "number": "01",
                     "image": {
-                        "src": "/static/placeholder.webp",
+                        "src": "/assets/img/home/whiteboard/board-1.webp",
                         "alt": ""
                     }
                 },
@@ -129,7 +129,7 @@
                     "title": "Creamos un diseño detallado",
                     "number": "02",
                     "image": {
-                        "src": "/static/placeholder.webp",
+                        "src": "/assets/img/home/whiteboard/board-2.webp",
                         "alt": ""
                     }
                 },
@@ -137,7 +137,7 @@
                     "title": "Envío de presupuesto",
                     "number": "03",
                     "image": {
-                        "src": "/static/placeholder.webp",
+                        "src": "/assets/img/home/whiteboard/board-3.webp",
                         "alt": ""
                     }
                 },
@@ -145,7 +145,7 @@
                     "title": "Aprobación y planificación",
                     "number": "04",
                     "image": {
-                        "src": "/static/placeholder.webp",
+                        "src": "/assets/img/home/whiteboard/board-4.webp",
                         "alt": ""
                     }
                 },
@@ -153,7 +153,7 @@
                     "title": "Fabricamos",
                     "number": "05",
                     "image": {
-                        "src": "/static/placeholder.webp",
+                        "src": "/assets/img/home/whiteboard/board-5.webp",
                         "alt": ""
                     }
                 },
@@ -161,7 +161,7 @@
                     "title": "Instalamos",
                     "number": "06",
                     "image": {
-                        "src": "/static/placeholder.webp",
+                        "src": "/assets/img/home/whiteboard/board-6.webp",
                         "alt": ""
                     }
                 }
