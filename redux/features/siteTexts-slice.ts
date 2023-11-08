@@ -2,11 +2,12 @@ import { ProductReceivedType } from "@/types/projectTypes";
 import { acceptedLocales } from "@/utils/api/getLocale";
 import { Product } from "@prisma/client";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import texts from "@/messages/es.json";
 
 type initialLanguageStateType = {
     value: {
         lang: (typeof acceptedLocales)[number];
-        messages: any;
+        messages: typeof texts | undefined;
     };
 };
 const initialLanguageValue: initialLanguageStateType = {

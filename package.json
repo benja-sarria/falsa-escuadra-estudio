@@ -45,6 +45,7 @@
         "unique-slug": "^4.0.0"
     },
     "devDependencies": {
+        "@svgr/webpack": "^8.1.0",
         "@types/compress.js": "^1.1.2",
         "@types/glidejs__glide": "^3.6.3",
         "@types/negotiator": "^0.6.1",

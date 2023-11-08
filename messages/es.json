@@ -166,6 +166,16 @@
                     }
                 }
             }
+        },
+        "aboutUsSection": {
+            "sectionTitle": {
+                "text": "<b>Nosotros</b>"
+            }
+        },
+        "contactUsSection": {
+            "sectionPreTitle": "Diseñamos especialmente para vos.",
+            "sectionTitle": "<b>Charlemos</b>| sobre tu | <b>idea</b>",
+            "btnText": "Contacto"
         }
     }
 }

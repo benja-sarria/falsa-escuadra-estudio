@@ -94,7 +94,7 @@ export const AnimatedNavbarLogoComponent = ({
                 const estudioAnimation = animate(
                     `.${styles["estudio-inner-container"]}`,
                     {
-                        left: "90%",
+                        left: "125%" /*  "90%" */,
                     },
                     {
                         delay: 0.2,
