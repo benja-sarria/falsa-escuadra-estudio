@@ -142,8 +142,9 @@ export const ProductCardComponent = ({
                                     text={
                                         siteTexts.messages
                                             ? siteTexts.messages.adminTexts
-                                                  .productActionButtons[action]
-                                                  .text
+                                                  .productActionButtons[
+                                                  action as keyof typeof siteTexts.messages.adminTexts.productActionButtons
+                                              ].text
                                             : ""
                                     }
                                     styleVariants={["light-variant"]}

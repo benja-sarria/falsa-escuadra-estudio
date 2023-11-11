@@ -86,7 +86,7 @@ export const HomeProductCarouselComponent = ({
         <div className={styles["home-carousel-container"]}>
             <div className={styles["home-carousel-title-container"]}>
                 <SectionTitleComponent
-                    text={carouselSection?.title?.text}
+                    text={`${carouselSection?.title?.text}`}
                     styleVariants={[]}
                 />
             </div>

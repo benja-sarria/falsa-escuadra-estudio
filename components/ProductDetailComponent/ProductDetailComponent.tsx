@@ -450,7 +450,7 @@ export const ProductDetailComponent = ({
                                                           .adminTexts
                                                           .editProductLayout
                                                           .photoEditButtons[
-                                                          actionKey
+                                                          actionKey as keyof typeof siteTexts.messages.adminTexts.editProductLayout.photoEditButtons
                                                       ].text
                                                     : ""
                                             }
@@ -609,7 +609,7 @@ export const ProductDetailComponent = ({
                                                         ?.adminTexts
                                                         ?.editProductForm
                                                         ?.productType?.options[
-                                                        productType.type
+                                                        productType.type as keyof typeof siteTexts.messages.adminTexts.editProductForm.productType.options
                                                     ].text
                                                 }`}
                                             </option>
@@ -669,7 +669,7 @@ export const ProductDetailComponent = ({
                 </form>
                 <div className={`${styles["close-detail-button"]}`}>
                     <ReusableButtonComponent
-                        text={<CloseIcon />}
+                        icon={<CloseIcon />}
                         onClickHandler={() => {
                             dispatch(resetOpenedProduct());
                             dispatch(resetAdminDetailOpened());

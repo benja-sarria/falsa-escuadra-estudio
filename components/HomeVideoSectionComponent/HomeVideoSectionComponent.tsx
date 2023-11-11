@@ -26,7 +26,7 @@ export const HomeVideoSectionComponent = () => {
                                         key={indicatorKey}
                                         indicatorData={
                                             videoSection.indicators[
-                                                indicatorKey
+                                                indicatorKey as keyof typeof videoSection.indicators
                                             ]
                                         }
                                     />

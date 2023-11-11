@@ -8,7 +8,7 @@ export const SectionTitleComponent = ({
     styleVariants,
 }: {
     highlighted?: string;
-    text: string;
+    text?: string;
     styleVariants: string[];
 }) => {
     return (

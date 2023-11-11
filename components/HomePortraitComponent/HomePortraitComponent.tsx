@@ -23,7 +23,11 @@ export const HomePortraitComponent = () => {
                                     >
                                         {index === 1 && <span>aa</span>}
                                         {index === 2 && <span>aaaaaaaaaa</span>}
-                                        {portraitTexts.title[lineKey]}
+                                        {
+                                            portraitTexts.title[
+                                                lineKey as keyof typeof portraitTexts.title
+                                            ]
+                                        }
                                     </p>
                                 );
                             }
@@ -49,7 +53,9 @@ export const HomePortraitComponent = () => {
                                             alt={`${
                                                 portraitTexts
                                                     ? portraitTexts.leftColumn
-                                                          .images[imageKey].alt
+                                                          .images[
+                                                          imageKey as keyof typeof portraitTexts.leftColumn.images
+                                                      ].alt
                                                     : "photo"
                                             }`}
                                             givenClassName={
@@ -58,7 +64,9 @@ export const HomePortraitComponent = () => {
                                             src={`${
                                                 portraitTexts
                                                     ? portraitTexts.leftColumn
-                                                          .images[imageKey].src
+                                                          .images[
+                                                          imageKey as keyof typeof portraitTexts.leftColumn.images
+                                                      ].src
                                                     : "/img.png"
                                             }`}
                                             calculate="width"
