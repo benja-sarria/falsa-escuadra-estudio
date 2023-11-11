@@ -1,0 +1,64 @@
+.stages-container {
+    color: var(--falsa-escuadra-white);
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    .card-container {
+        position: relative;
+        --card-min-height: 20rem;
+        --card-default-border: 2px solid var(--falsa-escuadra-white);
+        --img-min-width: 29vw;
+        flex-basis: 33%;
+        min-height: var(--card-min-height);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:nth-child(1),
+        &:nth-child(4),
+        &:nth-child(6) {
+            .card-flip-container {
+                .flip-card-inner-img {
+                    transform: rotate(-2deg);
+                }
+            }
+        }
+        &:nth-child(2),
+        &:nth-child(3),
+        &:nth-child(5) {
+            .card-flip-container {
+                .flip-card-inner-img {
+                    transform: rotate(2deg);
+                }
+            }
+        }
+        &:nth-child(1),
+        &:nth-child(2) {
+            div:is([class*="stage-card-component"]) {
+                border-bottom: var(--card-default-border);
+                border-right: var(--card-default-border);
+            }
+        }
+        &:nth-child(3) {
+            div:is([class*="stage-card-component"]) {
+                border-bottom: var(--card-default-border);
+            }
+        }
+        &:nth-child(4),
+        &:nth-child(5) {
+            div:is([class*="stage-card-component"]) {
+                border-right: var(--card-default-border);
+            }
+        }
+        .card-flip-container {
+            position: absolute;
+
+            .flip-card-inner-img {
+                position: relative;
+                min-width: var(--img-min-width);
+                max-width: var(--img-min-width);
+            }
+        }
+    }
+}

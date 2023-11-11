@@ -80,13 +80,18 @@ export const ProductCardComponent = ({
                 dispatch(
                     setOpenedProduct({
                         set: product,
+                        update: product,
                     })
                 );
             }}
         >
             <div className={styles["product-card-img-outer-container"]}>
                 <AutoAdjustImgComponent
-                    src={`${portraitPhoto.src}`}
+                    src={`${
+                        portraitPhoto.src
+                            ? portraitPhoto.src
+                            : "/static/placeholder.webp"
+                    }`}
                     alt={`${portraitPhoto.alt}`}
                     givenClassName={styles["product-img-inner-container"]}
                     calculate="height"
@@ -116,6 +121,7 @@ export const ProductCardComponent = ({
                                                 dispatch(
                                                     setOpenedProduct({
                                                         set: product,
+                                                        update: product,
                                                     })
                                                 );
                                             },
@@ -136,8 +142,9 @@ export const ProductCardComponent = ({
                                     text={
                                         siteTexts.messages
                                             ? siteTexts.messages.adminTexts
-                                                  .productActionButtons[action]
-                                                  .text
+                                                  .productActionButtons[
+                                                  action as keyof typeof siteTexts.messages.adminTexts.productActionButtons
+                                              ].text
                                             : ""
                                     }
                                     styleVariants={["light-variant"]}

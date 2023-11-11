@@ -1,4 +1,4 @@
-import { acceptedLocales } from "@/middleware";
+import { acceptedLocales } from "@/utils/api/getLocale";
 import "server-only";
 
 const dictionaries: { [id: (typeof acceptedLocales)[number]]: Function } = {

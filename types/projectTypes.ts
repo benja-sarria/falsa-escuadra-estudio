@@ -36,12 +36,19 @@ export interface UpdateOrDeleteProjectInterface extends ProjectDataInterface {
 export interface PhotoDataInterface
     extends Omit<ProductPhotos, "id" | "createdAt" | "updatedAt"> {}
 
+export interface UpdatePhotoDataInterface {
+    src: { data: string; prefix: string };
+    id: number;
+    postSlug: string;
+}
+
 export type PhotoQueryParamsType = {
     productId?: number;
     isPortrait?: boolean;
     id?: number;
 };
-export interface UpdateOrDeletePhotoInterface extends PhotoDataInterface {
+export interface UpdateOrDeletePhotoInterface
+    extends Partial<PhotoDataInterface> {
     id: number;
 }
 
@@ -49,4 +56,4 @@ export interface ProductReceivedType extends Product {
     photos: ProductPhotos[];
 }
 
-export type AvailableProductActionsType = "edit" | "remove";
+export type AvailableProductActionsType = "edit" | "remove" | "edit-img";

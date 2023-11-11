@@ -9,6 +9,7 @@ import {
     PhotosObjectInterface,
     ProductReceivedType,
     ProjectQueryParamsType,
+    UpdatePhotoDataInterface,
 } from "@/types/projectTypes";
 import { NewPhotoDTO } from "../dtos/NewPhoto.dto";
 import { ParsedProjectDTO } from "../dtos/ParsedProject.dto";
@@ -112,11 +113,23 @@ export class ProjectPrismaDao {
         }
         return removedData;
     }
-
-    async savePhoto(photoData: NewPhotoDTO) {
+    async createPhoto(photoData: NewPhotoDTO) {
         const savedPhoto: ProductPhotos = await this.db.productPhotos.create({
             data: {
                 ...photoData,
+            },
+        });
+        if (!savedPhoto) {
+            throw new Error("There was a problem saving your data");
+        }
+        return savedPhoto;
+    }
+
+    async updatePhoto(photoData: UpdatePhotoDataInterface) {
+        const savedPhoto: ProductPhotos = await this.db.productPhotos.update({
+            where: { id: photoData.id },
+            data: {
+                src: photoData.src.data,
             },
         });
         if (!savedPhoto) {
@@ -139,6 +152,22 @@ export class ProjectPrismaDao {
     }
 
     async removePhoto(id: number) {
+        const removedData = await this.db.productPhotos.update({
+            where: {
+                id: id,
+            },
+            data: {
+                src: null,
+                updatedAt: new Date(),
+            },
+        });
+        if (!removedData) {
+            throw new Error("There was a problem deleting your data");
+        }
+        return removedData;
+    }
+
+    async removePhotoAbsolute(id: number) {
         const removedData = await this.db.productPhotos.delete({
             where: {
                 id: id,

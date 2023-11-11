@@ -7,10 +7,16 @@ export const ReusableButtonComponent = ({
     text,
     onClickHandler,
     styleVariants,
+    children,
+    icon,
+    inverted,
 }: {
-    text: string | ReactNode;
-    onClickHandler: Function & MouseEventHandler;
+    text?: string;
+    onClickHandler?: Function & MouseEventHandler;
     styleVariants: string[];
+    children?: ReactNode;
+    icon?: ReactNode;
+    inverted?: Boolean;
 }) => {
     useEffect(() => {
         console.log(styleVariants);
@@ -25,7 +31,17 @@ export const ReusableButtonComponent = ({
             }`}
             onClick={onClickHandler}
         >
-            {text}
+            {inverted ? (
+                <>
+                    {icon} {text}
+                </>
+            ) : (
+                <>
+                    {text} {icon}
+                </>
+            )}
+
+            {children}
         </button>
     );
 };

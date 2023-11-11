@@ -1,0 +1,25 @@
+.founder-coin-container {
+    border-radius: calc(var(--image-min-width) * 2);
+    overflow: hidden;
+    min-width: var(--image-min-width);
+    min-height: var(--image-min-width);
+    max-width: var(--image-min-width);
+    max-height: var(--image-min-width);
+    border: 6px solid rgba(149, 176, 189, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    .image-inner {
+        position: relative;
+        min-width: var(--image-min-width);
+        max-width: var(--image-min-width);
+    }
+}
+
+.signature-coin {
+    position: relative;
+    .image-inner {
+        transform: scale(0.6);
+    }
+}

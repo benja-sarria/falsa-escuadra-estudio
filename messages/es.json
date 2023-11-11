@@ -16,8 +16,166 @@
                 "label": "Contenido"
             },
             "productType": {
-                "label": "Tipo de producto"
+                "label": "Tipo de producto",
+                "options": {
+                    "own": { "text": "Propios" },
+                    "custom": { "text": "A pedido" }
+                }
             }
+        },
+        "editProductLayout": {
+            "isPortraitSign": {
+                "text": "Portada"
+            },
+            "photoEditButtons": {
+                "change": {
+                    "text": "Cambiar foto"
+                },
+                "remove": {
+                    "text": "Eliminar foto"
+                }
+            },
+            "saveUpdatedImg": {
+                "text": "Guardar imagen"
+            }
+        }
+    },
+    "layout": {
+        "navbar": {
+            "home": { "text": "Inicio", "link": "#" },
+            "projects": { "text": "Proyectos", "link": "#" },
+            "about-us": { "text": "Nosotros", "link": "#" },
+            "contact": { "text": "Contacto", "link": "#" }
+        }
+    },
+    "home": {
+        "homePortrait": {
+            "title": {
+                "firstLine": "Especialmente",
+                "secondLine": "diseñado",
+                "thirdLine": "para vos"
+            },
+            "leftColumn": {
+                "content": {
+                    "text": "Diseño y producción de mobiliario."
+                },
+                "images": {
+                    "patternOne": {
+                        "src": "/assets/img/site/pattern.svg",
+                        "alt": "pattern"
+                    },
+                    "patternTwo": {
+                        "src": "/assets/img/site/pattern2.svg",
+                        "alt": "pattern"
+                    },
+                    "patternThree": {
+                        "src": "/assets/img/site/pattern3.svg",
+                        "alt": "pattern"
+                    }
+                }
+            },
+            "rightColumn": {
+                "image": {
+                    "src": "/assets/img/site/portrait-photo.jpeg",
+                    "alt": "project photo"
+                },
+                "content": {
+                    "text": "Habitar la rutina"
+                }
+            }
+        },
+        "videoSection": {
+            "textContent": {
+                "text": "<b>Introducción breve contando quienes somos y qué hacemos.</b> | Se puede mostrar en números los proyectos finalizados y todas las | <b>ciudades a las que se ha enviado.</b>"
+            },
+            "indicators": {
+                "projects": {
+                    "number": "100",
+                    "subtitle": "Proyectos Finalizados"
+                },
+                "designs": {
+                    "number": "300",
+                    "subtitle": "Diseños únicos"
+                },
+                "cities": {
+                    "number": "50",
+                    "subtitle": "Ciudades"
+                }
+            },
+            "button": {
+                "text": "Conocenos",
+                "link": "#"
+            }
+        },
+        "carouselSection": {
+            "title": {
+                "text": "Nuestros |<b>proyectos</b>"
+            }
+        },
+        "whiteboardSection": {
+            "title": {
+                "text": "Así |<b>trabajamos</b>"
+            },
+            "stages": {
+                "first": {
+                    "title": "Idea, materiales y dimensiones",
+                    "number": "01",
+                    "image": {
+                        "src": "/assets/img/home/whiteboard/board-1.webp",
+                        "alt": ""
+                    }
+                },
+                "second": {
+                    "title": "Creamos un diseño detallado",
+                    "number": "02",
+                    "image": {
+                        "src": "/assets/img/home/whiteboard/board-2.webp",
+                        "alt": ""
+                    }
+                },
+                "third": {
+                    "title": "Envío de presupuesto",
+                    "number": "03",
+                    "image": {
+                        "src": "/assets/img/home/whiteboard/board-3.webp",
+                        "alt": ""
+                    }
+                },
+                "fourth": {
+                    "title": "Aprobación y planificación",
+                    "number": "04",
+                    "image": {
+                        "src": "/assets/img/home/whiteboard/board-4.webp",
+                        "alt": ""
+                    }
+                },
+                "fifth": {
+                    "title": "Fabricamos",
+                    "number": "05",
+                    "image": {
+                        "src": "/assets/img/home/whiteboard/board-5.webp",
+                        "alt": ""
+                    }
+                },
+                "sixth": {
+                    "title": "Instalamos",
+                    "number": "06",
+                    "image": {
+                        "src": "/assets/img/home/whiteboard/board-6.webp",
+                        "alt": ""
+                    }
+                }
+            }
+        },
+        "aboutUsSection": {
+            "sectionTitle": {
+                "text": "<b>Nosotros</b>"
+            }
+        },
+        "contactUsSection": {
+            "sectionPreTitle": "Diseñamos especialmente para vos.",
+            "sectionTitle": "<b>Charlemos</b>| sobre tu | <b>idea</b>",
+            "btnText": "Contacto"
         }
     }
 }
