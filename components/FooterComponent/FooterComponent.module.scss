@@ -1,0 +1,87 @@
+.footer-container {
+    --footer-min-height: 35vh;
+    background-color: var(--falsa-escuadra-black);
+    min-height: var(--footer-min-height);
+    display: flex;
+    align-items: flex-end;
+    padding: 4rem 4rem 6rem;
+    .footer-inner-container {
+        max-height: calc(var(--footer-min-height) * 0.5);
+        min-height: calc(var(--footer-min-height) * 0.5);
+        min-width: 100%;
+        display: flex;
+        align-items: center;
+        border-top: 2px solid var(--falsa-escuadra-grey-mid);
+        padding-top: 2rem;
+        .footer-logo-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            min-width: 20%;
+        }
+        .navbar-navigation-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            column-gap: 4rem;
+            min-width: 60%;
+            position: relative;
+            max-height: 5rem;
+            overflow: hidden;
+            padding: 0rem 2rem;
+
+            a {
+                text-decoration: none;
+                color: var(--falsa-escuadra-white);
+                font-size: 1.5;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                overflow: visible;
+                min-height: 3.5rem;
+                min-width: 5rem;
+                svg {
+                    position: absolute;
+                    top: 0%;
+                    opacity: 0;
+                    transition: all 400ms ease-out;
+                }
+                p {
+                    transition: opacity 200ms ease-out, transform 200ms ease-out;
+                    position: absolute;
+                }
+                strong {
+                    position: absolute;
+                    opacity: 0;
+                    transition: opacity 400ms ease-out, transform 200ms ease-out;
+                }
+                &:hover {
+                    strong {
+                        opacity: 1;
+                        transform: scale(1.1);
+                    }
+                    p {
+                        font-weight: 600;
+                        transform: scale(1.1);
+                    }
+                    svg {
+                        opacity: 1;
+                        path {
+                            stroke-dasharray: 1000;
+                            stroke-dashoffset: 1000;
+                            animation: dash 1s linear forwards;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+    }
+}

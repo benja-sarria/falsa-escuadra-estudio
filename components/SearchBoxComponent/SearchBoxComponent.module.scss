@@ -1,6 +1,18 @@
 .search-box-container {
     --icon-min-width: 3rem;
     z-index: 3;
+    min-width: 2vw;
+    min-height: 2vh;
+    transition: all 600ms ease-out,
+        border-bottom-left-radius 200ms 200ms ease-out;
+    position: absolute;
+    right: 0rem;
+    top: 0rem;
+    padding-right: 6rem;
+    padding-top: 1rem;
+    padding: 1rem 6rem 10vh 10vw;
+    border-bottom-left-radius: 5000vw;
+
     .search-box-button {
         background-color: transparent;
         border: none;
@@ -12,5 +24,19 @@
             min-height: 1px;
             max-height: 1px;
         }
+    }
+}
+
+.opened-searchbox {
+    min-width: 110vw;
+    min-height: 110vh;
+    background-color: var(--falsa-escuadra-black);
+    position: absolute;
+    top: 0rem;
+    right: 0rem;
+    border-bottom-left-radius: 0rem;
+
+    .search-box-button {
+        filter: invert(1);
     }
 }

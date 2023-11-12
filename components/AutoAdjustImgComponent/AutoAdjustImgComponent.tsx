@@ -11,6 +11,7 @@ interface AutoAdjustImgRequiredInterface {
     givenClassName: string;
     src: string;
     alt: string;
+    id?: string;
     listenScreenChanges?: boolean;
     holdLogoUntilLoad?: boolean;
     priority?: boolean;
@@ -36,6 +37,7 @@ export const AutoAdjustImgComponent = ({
     fixedParameter,
     maxHeightParameter,
     src,
+    id,
     alt,
     calculate,
     customCallback,
@@ -66,7 +68,10 @@ export const AutoAdjustImgComponent = ({
     }, []);
 
     return (
-        <div className={`${style["container-minimums"]} ${givenClassName}`}>
+        <div
+            className={`${style["container-minimums"]} ${givenClassName}`}
+            id={id}
+        >
             <Image
                 src={src}
                 alt={alt}

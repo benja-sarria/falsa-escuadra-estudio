@@ -1,3 +1,4 @@
+import search from "./features/website/searchbox-slice";
 import openedProductValue from "./features/admin-opened-product-slice";
 import adminDetailOpened from "./features/admin-detail-open";
 import globalLanguage from "./features/siteTexts-slice";
@@ -15,6 +16,7 @@ export const store = configureStore({
         globalLanguage,
         adminDetailOpened,
         openedProductValue,
+        search,
     },
 });
 

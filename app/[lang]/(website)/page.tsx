@@ -13,7 +13,7 @@ import { ContactUsSectionComponent } from "@/components/ContactUsSectionComponen
 
 export default function Home() {
     return (
-        <main className={""}>
+        <main className={styles["main-container"]}>
             <HomePortraitComponent />
             <HomeVideoSectionComponent />
             <HomeProductCarouselContainer />
