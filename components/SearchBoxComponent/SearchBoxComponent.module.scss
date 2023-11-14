@@ -12,17 +12,20 @@
     padding-top: 1rem;
     padding: 1rem 6rem 10vh 10vw;
     border-bottom-left-radius: 5000vw;
-
-    .search-box-button {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        .search-icon-inner {
-            position: relative;
-            min-width: var(--icon-min-width);
-            max-width: var(--icon-min-width);
-            min-height: 1px;
-            max-height: 1px;
+    .button-container {
+        display: flex;
+        justify-content: flex-end;
+        .search-box-button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            .search-icon-inner {
+                position: relative;
+                min-width: var(--icon-min-width);
+                max-width: var(--icon-min-width);
+                min-height: 1px;
+                max-height: 1px;
+            }
         }
     }
 }
@@ -37,6 +40,74 @@
     border-bottom-left-radius: 0rem;
 
     .search-box-button {
+        justify-self: flex-end;
         filter: invert(1);
+    }
+}
+
+.search-icon {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    cursor: pointer;
+    margin: auto;
+    transition: all 0.3s ease-in;
+
+    &:hover {
+        filter: drop-shadow(0px 0px 1px black);
+    }
+    .search-line {
+        width: 10px;
+        height: 2px;
+        background: #333;
+        display: inline-block;
+        transform: rotate(47deg);
+        position: absolute;
+        top: 24px;
+        left: 16px;
+        transition: all 0.3s ease-in;
+    }
+
+    .search-circle {
+        width: 24px;
+        height: 24px;
+        border: 2px solid #333;
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+        transition: all 0.3s ease-out;
+
+        background-color: transparent;
+    }
+}
+
+.active {
+    .search-line {
+        width: 30px;
+        left: 0;
+        top: 15px;
+        transition: all 0.3s ease-out;
+    }
+    .search-circle {
+        width: 0;
+        height: 0;
+        border-width: 0;
+        top: 12px;
+        left: 12px;
+        transition: top 0.3s ease-in, left 0.3s ease-in,
+            border-radius 0s ease-in, border-width 0.3s ease-in,
+            width 0.3s ease-in, height 0.3s ease-in, background-color 0s ease-in;
+    }
+    .third {
+        width: 30px;
+        height: 2px;
+        top: 15px;
+        left: 0;
+        transform: rotate(135deg);
+        background-color: #000;
+        border-radius: 0;
+        transition: all 0.3s ease-in;
     }
 }
