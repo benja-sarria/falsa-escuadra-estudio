@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch, useAppSelector } from "@/redux/store";
 import { setSearch } from "@/redux/features/website/searchbox-slice";
+import { SearchResultsComponent } from "../SearchResultsComponent/SearchResultsComponent";
 
 export const SearchBoxComponent = () => {
     const search = useAppSelector((state) => state.search.value);
@@ -58,6 +59,7 @@ export const SearchBoxComponent = () => {
                     /> */}
                 </button>
             </div>
+            {search.opened && <SearchResultsComponent />}
         </div>
     );
 };
