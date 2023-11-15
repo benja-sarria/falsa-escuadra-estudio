@@ -104,6 +104,9 @@
     top: -8rem;
     transition: all 400ms ease-out;
     div:is([class*="search-box-container"]) {
+        top: -8rem;
+    }
+    div:is([class*="opened-searchbox"]) {
         top: 8rem;
     }
 }

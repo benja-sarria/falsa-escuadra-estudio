@@ -10,36 +10,91 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        border-right: 2px solid var(--falsa-escuadra-grey-mid);
+
         .title {
             color: var(--falsa-escuadra-grey-mid);
             font-size: 1.5rem;
             font-weight: 400;
             line-height: 2.81rem;
+            padding-left: 10rem;
         }
-        .input {
-            font-size: 7rem;
-            max-width: 40vw;
-            font-family: "Montserrat";
-            color: var(--falsa-escuadra-white);
-            background-color: transparent;
-            border: none;
+        .input-container {
+            position: relative;
             border-radius: 0.5rem;
-            padding: 0.5rem 1rem;
             transition: all 400ms ease-out;
-            caret-color: var(--falsa-escuadra-gold);
-            animation-name: tilt;
-            animation-duration: 2s;
-            animation-direction: alternate;
-            animation-iteration-count: infinite;
-            &:hover {
-                background-color: rgba(255, 255, 255, 0.074);
-                animation: none;
+            min-width: 30vw;
+            left: 10rem;
+            display: flex;
+            align-items: center;
+            .gold-search {
+                position: absolute;
+                left: -8rem;
+                min-width: 6rem;
+                min-height: 6rem;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
-            &:focus {
-                outline: 1px solid rgba(255, 255, 255, 0.074);
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.024);
+                &::after {
+                    animation: none;
+                }
+            }
+            &:has(input:focus) {
+                .input {
+                    border: 1px solid rgba(255, 255, 255, 0.084);
+                    outline: 1px solid rgba(255, 255, 255, 0.084);
+                }
                 background-color: transparent;
-                animation: none;
+
+                &::after {
+                    animation: none;
+                }
+            }
+            &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border-radius: 0.5rem;
+                background: linear-gradient(
+                    120deg,
+                    transparent,
+                    transparent,
+                    rgba(181, 119, 44, 0.4)
+                );
+                background-size: 300% 300%;
+                clip-path: polygon(
+                    0% 100%,
+                    3px 100%,
+                    3px 3px,
+                    calc(100% - 3px) 3px,
+                    calc(100% - 3px) calc(100% - 3px),
+                    3px calc(100% - 3px),
+                    3px 100%,
+                    100% 100%,
+                    100% 0%,
+                    0% 0%
+                );
+                animation: frame-enter 1s forwards ease-in-out reverse,
+                    gradient-animation 4s ease-in-out infinite;
+            }
+
+            .input {
+                font-size: 7rem;
+                max-width: 100%;
+                font-family: "Montserrat";
+                color: var(--falsa-escuadra-white);
+                background-color: transparent;
+                border: none;
+                border-radius: 0.5rem;
+                padding: 0.5rem 1rem;
+                transition: all 400ms ease-out;
+                caret-color: var(--falsa-escuadra-gold);
             }
         }
         .results-list {
@@ -48,8 +103,87 @@
     }
 }
 
-@keyframes tilt {
+@keyframes gradient-animation {
+    0% {
+        background-position: 15% 0%;
+    }
     50% {
-        background-color: rgba(255, 255, 255, 0.034);
+        background-position: 85% 100%;
+    }
+    100% {
+        background-position: 15% 0%;
+    }
+}
+
+@keyframes frame-enter {
+    0% {
+        clip-path: polygon(
+            0% 100%,
+            3px 100%,
+            3px 3px,
+            calc(100% - 3px) 3px,
+            calc(100% - 3px) calc(100% - 3px),
+            3px calc(100% - 3px),
+            3px 100%,
+            100% 100%,
+            100% 0%,
+            0% 0%
+        );
+    }
+    25% {
+        clip-path: polygon(
+            0% 100%,
+            3px 100%,
+            3px 3px,
+            calc(100% - 3px) 3px,
+            calc(100% - 3px) calc(100% - 3px),
+            calc(100% - 3px) calc(100% - 3px),
+            calc(100% - 3px) 100%,
+            100% 100%,
+            100% 0%,
+            0% 0%
+        );
+    }
+    50% {
+        clip-path: polygon(
+            0% 100%,
+            3px 100%,
+            3px 3px,
+            calc(100% - 3px) 3px,
+            calc(100% - 3px) 3px,
+            calc(100% - 3px) 3px,
+            calc(100% - 3px) 3px,
+            calc(100% - 3px) 3px,
+            100% 0%,
+            0% 0%
+        );
+    }
+    75% {
+        -webkit-clip-path: polygon(
+            0% 100%,
+            3px 100%,
+            3px 3px,
+            3px 3px,
+            3px 3px,
+            3px 3px,
+            3px 3px,
+            3px 3px,
+            3px 0%,
+            0% 0%
+        );
+    }
+    100% {
+        -webkit-clip-path: polygon(
+            0% 100%,
+            3px 100%,
+            3px 100%,
+            3px 100%,
+            3px 100%,
+            3px 100%,
+            3px 100%,
+            3px 100%,
+            3px 100%,
+            0% 100%
+        );
     }
 }
