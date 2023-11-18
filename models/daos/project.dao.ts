@@ -56,35 +56,44 @@ export class ProjectPrismaDao {
         return savedProject;
     }
 
-    async getProjects(queryParams: ProjectQueryParamsType | undefined) {
-        console.log("DAO", queryParams);
+    async getProjects(queryParams: Prisma.ProductWhereInput | undefined) {
+        try {
+            console.log("DAO", queryParams);
 
-        const projects: ProductReceivedType[] = await this.db.product.findMany({
-            where: queryParams ? { ...queryParams } : {},
-            include: { photos: true, productType: true },
-        });
-        if (!projects) {
-            throw new Error("There was a problem querying your data");
+            const projects: ProductReceivedType[] =
+                await this.db.product.findMany({
+                    where: queryParams ? { ...queryParams } : {},
+                    include: { photos: true, productType: true },
+                });
+            if (!projects) {
+                return {
+                    error: false,
+                    message: "No projects found",
+                    success: false,
+                };
+            }
+            const parsedProjects = projects.map((project: any) => {
+                const photos = (project as ProductReceivedType).photos.map(
+                    (photo) => {
+                        return {
+                            ...photo,
+                            createdAt: new Date(photo.createdAt)
+                                .toLocaleDateString("en-GB")
+                                .toString(),
+                            updatedAt: new Date(photo.updatedAt)
+                                .toLocaleDateString("en-GB")
+                                .toString(),
+                        };
+                    }
+                );
+                project.photos = photos;
+                const parsed = new ParsedProjectDTO(project);
+                return parsed.parsed;
+            });
+            return parsedProjects;
+        } catch (error: any) {
+            return { error: true, success: false, message: error.message };
         }
-        const parsedProjects = projects.map((project: any) => {
-            const photos = (project as ProductReceivedType).photos.map(
-                (photo) => {
-                    return {
-                        ...photo,
-                        createdAt: new Date(photo.createdAt)
-                            .toLocaleDateString("en-GB")
-                            .toString(),
-                        updatedAt: new Date(photo.updatedAt)
-                            .toLocaleDateString("en-GB")
-                            .toString(),
-                    };
-                }
-            );
-            project.photos = photos;
-            const parsed = new ParsedProjectDTO(project);
-            return parsed.parsed;
-        });
-        return parsedProjects;
     }
 
     async updateProject(parsedData: NewProjectDTO, id: number) {

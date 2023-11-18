@@ -19,6 +19,7 @@ import { uniqueSlug } from "unique-slug";
 import slugify from "slugify";
 import fs from "fs";
 import { removePriorImg, saveToWebp } from "@/utils/img/saveToWebp";
+import { Prisma } from "@prisma/client";
 
 export class ProjectServices {
     projectDao: ProjectPrismaDao;
@@ -69,7 +70,7 @@ export class ProjectServices {
         }
     }
 
-    async getProjectService(queryParams: ProjectQueryParamsType | undefined) {
+    async getProjectService(queryParams: Prisma.ProductWhereInput | undefined) {
         try {
             const projects = await this.projectDao.getProjects(queryParams);
             return new StandardSuccessResponse({ data: projects });

@@ -42,10 +42,15 @@
     },
     "layout": {
         "navbar": {
-            "home": { "text": "Inicio", "link": "#" },
-            "projects": { "text": "Proyectos", "link": "#" },
+            "home": { "text": "Inicio", "link": "/" },
+            "projects": { "text": "Proyectos", "link": "/projects" },
             "about-us": { "text": "Nosotros", "link": "#" },
             "contact": { "text": "Contacto", "link": "#" }
+        },
+        "search": {
+            "results": {
+                "viewProjectBtn": "Ver proyecto"
+            }
         }
     },
     "home": {
@@ -179,6 +184,18 @@
         },
         "searchResults": {
             "title": "¿Qué estas buscando?"
+        }
+    },
+    "projects": {
+        "portrait": {
+            "photo": {
+                "src": "/assets/img/site/projects/heading.webp",
+                "alt": "portada proyectos"
+            },
+            "texts": {
+                "title": "Conocé nuestros proyectos",
+                "description": "Lorem ipsum dolor sit amet consectetur. Feugiat sed pulvinar aenean sit erat sollicitudin ullamcorper. Accumsan amet."
+            }
         }
     }
 }

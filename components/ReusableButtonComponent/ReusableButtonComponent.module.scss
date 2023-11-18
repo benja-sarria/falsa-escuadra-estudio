@@ -128,3 +128,19 @@ div:is([class*="log-in-btn-container"]):has(.glowing-btn) {
         padding: 1rem 1.7rem;
     }
 }
+
+.search-project {
+    max-width: 12rem;
+    border-radius: 0.5rem;
+    align-self: flex-end;
+    background-color: transparent;
+    border: 2px solid var(--falsa-escuadra-gold);
+    color: var(--falsa-escuadra-gold);
+    pointer-events: all;
+    &:hover {
+        background-color: var(--falsa-escuadra-gold);
+        color: var(--falsa-escuadra-white);
+        padding: 0.8rem 2rem;
+        transform: scale(1);
+    }
+}

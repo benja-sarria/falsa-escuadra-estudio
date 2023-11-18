@@ -32,3 +32,23 @@ export async function updateProductPhoto(formData: FormData) {
     }
     return revalidatePath(`${entries.validatePath}`);
 }
+
+export async function searchProducts(searchTerm: string) {
+    const productServices = new ProjectServices(new ProjectPrismaDao());
+    console.log("SEARCHING");
+
+    const results = await productServices.getProjectService({
+        OR: [
+            {
+                title: {
+                    contains: searchTerm,
+                },
+            },
+            { content: { contains: searchTerm } },
+        ],
+    });
+    console.log("results", results);
+
+    return results;
+    // return revalidatePath(`${entries.validatePath}`);
+}

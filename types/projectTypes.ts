@@ -1,4 +1,4 @@
-import { Product, ProductPhotos } from "@prisma/client";
+import { Prisma, Product, ProductPhotos } from "@prisma/client";
 
 export interface PhotosObjectInterface {
     baseSrc: string;
@@ -57,3 +57,12 @@ export interface ProductReceivedType extends Product {
 }
 
 export type AvailableProductActionsType = "edit" | "remove" | "edit-img";
+
+const ProductWithInclude = Prisma.validator<Prisma.ProductDefaultArgs>()({
+    include: { photos: true },
+});
+
+// 3: This type will include a user and all their posts
+export type ProductWithIncludeType = Prisma.ProductGetPayload<
+    typeof ProductWithInclude
+>;

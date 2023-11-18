@@ -29,6 +29,8 @@ export const SearchBoxComponent = () => {
                             setSearch({
                                 opened: !search.opened,
                                 term: undefined,
+                                results: undefined,
+                                selectedResult: undefined,
                             })
                         );
                         if (iconRef.current)
