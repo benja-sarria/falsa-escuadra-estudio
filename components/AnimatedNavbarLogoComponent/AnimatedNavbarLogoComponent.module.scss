@@ -1,5 +1,8 @@
 .outer-container {
     padding: 0.2rem;
+    @media (max-width: 768px) {
+        position: absolute;
+    }
     .component-container {
         --logo-min-width: 3.5rem;
         --logo-falsa-width: 3.5rem;
