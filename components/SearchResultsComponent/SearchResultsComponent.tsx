@@ -29,7 +29,7 @@ export const SearchResultsComponent = () => {
                 <div className={styles["input-container"]}>
                     <SvgIcon
                         className={styles["gold-search"]}
-                        viewBox="100 100"
+                        viewBox={"100 100"}
                     >
                         <GoldSearch />
                     </SvgIcon>

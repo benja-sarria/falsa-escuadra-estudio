@@ -136,6 +136,11 @@ div:is([class*="log-in-btn-container"]):has(.glowing-btn) {
 .contact-btn-variant {
     border: none;
     padding: 1rem 1.5rem;
+    @media (max-width: 768px) {
+        align-self: center;
+        padding: 1.2rem 1.75rem;
+        font-size: 1.3rem;
+    }
     &:hover {
         padding: 1rem 1.7rem;
     }

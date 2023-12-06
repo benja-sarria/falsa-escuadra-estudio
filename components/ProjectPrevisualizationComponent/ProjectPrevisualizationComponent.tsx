@@ -16,23 +16,38 @@ export const ProjectPrevisualizationComponent = ({
     return (
         <div className={styles["previsualization-container"]}>
             <div className={styles["image-container"]}>
-                <AutoAdjustImgComponent
-                    alt={project.title}
-                    givenClassName={styles["portrait-inner"]}
-                    src={(() => {
-                        const portrait = project.photos.find(
-                            (photo) => photo.isPortrait
-                        );
-                        return portrait ? `${portrait.src}` : "/image.png";
-                    })()}
-                    customCallback={(imgNode: HTMLImageElement) => {
-                        autoFigureItOutMeasureLimit(
-                            imgNode,
-                            " --img-min-width",
-                            "--img-min-height"
-                        );
-                    }}
-                />
+                {screen.availWidth < 768 ? (
+                    <AutoAdjustImgComponent
+                        alt={project.title}
+                        givenClassName={styles["portrait-inner"]}
+                        src={(() => {
+                            const portrait = project.photos.find(
+                                (photo) => photo.isPortrait
+                            );
+                            return portrait ? `${portrait.src}` : "/image.png";
+                        })()}
+                        calculate="height"
+                        fixedParameter="--img-min-width"
+                    />
+                ) : (
+                    <AutoAdjustImgComponent
+                        alt={project.title}
+                        givenClassName={styles["portrait-inner"]}
+                        src={(() => {
+                            const portrait = project.photos.find(
+                                (photo) => photo.isPortrait
+                            );
+                            return portrait ? `${portrait.src}` : "/image.png";
+                        })()}
+                        customCallback={(imgNode: HTMLImageElement) => {
+                            autoFigureItOutMeasureLimit(
+                                imgNode,
+                                " --img-min-width",
+                                "--img-min-height"
+                            );
+                        }}
+                    />
+                )}
             </div>
             <h5 className={styles["title"]}>{project.title}</h5>
             <p className={styles["text"]}>

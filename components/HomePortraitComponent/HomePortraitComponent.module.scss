@@ -29,12 +29,18 @@
             left: 5rem;
         }
         .home-portrait-title-element {
-            --font-size: 3.5rem;
+            --font-size: 2.7rem;
             font-size: var(--font-size);
             font-weight: 400;
             text-align: center;
             max-width: 100vw;
             line-height: calc(var(--font-size) + 0.5rem);
+            @media (min-width: 375px) and (max-width: 450px) {
+                --font-size: 3.1rem;
+            }
+            @media (min-width: 450px) and (max-width: 768px) {
+                --font-size: 3.5rem;
+            }
             @media (min-width: 768px) {
                 --font-size: 8rem;
                 max-width: 60vw;
@@ -44,7 +50,9 @@
                 margin: 0rem;
                 span {
                     opacity: 0;
+
                     font-size: calc(var(--font-size) - 1.7rem);
+
                     @media (min-width: 768px) {
                         font-size: calc(var(--font-size) - 5rem);
                     }
@@ -96,6 +104,18 @@
                 min-height: var(--pattern-min-height);
                 max-height: var(--pattern-min-height);
                 overflow: hidden;
+                @media (min-width: 319px) and (max-width: 380px) {
+                    --pattern-min-height: 10.61rem;
+                    --pattern-min-width: 6rem;
+                }
+                @media (min-width: 380px) and (max-width: 410px) {
+                    --pattern-min-height: 12.37rem;
+                    --pattern-min-width: 7rem;
+                }
+                @media (min-width: 450px) and (max-width: 768px) {
+                    --pattern-min-height: 14.5rem;
+                    --pattern-min-width: 8.2rem;
+                }
                 @media (min-width: 768px) {
                     --pattern-min-height: 20.5rem;
                     --pattern-min-width: 12rem;
@@ -120,6 +140,13 @@
         padding: 5.2% 0rem;
         position: relative;
         z-index: 1;
+        @media (min-width: 320px) and (max-width: 450px) {
+            --font-size: 3.1rem;
+            padding: 10.2% 0rem;
+        }
+        @media (min-width: 450px) and (max-width: 768px) {
+            padding: 3.8% 0rem;
+        }
         @media (min-width: 768px) {
             min-width: 50%;
             max-width: 50%;

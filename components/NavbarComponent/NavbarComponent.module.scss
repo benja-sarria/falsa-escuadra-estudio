@@ -67,7 +67,7 @@
         a {
             text-decoration: none;
             color: var(--falsa-escuadra-black);
-            font-size: 1.5;
+            font-size: 1.15rem;
             text-align: center;
             display: flex;
             justify-content: center;
@@ -84,6 +84,7 @@
                 top: -0%;
                 opacity: 0;
                 transition: all 400ms ease-out;
+                transform: scale(1.1);
                 @media (min-width: 768px) {
                     top: -10%;
                 }

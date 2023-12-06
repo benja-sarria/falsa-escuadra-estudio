@@ -6,8 +6,15 @@
     align-items: center;
     row-gap: 4rem;
     background-color: var(--falsa-escuadra-white);
+
     .photos-container {
         display: flex;
-        column-gap: 8rem;
+        flex-direction: column;
+        row-gap: 3rem;
+
+        @media (min-width: 768px) {
+            flex-direction: row;
+            column-gap: 8rem;
+        }
     }
 }

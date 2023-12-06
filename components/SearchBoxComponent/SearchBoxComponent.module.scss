@@ -17,7 +17,10 @@
     }
     .button-container {
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
+        @media (min-width: 768px) {
+            justify-content: flex-end;
+        }
         .search-box-button {
             background-color: transparent;
             border: none;
@@ -35,17 +38,29 @@
 }
 
 .opened-searchbox {
-    min-width: 110vw;
-    min-height: 110vh;
+    min-width: 100vw;
+    min-height: 100vh;
     background-color: var(--falsa-escuadra-black);
     position: absolute;
-    top: 0rem;
-    right: 0rem;
-    border-bottom-left-radius: 0rem;
 
+    top: -0.75rem;
+    right: -5vw;
+    border-bottom-left-radius: 0rem;
+    @media (min-width: 768px) {
+        min-width: 110vw;
+        min-height: 110vh;
+        top: 0rem;
+        right: 0rem;
+    }
+    @media (max-width: 768px) {
+        padding-top: 1rem;
+    }
     .search-box-button {
         justify-self: flex-end;
         filter: invert(1);
+        @media (max-width: 768px) {
+            padding-right: 1rem;
+        }
     }
 }
 
