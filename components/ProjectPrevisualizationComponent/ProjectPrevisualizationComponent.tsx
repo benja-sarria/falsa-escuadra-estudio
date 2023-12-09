@@ -1,18 +1,25 @@
+"use client";
 import styles from "@/components/ProjectPrevisualizationComponent/ProjectPrevisualizationComponent.module.scss";
 
 import { AutoAdjustImgComponent } from "../AutoAdjustImgComponent/AutoAdjustImgComponent";
 import { ProductWithIncludeType } from "@/types/projectTypes";
 import { autoFigureItOutMeasureLimit } from "@/utils/img/proportions";
 import { ReusableButtonComponent } from "../ReusableButtonComponent/ReusableButtonComponent";
-import { useAppSelector } from "@/redux/store";
+import { AppDispatch, useAppSelector } from "@/redux/store";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { resetSearch } from "@/redux/features/website/searchbox-slice";
 
 export const ProjectPrevisualizationComponent = ({
     project,
 }: {
     project: ProductWithIncludeType;
 }) => {
+    const router = useRouter();
     const searchTexts = useAppSelector((state) => state.globalLanguage.value)
         .messages?.layout.search;
+
+    const dispatch = useDispatch<AppDispatch>();
     return (
         <div className={styles["previsualization-container"]}>
             <div className={styles["image-container"]}>
@@ -58,6 +65,10 @@ export const ProjectPrevisualizationComponent = ({
             <ReusableButtonComponent
                 styleVariants={["search-project"]}
                 text={searchTexts && searchTexts.results.viewProjectBtn}
+                onClickHandler={() => {
+                    router.push(`/projects/${project.productSlug}`);
+                    dispatch(resetSearch());
+                }}
             />
         </div>
     );

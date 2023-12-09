@@ -18,6 +18,7 @@ import { useEffect, useRef, useState } from "react";
 import { ProductReceivedType } from "@/types/projectTypes";
 import { ProductPhotos } from "@prisma/client";
 import { SectionTitleComponent } from "../SectionTitleComponent/SectionTitleComponent";
+import { usePathname, useRouter } from "next/navigation";
 
 export const HomeProductCarouselComponent = ({
     products,
@@ -28,14 +29,19 @@ export const HomeProductCarouselComponent = ({
     const [mainSwiper, setMainSwiper] = useState<any>(undefined);
 
     const swiperRef = useRef(null);
+    const router = useRouter();
 
     const carouselSection =
         siteTexts &&
         siteTexts.messages &&
         siteTexts.messages.home.carouselSection;
+    const prodDetailSection =
+        siteTexts && siteTexts.messages && siteTexts.messages.projectDetail;
+
+    const pathname = usePathname();
 
     useEffect(() => {
-        console.log("STATE-SWIPER", mainSwiper);
+        console.log("STATE-SWIPER", mainSwiper, pathname);
 
         const enter = (evt: Event) => {
             if (mainSwiper) {
@@ -86,8 +92,14 @@ export const HomeProductCarouselComponent = ({
         <div className={styles["home-carousel-container"]}>
             <div className={styles["home-carousel-title-container"]}>
                 <SectionTitleComponent
-                    text={`${carouselSection?.title?.text}`}
-                    styleVariants={[]}
+                    text={
+                        pathname.includes("/projects")
+                            ? `${prodDetailSection?.carouselTitle.text}`
+                            : `${carouselSection?.title?.text}`
+                    }
+                    styleVariants={
+                        pathname.includes("/projects") ? ["white-variant"] : []
+                    }
                 />
             </div>
             <div className={styles["home-carousel-carousel-container"]}>
@@ -120,6 +132,11 @@ export const HomeProductCarouselComponent = ({
                                     <SwiperSlide
                                         key={swipe.id}
                                         className={`${styles["taller-slide"]} ${styles["swiper-slide"]}`}
+                                        onClick={() => {
+                                            router.push(
+                                                `/projects/${swipe.productSlug}`
+                                            );
+                                        }}
                                     >
                                         <div className={styles["img-outer"]}>
                                             <AutoAdjustImgComponent
@@ -157,6 +174,11 @@ export const HomeProductCarouselComponent = ({
                                     <SwiperSlide
                                         className={`${styles["wider-slide"]} ${styles["swiper-slide"]}`}
                                         key={swipe.id}
+                                        onClick={() => {
+                                            router.push(
+                                                `/projects/${swipe.productSlug}`
+                                            );
+                                        }}
                                     >
                                         <div className={styles["img-outer"]}>
                                             <AutoAdjustImgComponent
@@ -194,6 +216,11 @@ export const HomeProductCarouselComponent = ({
                                 <SwiperSlide
                                     className={`${styles["squarer-slide"]} ${styles["swiper-slide"]}`}
                                     key={swipe.id}
+                                    onClick={() => {
+                                        router.push(
+                                            `/projects/${swipe.productSlug}`
+                                        );
+                                    }}
                                 >
                                     <div className={styles["img-outer"]}>
                                         <AutoAdjustImgComponent

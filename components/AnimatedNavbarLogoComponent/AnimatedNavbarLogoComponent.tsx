@@ -21,6 +21,7 @@ export const AnimatedNavbarLogoComponent = ({
     const [falsaAnimation, setFalsaAnimation] = useState<any>(undefined);
     const [escuadraAnimation, setEscuadraAnimation] = useState<any>(undefined);
     const [estudioAnimation, setEstudioAnimation] = useState<any>(undefined);
+    const [screenWidth, setScreenWidth] = useState<number>(1240);
 
     useEffect(() => {}, [falsaAnimation, escuadraAnimation, estudioAnimation]);
 
@@ -124,12 +125,16 @@ export const AnimatedNavbarLogoComponent = ({
             setEstudioAnimation(estudioAnimation);
         }
     }, [openedState]);
-
+    useEffect(() => {
+        if (screen) {
+            setScreenWidth(screen.availWidth);
+        }
+    }, []);
     return (
         <motion.div
             className={styles["outer-container"]}
             onHoverStart={
-                !openedState && window.innerWidth > 768
+                !openedState && screenWidth > 768
                     ? () => {
                           openAnimation({
                               animatedId,
@@ -141,7 +146,7 @@ export const AnimatedNavbarLogoComponent = ({
                     : () => {}
             }
             onHoverEnd={
-                !openedState && window.innerWidth > 768
+                !openedState && screenWidth > 768
                     ? () => {
                           closeAnimation({
                               animatedId,

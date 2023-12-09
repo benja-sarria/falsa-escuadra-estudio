@@ -197,5 +197,10 @@
                 "description": "Lorem ipsum dolor sit amet consectetur. Feugiat sed pulvinar aenean sit erat sollicitudin ullamcorper. Accumsan amet."
             }
         }
+    },
+    "projectDetail": {
+        "carouselTitle": {
+            "text": "Ver más | <b>proyectos</b>"
+        }
     }
 }

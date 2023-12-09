@@ -58,9 +58,11 @@ export interface ProductReceivedType extends Product {
 
 export type AvailableProductActionsType = "edit" | "remove" | "edit-img";
 
-const ProductWithInclude = Prisma.validator<Prisma.ProductDefaultArgs>()({
-    include: { photos: true },
-});
+export const ProductWithInclude = Prisma.validator<Prisma.ProductDefaultArgs>()(
+    {
+        include: { photos: true },
+    }
+);
 
 // 3: This type will include a user and all their posts
 export type ProductWithIncludeType = Prisma.ProductGetPayload<

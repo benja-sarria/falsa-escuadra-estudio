@@ -199,3 +199,32 @@
         top: 8rem;
     }
 }
+
+.dark-navbar {
+    background-color: var(--falsa-escuadra-black);
+    .navbar-navigation-container {
+        a {
+            color: var(--falsa-escuadra-white);
+        }
+    }
+    .dropdown-container {
+        .navbar-navigation-container {
+            a {
+                color: var(--falsa-escuadra-white);
+            }
+        }
+    }
+    .navbar-background {
+        background-image: linear-gradient(
+            to bottom,
+            var(--falsa-escuadra-black) 80%,
+            transparent
+        );
+    }
+    button:is([class*="hamburguer-menu"]) {
+        filter: invert(1);
+    }
+    div:is([class*="search-icon"]):not([class*="active"]) {
+        filter: invert(1);
+    }
+}

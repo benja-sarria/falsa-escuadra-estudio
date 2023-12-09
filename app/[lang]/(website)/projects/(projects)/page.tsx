@@ -1,4 +1,4 @@
-import styles from "@/app/[lang]/(website)/page.module.scss";
+import styles from "@/app/[lang]/(website)/(home)/page.module.scss";
 import { ProjectsPortraitComponent } from "@/components/ProjectsPortraitComponent/ProjectsPortraitComponent";
 export default function Projects() {
     return (

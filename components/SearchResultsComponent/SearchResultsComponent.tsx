@@ -8,15 +8,19 @@ import { useDispatch } from "react-redux";
 import { SyntheticEvent } from "react";
 import {
     resetResults,
+    resetSearch,
     setSearch,
 } from "@/redux/features/website/searchbox-slice";
 import { searchProducts } from "@/app/actions";
 import { debounce } from "@/utils/debouncer";
 import { parseResultsText } from "@/utils/search/parseResultsText";
 import { ProjectPrevisualizationComponent } from "../ProjectPrevisualizationComponent/ProjectPrevisualizationComponent";
+import { useRouter } from "next/navigation";
 
 export const SearchResultsComponent = () => {
     const siteTexts = useAppSelector((state) => state.globalLanguage.value);
+    const router = useRouter();
+
     const searchResultsTexts = siteTexts.messages?.home.searchResults;
     const search = useAppSelector((state) => state.search.value);
     const dispatch = useDispatch<AppDispatch>();
@@ -110,12 +114,28 @@ export const SearchResultsComponent = () => {
                                     }`}
                                     key={result.productSlug}
                                     onClick={() => {
-                                        dispatch(
-                                            setSearch({
-                                                ...search,
-                                                selectedResult: result,
-                                            })
-                                        );
+                                        screen.availWidth < 768
+                                            ? (() => {
+                                                  dispatch(
+                                                      setSearch({
+                                                          ...search,
+                                                          selectedResult:
+                                                              result,
+                                                      })
+                                                  );
+                                                  setTimeout(() => {
+                                                      router.push(
+                                                          `/projects/${result.productSlug}`
+                                                      );
+                                                      dispatch(resetSearch());
+                                                  }, 600);
+                                              })()
+                                            : dispatch(
+                                                  setSearch({
+                                                      ...search,
+                                                      selectedResult: result,
+                                                  })
+                                              );
                                     }}
                                 >
                                     {result.title.length < 30 && search.term

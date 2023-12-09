@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import { acceptedLocales } from "@/utils/api/getLocale";
+import { NavbarContainer } from "@/containers/NavbarContainer/NavbarContainer";
+import { SearchBoxContainer } from "@/containers/SearchBoxContainer/SearchBoxContainer";
+import { FooterComponent } from "@/components/FooterComponent/FooterComponent";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,5 +21,14 @@ export default async function ProjectsLayout({
     children: React.ReactNode;
     params: { lang: (typeof acceptedLocales)[number] };
 }) {
-    return <>{children}</>;
+    return (
+        <>
+            {" "}
+            <NavbarContainer>
+                <SearchBoxContainer />
+            </NavbarContainer>
+            {children}
+            <FooterComponent />
+        </>
+    );
 }

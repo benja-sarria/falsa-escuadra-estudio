@@ -9,8 +9,10 @@ import Link from "next/link";
 
 export const DesktopNavbar = ({
     children,
+    variant,
 }: {
     children: ReactNode | ReactNode[];
+    variant?: "dark" | "default";
 }) => {
     const siteTexts = useAppSelector((state) => state.globalLanguage.value);
 
@@ -27,7 +29,9 @@ export const DesktopNavbar = ({
             <div className={styles["navbar-logo-container"]}>
                 <AnimatedNavbarLogoComponent
                     animatedId="navbar"
-                    variants={["dark"]}
+                    variants={
+                        variant && variant === "dark" ? ["light"] : ["dark"]
+                    }
                     onClick={() => {
                         router.push("/");
                     }}

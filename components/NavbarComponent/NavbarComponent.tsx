@@ -9,9 +9,16 @@ import { SearchBoxContainer } from "@/containers/SearchBoxContainer/SearchBoxCon
 import { DesktopNavbar } from "./DesktopNavbar";
 import { MobileNavbar } from "./MobileNavbar";
 
-export const NavbarComponent = ({ children }: { children: ReactNode }) => {
+export const NavbarComponent = ({
+    children,
+    variant,
+}: {
+    children: ReactNode;
+    variant?: "dark" | "default";
+}) => {
     const siteTexts = useAppSelector((state) => state.globalLanguage.value);
     const [navbarTexts, setNavbarTexts] = useState<undefined | any>(undefined);
+    const [screenWidth, setScreenWidth] = useState<number>(1240);
     const [y, setY] = useState(0);
     const navBarRef = useRef(null);
     const navBarBackgroundRef = useRef(null);
@@ -66,18 +73,29 @@ export const NavbarComponent = ({ children }: { children: ReactNode }) => {
         };
     }, [y]);
 
+    useEffect(() => {
+        if (screen) {
+            setScreenWidth(screen.availWidth);
+        }
+    }, []);
+
     console.log("[NAVBAR-TEXTS]", siteTexts);
 
     return (
-        <div className={styles["navbar-container"]} ref={navBarRef}>
+        <div
+            className={`${styles["navbar-container"]}${
+                variant ? ` ${styles["dark-navbar"]}` : ""
+            }`}
+            ref={navBarRef}
+        >
             <div
                 className={styles["navbar-background"]}
                 ref={navBarBackgroundRef}
             ></div>
-            {window.innerWidth > 768 ? (
-                <DesktopNavbar>{children}</DesktopNavbar>
+            {screenWidth && screenWidth > 768 ? (
+                <DesktopNavbar variant={variant}>{children}</DesktopNavbar>
             ) : (
-                <MobileNavbar>{children}</MobileNavbar>
+                <MobileNavbar variant={variant}>{children}</MobileNavbar>
             )}
         </div>
     );
