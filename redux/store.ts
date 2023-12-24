@@ -1,3 +1,4 @@
+import activeProjectsType from "./features/website/active-project-types-slice";
 import search from "./features/website/searchbox-slice";
 import openedProductValue from "./features/admin-opened-product-slice";
 import adminDetailOpened from "./features/admin-detail-open";
@@ -11,6 +12,7 @@ import { TypedUseSelectorHook, useSelector } from "react-redux";
 export const store = configureStore({
     reducer: {
         activeSection,
+        activeProjectsType,
         productsValue,
         loading,
         globalLanguage,

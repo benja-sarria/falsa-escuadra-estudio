@@ -196,6 +196,14 @@
                 "title": "Conocé nuestros proyectos",
                 "description": "Lorem ipsum dolor sit amet consectetur. Feugiat sed pulvinar aenean sit erat sollicitudin ullamcorper. Accumsan amet."
             }
+        },
+        "selector": {
+            "custom": {
+                "text": "Encargos"
+            },
+            "own": {
+                "text": "Creaciones"
+            }
         }
     },
     "projectDetail": {

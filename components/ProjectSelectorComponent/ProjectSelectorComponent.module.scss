@@ -1,0 +1,41 @@
+.section-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 4rem;
+    .inner-container {
+        border: 2px solid var(--falsa-escuadra-black);
+        border-radius: 2rem;
+        display: flex;
+        position: relative;
+        overflow: hidden;
+        .selector-cell {
+            padding: 1rem 4rem;
+            position: relative;
+            background-color: transparent;
+            border-radius: 2rem;
+            border: none;
+            font-size: 1.15rem;
+            pointer-events: all;
+            cursor: pointer;
+            transition: color 400ms ease-out;
+        }
+        .active-selector-indicator {
+            border-radius: 2rem;
+            position: absolute;
+            min-width: 50%;
+            max-width: 50%;
+            min-height: 100%;
+            background-color: var(--falsa-escuadra-green);
+            pointer-events: none;
+            transition: all 400ms ease-out;
+            right: 50%;
+        }
+        .right-align {
+            right: 0rem;
+        }
+        .active-cell {
+            font-weight: 600;
+            color: var(--falsa-escuadra-white);
+        }
+    }
+}
