@@ -1,0 +1,65 @@
+.project-section-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 20vw;
+    padding: 10rem 20vw;
+    row-gap: 10rem;
+    div:is([class*="product-card-container"]) {
+        flex-basis: 100%;
+        max-width: 20rem;
+        transform: scale(1.4);
+    }
+    div:is([class*="small-card"]) {
+        flex-basis: 100%;
+        max-width: calc(20rem * 0.75);
+        &:hover {
+            transform: scale(1.6) translate(2rem, 2rem) rotate(4deg);
+        }
+    }
+    div:is([class*="large-card"]) {
+        &:hover {
+            transform: scale(1.6) translate(2rem, 2rem) rotate(-4deg);
+        }
+    }
+    .outer-container {
+        display: flex;
+        justify-content: center;
+        min-width: 100%;
+        min-height: 73vh;
+        max-height: 73vh;
+        overflow-y: auto;
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background-image: linear-gradient(
+                to bottom,
+                var(--falsa-escuadra-blue-mid),
+                var(--falsa-escuadra-blue)
+            );
+            margin: 0.3em 0em;
+            border-radius: 2rem;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: var(--falsa-escuadra-gold);
+            border-radius: 2rem;
+            transform: scale(0.3);
+        }
+        .card-list-container {
+            padding: 1rem 0rem;
+            display: flex;
+            column-gap: 2.5rem;
+            row-gap: 2.5rem;
+            flex-wrap: wrap;
+            max-width: 90%;
+            min-width: 90%;
+            overflow-y: auto;
+        }
+    }
+}

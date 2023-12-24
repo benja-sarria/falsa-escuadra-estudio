@@ -57,6 +57,7 @@ export const AdminProductsListComponent = ({
                                                   ? "small"
                                                   : "large"
                                           }
+                                          editable={true}
                                       />
                                   </React.Fragment>
                               );
@@ -79,6 +80,7 @@ export const AdminProductsListComponent = ({
                                                   ? "small"
                                                   : "large"
                                           }
+                                          editable={true}
                                       />
                                   </React.Fragment>
                               );

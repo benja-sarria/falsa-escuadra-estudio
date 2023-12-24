@@ -22,11 +22,13 @@ export const ProductCardComponent = ({
     product,
     type,
     loading,
+    editable,
 }:
     | {
           product: ProductReceivedType;
           type: "large" | "small";
           loading?: boolean;
+          editable?: boolean;
       }
     | any) => {
     const [portraitPhoto, setPortraitPhoto] = useState<{
@@ -101,58 +103,67 @@ export const ProductCardComponent = ({
                             : "--small-card-img-max-width"
                     }
                 />
-                <div className={styles["card-action-buttons-container"]}>
-                    {availableActions.map((action: string, index: number) => {
-                        return (
-                            <React.Fragment key={`${action}-btn`}>
-                                {" "}
-                                <ReusableActionButtonComponent
-                                    action={
-                                        action as AvailableProductActionsType
-                                    }
-                                    execute={(() => {
-                                        const availableActions = {
-                                            edit: () => {
-                                                console.log("[OPENING-DETAIL]");
+                {editable && (
+                    <div className={styles["card-action-buttons-container"]}>
+                        {availableActions.map(
+                            (action: string, index: number) => {
+                                return (
+                                    <React.Fragment key={`${action}-btn`}>
+                                        {" "}
+                                        <ReusableActionButtonComponent
+                                            action={
+                                                action as AvailableProductActionsType
+                                            }
+                                            execute={(() => {
+                                                const availableActions = {
+                                                    edit: () => {
+                                                        console.log(
+                                                            "[OPENING-DETAIL]"
+                                                        );
 
-                                                dispatch(
-                                                    setAdminDetailOpened(true)
-                                                );
-                                                dispatch(
-                                                    setOpenedProduct({
-                                                        set: product,
-                                                        update: product,
-                                                    })
-                                                );
-                                            },
-                                            remove: () => {},
-                                        };
+                                                        dispatch(
+                                                            setAdminDetailOpened(
+                                                                true
+                                                            )
+                                                        );
+                                                        dispatch(
+                                                            setOpenedProduct({
+                                                                set: product,
+                                                                update: product,
+                                                            })
+                                                        );
+                                                    },
+                                                    remove: () => {},
+                                                };
 
-                                        return availableActions[
-                                            action as keyof typeof availableActions
-                                        ];
-                                    })()}
-                                    icon={
-                                        action === "edit" ? (
-                                            <EditIcon />
-                                        ) : (
-                                            <DeleteForeverIcon />
-                                        )
-                                    }
-                                    text={
-                                        siteTexts.messages
-                                            ? siteTexts.messages.adminTexts
-                                                  .productActionButtons[
-                                                  action as keyof typeof siteTexts.messages.adminTexts.productActionButtons
-                                              ].text
-                                            : ""
-                                    }
-                                    styleVariants={["light-variant"]}
-                                />
-                            </React.Fragment>
-                        );
-                    })}
-                </div>
+                                                return availableActions[
+                                                    action as keyof typeof availableActions
+                                                ];
+                                            })()}
+                                            icon={
+                                                action === "edit" ? (
+                                                    <EditIcon />
+                                                ) : (
+                                                    <DeleteForeverIcon />
+                                                )
+                                            }
+                                            text={
+                                                siteTexts.messages
+                                                    ? siteTexts.messages
+                                                          .adminTexts
+                                                          .productActionButtons[
+                                                          action as keyof typeof siteTexts.messages.adminTexts.productActionButtons
+                                                      ].text
+                                                    : ""
+                                            }
+                                            styleVariants={["light-variant"]}
+                                        />
+                                    </React.Fragment>
+                                );
+                            }
+                        )}
+                    </div>
+                )}
             </div>
             <div className={styles["text-contents"]}>
                 <h5>{`${product.title}`}</h5>

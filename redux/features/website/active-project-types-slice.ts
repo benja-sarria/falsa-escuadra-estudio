@@ -5,7 +5,7 @@ import {
 import { Product } from "@prisma/client";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type AvailableActiveProjectsType = "own" | "custom";
+export type AvailableActiveProjectsType = "own" | "custom";
 
 type initialActiveProjectsType = {
     value: AvailableActiveProjectsType;
