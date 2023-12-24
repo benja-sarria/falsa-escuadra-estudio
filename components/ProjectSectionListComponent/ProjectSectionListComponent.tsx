@@ -21,7 +21,7 @@ export const ProjectSectionListComponent = ({
         ProductTypeWithIncludes[]
     >([]);
     useEffect(() => {
-        console.log("PRODUCTS", products);
+        console.log("PRODUCTS", products, activeProductType);
 
         if (products)
             setStateProducts(
@@ -36,7 +36,7 @@ export const ProjectSectionListComponent = ({
                     );
                 })()
             );
-    }, [products]);
+    }, [products, activeProductType]);
 
     return (
         <div className={styles["project-section-container"]}>
