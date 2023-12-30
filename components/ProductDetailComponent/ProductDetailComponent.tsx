@@ -58,7 +58,7 @@ export const ProductDetailComponent = ({
 
     useEffect(() => {
         if (openedDetail && openedDetail.original) {
-            setActiveId(`${openedDetail?.original.photos[0].id}`);
+            setActiveId(`${openedDetail?.original?.photos[0]?.id}`);
         }
     }, []);
 

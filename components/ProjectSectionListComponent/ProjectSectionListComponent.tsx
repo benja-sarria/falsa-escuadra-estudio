@@ -8,6 +8,7 @@ import {
 import { Prisma } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { ProductCardComponent } from "../ProductCardComponent/ProductCardComponent";
+import { CustomProductCardComponent } from "../CustomProductCardComponent/CustomProductCardComponent";
 
 export const ProjectSectionListComponent = ({
     products,
@@ -39,14 +40,37 @@ export const ProjectSectionListComponent = ({
     }, [products, activeProductType]);
 
     return (
-        <div className={styles["project-section-container"]}>
-            {stateProducts.map((product, index) => (
-                <ProductCardComponent
-                    key={product.id}
-                    product={product}
-                    type={index % 2 === 0 ? "large" : "small"}
-                />
-            ))}
+        <div
+            className={`${styles["project-section-container"]}${
+                activeProductType === "own" ? ` ${styles["own-section"]}` : ""
+            } `}
+        >
+            {activeProductType === "own" && (
+                <div className={styles["background-overlay"]}></div>
+            )}
+            {stateProducts.map((product, index) =>
+                activeProductType === "custom" ? (
+                    <ProductCardComponent
+                        key={product.id}
+                        product={product}
+                        type={
+                            (index + 1) % 4 == 0 || (index + 4) % 4 == 0
+                                ? "large"
+                                : "small"
+                        }
+                    />
+                ) : (
+                    <CustomProductCardComponent
+                        key={product.id}
+                        product={product}
+                        type={
+                            (index + 2) % 4 == 0 || (index + 3) % 4 == 0
+                                ? "large"
+                                : "small"
+                        }
+                    />
+                )
+            )}
         </div>
     );
 };

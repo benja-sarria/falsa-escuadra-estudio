@@ -45,7 +45,7 @@
             "home": { "text": "Inicio", "link": "/" },
             "projects": { "text": "Proyectos", "link": "/projects" },
             "about-us": { "text": "Nosotros", "link": "#" },
-            "contact": { "text": "Contacto", "link": "#" }
+            "contact": { "text": "Contacto", "link": "/contact" }
         },
         "search": {
             "results": {
@@ -209,6 +209,22 @@
     "projectDetail": {
         "carouselTitle": {
             "text": "Ver más | <b>proyectos</b>"
+        }
+    },
+    "contact": {
+        "seal": {
+            "img": {
+                "src": "/assets/img/contact/contact-seal.webp"
+            },
+            "text": {
+                "src": "/assets/img/contact/texts.webp"
+            }
+        },
+        "pageTitle": {
+            "text": "¡Charlemos sobre tu idea!"
+        },
+        "pageSubtitle": {
+            "text": "Te queremos ayudar a convertir tu idea en realidad. Contestá las siguientes preguntas y nos pondremos en contacto con vos."
         }
     }
 }

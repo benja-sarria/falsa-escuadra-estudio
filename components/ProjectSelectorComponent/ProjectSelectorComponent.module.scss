@@ -7,7 +7,7 @@
         border-radius: 2rem;
         display: flex;
         position: relative;
-        overflow: hidden;
+        // overflow: hidden;
         .selector-cell {
             padding: 1rem 4rem;
             position: relative;
@@ -22,16 +22,17 @@
         .active-selector-indicator {
             border-radius: 2rem;
             position: absolute;
-            min-width: 50%;
-            max-width: 50%;
-            min-height: 100%;
+            min-width: 50.5%;
+            max-width: 50.5%;
+            min-height: 105%;
             background-color: var(--falsa-escuadra-green);
             pointer-events: none;
             transition: all 400ms ease-out;
             right: 50%;
+            top: -2%;
         }
         .right-align {
-            right: 0rem;
+            right: -0.5%;
         }
         .active-cell {
             font-weight: 600;

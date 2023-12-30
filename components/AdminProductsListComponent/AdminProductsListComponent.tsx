@@ -58,6 +58,7 @@ export const AdminProductsListComponent = ({
                                                   : "large"
                                           }
                                           editable={true}
+                                          adminCard={true}
                                       />
                                   </React.Fragment>
                               );
@@ -81,6 +82,7 @@ export const AdminProductsListComponent = ({
                                                   : "large"
                                           }
                                           editable={true}
+                                          adminCard={true}
                                       />
                                   </React.Fragment>
                               );

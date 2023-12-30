@@ -220,3 +220,43 @@ export const autoFigureItOutMeasureLimit = (
         }
     }
 };
+
+export const autoDetermineSize = (
+    img: HTMLImageElement,
+    widthVariable: string,
+    heightVariable?: string
+) => {
+    if (img) {
+        const imgElement = img as HTMLImageElement;
+        const width = imgElement.naturalWidth;
+        const height = imgElement.naturalHeight;
+        const parent = img.parentElement as HTMLElement;
+
+        parent.style.removeProperty("min-width");
+        parent.style.removeProperty("max-width");
+        parent.style.removeProperty("min-height");
+        parent.style.removeProperty("max-height");
+        if (width >= height) {
+            parent.style.minWidth = `calc(var(${heightVariable}) * ${
+                width / height
+            })`;
+            parent.style.maxWidth = `calc(var(${heightVariable}) * ${
+                width / height
+            })`;
+            parent.style.minHeight = `var(${heightVariable})`;
+
+            parent.style.maxHeight = `var(${heightVariable})`;
+        } else {
+            parent.style.minHeight = `calc(var(${widthVariable}) *  ${
+                height / width
+            })`;
+            parent.style.maxHeight = `calc(var(${widthVariable}) * ${
+                height / width
+            })`;
+            parent.style.minWidth = `var(${widthVariable})`;
+
+            parent.style.maxWidth = `var(${widthVariable})`;
+            parent.classList.add("measured");
+        }
+    }
+};
