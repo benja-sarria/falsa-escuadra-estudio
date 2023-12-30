@@ -1,0 +1,51 @@
+.portrait-container {
+    --section-height: 100vh;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    background-image: linear-gradient(
+        to bottom,
+        transparent 0% 50%,
+        var(--falsa-escuadra-blue) 50% 100%
+    );
+    .portrait-background-rectangle {
+        position: absolute;
+        top: -6rem;
+        left: 0;
+        min-height: calc(var(--section-height) * 0.75);
+        min-width: 23vw;
+        background-color: var(--falsa-escuadra-gold-light);
+    }
+    .left-column {
+        padding: 4rem 6rem;
+        display: flex;
+        flex-direction: column;
+        gap: 6rem 0;
+        width: 30%;
+        .left-img-inner {
+            --img-min-width: 27vw;
+            position: relative;
+            min-width: var(--img-min-width);
+            max-width: var(--img-min-width);
+        }
+    }
+    .right-column {
+        width: 80%;
+        padding: 2rem 4rem 2rem 4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem 0;
+        --img-min-width: 45vw;
+        background-color: var(--falsa-escuadra-grey-lighter);
+        .right-img-inner {
+            position: relative;
+            min-width: var(--img-min-width);
+            max-width: var(--img-min-width);
+        }
+        .portrait-text {
+            max-width: var(--img-min-width);
+        }
+    }
+}

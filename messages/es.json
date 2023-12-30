@@ -44,7 +44,7 @@
         "navbar": {
             "home": { "text": "Inicio", "link": "/" },
             "projects": { "text": "Proyectos", "link": "/projects" },
-            "about-us": { "text": "Nosotros", "link": "#" },
+            "about-us": { "text": "Nosotros", "link": "/about-us" },
             "contact": { "text": "Contacto", "link": "/contact" }
         },
         "search": {
@@ -225,6 +225,27 @@
         },
         "pageSubtitle": {
             "text": "Te queremos ayudar a convertir tu idea en realidad. Contestá las siguientes preguntas y nos pondremos en contacto con vos."
+        }
+    },
+    "aboutUs": {
+        "pageTitle": {
+            "text": "<b>Nosotros</b>"
+        },
+        "images": {
+            "left": {
+                "src": "/assets/img/about-us/about-us-1.webp",
+                "alt": "equipo de falsa escuadra"
+            },
+            "right": {
+                "src": "/assets/img/about-us/about-us-2.webp",
+                "alt": "equipo de falsa escuadra"
+            }
+        },
+        "portraitText": {
+            "text": "Falsa Escuadra nació producto de lorem ipsum dolor sit amet consectetur. Diam et mauris nulla lacus ut risus ridiculus urna arcu ratsa neque sem porttitor arctre consectetur cras risus gravida pharetra tristique. Sed etiam a sit magtna. Inoda eget turpis justo massa mattis sed duis. Molestie amet viverra blandit. Lorem ipsum dolor sit amet consectetur diam et mauris nulla lacus ut risus ridiculus urna arcu ratsa neque sem porttitor arctre consectetur cras risus gravida pharetra tristique. Sed etiam a sit magtna. Inoda eget turpis justo massa mattis sed duis. Molestie amet viverra blandit."
+        },
+        "carouselTitle": {
+            "text": "¿Qué hacemos?"
         }
     }
 }
