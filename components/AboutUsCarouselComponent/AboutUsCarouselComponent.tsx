@@ -45,10 +45,10 @@ export const AboutUsCarouselComponent = () => {
                     delay: 1,
                     waitForTransition: true,
                 }}
-                speed={3000}
+                speed={5000}
                 freeMode={true}
                 modules={[Autoplay, FreeMode]}
-                className={styles["home-carousel-carousel"]}
+                className={styles["about-us-carousel"]}
             >
                 {links.map((link) => (
                     <SwiperSlide

@@ -246,6 +246,29 @@
         },
         "carouselTitle": {
             "text": "¿Qué hacemos?"
+        },
+        "infoSection": {
+            "title": "Nuestros valores",
+            "heroText": "Lorem ipsum dolor sit amethan consectetur. Ut aliquet purus ultrices phasellus tincidg.",
+            "cardStaticTitle": "Nuestro valor",
+            "cards": {
+                "trust": {
+                    "title": "Confianza",
+                    "content": "Lorem ipsum dolor sit amet consectetur. Nibh amet egestas porta tortor in id. Fermentume enim morbi venenatis suspendisse accumn nunc nibh varius. Amet amet sapien et."
+                },
+                "love": {
+                    "title": "Amar lo que haces",
+                    "content": "Lorem ipsum dolor sit amet consectetur. Nibh amet egestas porta tortor in id. Fermentume enim morbi venenatis suspendisse accumn nunc nibh varius. Amet amet sapien et."
+                },
+                "communication": {
+                    "title": "Comunicación",
+                    "content": "Lorem ipsum dolor sit amet consectetur. Nibh amet egestas porta tortor in id. Fermentume enim morbi venenatis suspendisse accumn nunc nibh varius. Amet amet sapien et."
+                },
+                "honesty": {
+                    "title": "Honestidad",
+                    "content": "Lorem ipsum dolor sit amet consectetur. Nibh amet egestas porta tortor in id. Fermentume enim morbi venenatis suspendisse accumn nunc nibh varius. Amet amet sapien et."
+                }
+            }
         }
     }
 }
