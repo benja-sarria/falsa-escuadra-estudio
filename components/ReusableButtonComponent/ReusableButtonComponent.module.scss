@@ -27,6 +27,12 @@
     color: var(--falsa-escuadra-black);
 }
 
+.green-variant {
+    background-color: var(--falsa-escuadra-green);
+    color: var(--falsa-escuadra-white);
+    border: none;
+}
+
 .outlined {
     border: 2px solid var(--Black, #171717);
     background-color: transparent;

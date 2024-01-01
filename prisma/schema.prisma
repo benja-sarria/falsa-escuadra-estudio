@@ -55,6 +55,7 @@ model Product {
   productType ProductTypes @relation(fields: [productTypeId], references: [id])
   productTypeId Int
   productSlug String @default("hola")
+  coordinates String @default("00000,00000")
 }
 
 model ProductTraits {

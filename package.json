@@ -14,6 +14,7 @@
         "@emotion/styled": "^11.11.0",
         "@formatjs/intl-localematcher": "^0.4.2",
         "@glidejs/glide": "^3.6.0",
+        "@googlemaps/js-api-loader": "^1.16.2",
         "@mui/icons-material": "^5.14.8",
         "@mui/material": "^5.14.8",
         "@prisma/client": "^5.2.0",

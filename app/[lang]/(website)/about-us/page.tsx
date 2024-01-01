@@ -1,5 +1,6 @@
 import styles from "@/app/[lang]/(website)/(home)/page.module.scss";
 import { AboutUsCarouselComponent } from "@/components/AboutUsCarouselComponent/AboutUsCarouselComponent";
+import { AboutUsHeroComponent } from "@/components/AboutUsHeroComponent/AboutUsHeroComponent";
 import { AboutUsInfoComponent } from "@/components/AboutUsInfoComponent/AboutUsInfoComponent";
 import { AboutUsPortraitComponent } from "@/components/AboutUsPortraitComponent/AboutUsPortraitComponent";
 import { ContactPortraitComponent } from "@/components/ContactPortraitComponent/ContactPortraitComponent";
@@ -13,6 +14,7 @@ export default function Projects() {
             <AboutUsCarouselComponent />
             <AboutUsInfoComponent />
             <AboutUsMapContainer />
+            <AboutUsHeroComponent />
         </main>
     );
 }

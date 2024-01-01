@@ -269,6 +269,16 @@
                     "content": "Lorem ipsum dolor sit amet consectetur. Nibh amet egestas porta tortor in id. Fermentume enim morbi venenatis suspendisse accumn nunc nibh varius. Amet amet sapien et."
                 }
             }
+        },
+        "footerHero": {
+            "src": "/assets/img/about-us/banner.webp",
+            "alt": "collage picture",
+            "preTitle": "Nos gustaría conocerte y que",
+            "title": "Charlemos sobre tu | <b>idea</b>",
+            "button": {
+                "text": "Contacto",
+                "link": "/contact"
+            }
         }
     }
 }
