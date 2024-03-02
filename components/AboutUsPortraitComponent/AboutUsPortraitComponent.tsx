@@ -4,10 +4,13 @@ import styles from "@/components/AboutUsPortraitComponent/AboutUsPortraitCompone
 import { SectionTitleComponent } from "../SectionTitleComponent/SectionTitleComponent";
 import { useAppSelector } from "@/redux/store";
 import { AutoAdjustImgComponent } from "../AutoAdjustImgComponent/AutoAdjustImgComponent";
+import { parseBreakPoints } from "@/utils/text/parseProjectContent";
 
 export const AboutUsPortraitComponent = () => {
     const globalTexts = useAppSelector((state) => state.globalLanguage.value);
     const aboutUsTexts = globalTexts.messages?.aboutUs;
+
+    const parsedText = parseBreakPoints(`${aboutUsTexts?.portraitText.text}`);
     return (
         <div className={styles["portrait-container"]}>
             <div className={styles["portrait-background-rectangle"]}></div>
@@ -32,9 +35,7 @@ export const AboutUsPortraitComponent = () => {
                     calculate="height"
                     fixedParameter="--img-min-width"
                 />
-                <p className={styles["portrait-text"]}>
-                    {aboutUsTexts?.portraitText.text}
-                </p>
+                <p className={styles["portrait-text"]}>{parsedText}</p>
             </div>
         </div>
     );

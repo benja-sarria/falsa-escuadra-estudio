@@ -20,6 +20,11 @@ export const ProjectPrevisualizationComponent = ({
         .messages?.layout.search;
 
     const dispatch = useDispatch<AppDispatch>();
+
+    const parsedContent = project.content
+        .replaceAll("<b>", "")
+        .replaceAll("</b>", "")
+        .replaceAll("|", "");
     return (
         <div className={styles["previsualization-container"]}>
             <div className={styles["image-container"]}>
@@ -58,9 +63,9 @@ export const ProjectPrevisualizationComponent = ({
             </div>
             <h5 className={styles["title"]}>{project.title}</h5>
             <p className={styles["text"]}>
-                {project.content.length > 280
-                    ? `${project.content.slice(0, 280)}...`
-                    : project.content}
+                {parsedContent.length > 280
+                    ? `${parsedContent.slice(0, 280)}...`
+                    : parsedContent}
             </p>
             <ReusableButtonComponent
                 styleVariants={["search-project"]}

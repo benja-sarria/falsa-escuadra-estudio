@@ -46,6 +46,9 @@
         }
         .portrait-text {
             max-width: var(--img-min-width);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
     }
 }

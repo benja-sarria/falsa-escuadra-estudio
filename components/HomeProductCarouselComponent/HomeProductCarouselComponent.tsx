@@ -124,6 +124,10 @@ export const HomeProductCarouselComponent = ({
                         products.length > 0 &&
                         products.map((swipe, index: number) => {
                             const baseOne = index + 1;
+                            const parsedContent = swipe.content
+                                .replaceAll("<b>", "")
+                                .replaceAll("</b>", "")
+                                .replaceAll("|", "");
                             const portrait = swipe.photos.find(
                                 (photo: ProductPhotos) => photo.isPortrait
                             );
@@ -160,11 +164,11 @@ export const HomeProductCarouselComponent = ({
                                             <h5>{swipe.title}</h5>
                                             <p>
                                                 {swipe.content.length > 50
-                                                    ? `${swipe.content.slice(
+                                                    ? `${parsedContent.slice(
                                                           0,
                                                           50
                                                       )}...`
-                                                    : `${swipe.content}`}
+                                                    : `${parsedContent}`}
                                             </p>
                                         </div>
                                     </SwiperSlide>
@@ -202,11 +206,11 @@ export const HomeProductCarouselComponent = ({
                                             <h5>{swipe.title}</h5>
                                             <p>
                                                 {swipe.content.length > 50
-                                                    ? `${swipe.content.slice(
+                                                    ? `${parsedContent.slice(
                                                           0,
                                                           50
                                                       )}...`
-                                                    : `${swipe.content}`}
+                                                    : `${parsedContent}`}
                                             </p>
                                         </div>
                                     </SwiperSlide>
@@ -252,11 +256,11 @@ export const HomeProductCarouselComponent = ({
                                         <h5>{swipe.title}</h5>
                                         <p>
                                             {swipe.content.length > 50
-                                                ? `${swipe.content.slice(
+                                                ? `${parsedContent.slice(
                                                       0,
                                                       50
                                                   )}...`
-                                                : `${swipe.content}`}
+                                                : `${parsedContent}`}
                                         </p>
                                     </div>
                                 </SwiperSlide>

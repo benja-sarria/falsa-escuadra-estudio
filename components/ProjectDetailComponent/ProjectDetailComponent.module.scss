@@ -26,6 +26,13 @@
         font-weight: 400;
         line-height: 2.8125rem; /* 187.5% */
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        b {
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
     }
     .project-detail-images-container {
         --img-min-width: 90vw;

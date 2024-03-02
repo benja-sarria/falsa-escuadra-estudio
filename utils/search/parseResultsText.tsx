@@ -5,7 +5,11 @@
  * @returns <><strong>{search}</strong> {...restOfText}</>
  */
 
-export const parseResultsText = (text: string, search: string) => {
+export const parseResultsText = (
+    text: string,
+    search: string,
+    shorten?: boolean
+) => {
     const parsedText = text.toLowerCase();
     const parsedSearch = search.toLowerCase();
     if (!parsedText) {
@@ -14,7 +18,7 @@ export const parseResultsText = (text: string, search: string) => {
     const indexOfText = parsedText.indexOf(parsedSearch);
 
     if (indexOfText === -1) {
-        return text;
+        return `${text}${shorten ? "..." : ""}`;
     }
     const endIndexOfText = indexOfText + parsedSearch.length;
 
@@ -22,7 +26,7 @@ export const parseResultsText = (text: string, search: string) => {
         <p>
             {`${text.slice(0, indexOfText)}`}
             <b>{`${text.slice(indexOfText, endIndexOfText)}`}</b>
-            {text.slice(endIndexOfText)}
+            {`${text.slice(endIndexOfText)}${shorten ? "..." : ""}`}
         </p>
     );
 };

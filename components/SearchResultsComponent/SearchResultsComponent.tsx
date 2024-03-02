@@ -5,7 +5,7 @@ import { SvgIcon } from "@mui/material";
 import GoldSearch from "@/public/assets/img/layout/goldsearch.svg";
 import { SkeletonPlaceholderComponent } from "../SkeletonPlaceholderComponent/SkeletonPlaceholderComponent";
 import { useDispatch } from "react-redux";
-import { SyntheticEvent } from "react";
+import { SyntheticEvent, useEffect, useRef } from "react";
 import {
     resetResults,
     resetSearch,
@@ -16,14 +16,30 @@ import { debounce } from "@/utils/debouncer";
 import { parseResultsText } from "@/utils/search/parseResultsText";
 import { ProjectPrevisualizationComponent } from "../ProjectPrevisualizationComponent/ProjectPrevisualizationComponent";
 import { useRouter } from "next/navigation";
+import { ProductWithIncludeType } from "@/types/projectTypes";
 
 export const SearchResultsComponent = () => {
     const siteTexts = useAppSelector((state) => state.globalLanguage.value);
     const router = useRouter();
+    const searchInputRef = useRef<HTMLInputElement>(null);
 
     const searchResultsTexts = siteTexts.messages?.home.searchResults;
     const search = useAppSelector((state) => state.search.value);
     const dispatch = useDispatch<AppDispatch>();
+
+    useEffect(() => {
+        if (searchInputRef.current) {
+            const inputRef = searchInputRef.current;
+            setTimeout(() => {
+                inputRef.focus();
+            }, 600);
+
+            return () => {
+                inputRef.blur();
+            };
+        }
+    }, [searchInputRef.current]);
+
     return (
         <div className={styles["results-container"]}>
             <div className={styles["left-column"]}>
@@ -40,6 +56,7 @@ export const SearchResultsComponent = () => {
                     <input
                         aria-label="search"
                         type="text"
+                        ref={searchInputRef}
                         name="search"
                         id={"search"}
                         className={styles["input"]}
@@ -56,13 +73,30 @@ export const SearchResultsComponent = () => {
                                     );
                                     if (results.success) {
                                         console.log("RESULTS", results);
-
+                                        const filteredArray: ProductWithIncludeType[] =
+                                            [];
+                                        results.data.forEach(
+                                            (
+                                                project: ProductWithIncludeType
+                                            ) => {
+                                                if (
+                                                    filteredArray.some(
+                                                        (parsedProject) =>
+                                                            parsedProject.title ===
+                                                            project.title
+                                                    )
+                                                ) {
+                                                    return;
+                                                }
+                                                filteredArray.push(project);
+                                            }
+                                        );
                                         dispatch(
                                             setSearch({
                                                 ...search,
 
                                                 term: target.value,
-                                                results: results.data,
+                                                results: filteredArray,
                                             })
                                         );
                                     }
@@ -138,16 +172,17 @@ export const SearchResultsComponent = () => {
                                               );
                                     }}
                                 >
-                                    {result.title.length < 30 && search.term
+                                    {result.title.length <= 30 && search.term
                                         ? parseResultsText(
                                               result.title,
                                               search.term
                                           )
                                         : search.term
-                                        ? `${parseResultsText(
+                                        ? parseResultsText(
                                               result.title.slice(0, 30),
-                                              search.term
-                                          )}...`
+                                              search.term,
+                                              true
+                                          )
                                         : ""}
                                 </li>
                             );

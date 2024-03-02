@@ -6,8 +6,10 @@ import { Loader } from "@googlemaps/js-api-loader";
 
 export const AboutUsMapComponent = ({
     products,
+    gmapsKey,
 }: {
     products: ProductReceivedType[];
+    gmapsKey?: string;
 }) => {
     //     useEffect(() => {
     //     const mapDiv = document.querySelector("#map") as HTMLElement;
