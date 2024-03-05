@@ -105,7 +105,7 @@ export const HomeProductCarouselComponent = ({
             <div className={styles["home-carousel-carousel-container"]}>
                 <Swiper
                     spaceBetween={0}
-                    slidesPerView={screen.availWidth < 768 ? 1 : 4}
+                    slidesPerView={screen?.availWidth < 768 ? 1 : 4}
                     //@ts-ignore
                     loopaddblankslides={"true"}
                     onSwiper={setMainSwiper}
@@ -161,7 +161,14 @@ export const HomeProductCarouselComponent = ({
                                                 styles["card-title-container"]
                                             }
                                         >
-                                            <h5>{swipe.title}</h5>
+                                            <h5>
+                                                {swipe.title.length > 23
+                                                    ? `${swipe.title.slice(
+                                                          0,
+                                                          23
+                                                      )}...`
+                                                    : `${swipe.title}`}
+                                            </h5>
                                             <p>
                                                 {swipe.content.length > 50
                                                     ? `${parsedContent.slice(

@@ -44,7 +44,6 @@ export class ProjectPrismaDao {
                     alt: photo.alt,
                     isPortrait: photo.isPortrait,
                     src: photo.baseSrc,
-                    productId: savedProject.id,
                 });
                 const savedPhoto = await this.db.productPhotos.create({
                     data: {

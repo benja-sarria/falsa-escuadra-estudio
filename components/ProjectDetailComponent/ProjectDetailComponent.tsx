@@ -37,6 +37,26 @@ export const ProjectDetailComponent = ({
                     );
                 })}
             </div>
+            <style global>{`
+                ::-webkit-scrollbar {
+                    width: 8px;
+                    background-color:  var(--falsa-escuadra-black);
+                    height: 4px;
+                }
+
+                /* Track */
+                ::-webkit-scrollbar-track {
+                    background-color:  var(--falsa-escuadra-black);
+                    margin: 0.3em 0em;
+                    border-radius: 2rem;
+                }
+
+                /* Handle */
+                ::-webkit-scrollbar-thumb {
+                    background: var(--falsa-escuadra-gold);
+                    border-radius: 2rem;
+                }
+            `}</style>
         </div>
     );
 };
