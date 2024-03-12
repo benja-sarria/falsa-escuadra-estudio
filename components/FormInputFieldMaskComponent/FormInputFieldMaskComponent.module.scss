@@ -1,0 +1,10 @@
+.form-input-field-mask {
+    &__number-pill {
+        padding: 0.25rem 1rem;
+        border: 1px solid var(--falsa-escuadra-white);
+        color: white;
+        border-radius: 2rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.55);
+    }
+}

@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Stack from "@mui/material/Stack";
@@ -9,6 +11,10 @@ import StepConnector, {
     stepConnectorClasses,
 } from "@mui/material/StepConnector";
 import { StepIconProps } from "@mui/material/StepIcon";
+import { AppDispatch, useAppSelector } from "@/redux/store";
+import { ContactFormStageType } from "@/types/contactFormTypes";
+import { useDispatch } from "react-redux";
+import { setStage } from "@/redux/features/website/contact-form-state-slice";
 
 const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -17,13 +23,14 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
     [`&.${stepConnectorClasses.active}`]: {
         [`& .${stepConnectorClasses.line}`]: {
             backgroundImage:
-                "linear-gradient( 95deg,var(--falsa-escuadra-white) 0%,var(--falsa-escuadra-blue-light) 50%,var(--falsa-escuadra-blue) 100%)",
+                theme.palette.mode === "dark"
+                    ? theme.palette.grey[800]
+                    : "#eaeaf0",
         },
     },
     [`&.${stepConnectorClasses.completed}`]: {
         [`& .${stepConnectorClasses.line}`]: {
-            backgroundImage:
-                "linear-gradient( 95deg, var(--falsa-escuadra-white) 0%,var(--falsa-escuadra-blue-light) 50%,var(--falsa-escuadra-blue) 100%)",
+            backgroundImage: "var(--falsa-escuadra-white)",
             color: "var(--falsa-escuadra-white)",
         },
     },
@@ -40,24 +47,44 @@ const ColorlibStepIconRoot = styled("div")<{
     ownerState: { completed?: boolean; active?: boolean };
 }>(({ theme, ownerState }) => ({
     backgroundColor: "transparent",
-    border: "3px solid var(--falsa-escuadra-white)",
+    border: "3px solid rgba(255, 255, 255, 0.45)",
     zIndex: 1,
-    color: "#fff",
+    color: "rgba(255, 255, 255, 0.55)",
     width: 30,
     height: 30,
     display: "flex",
     borderRadius: "50%",
     justifyContent: "center",
     alignItems: "center",
+    transition: "all 400ms ease-out",
+    boxShadow: "0 4px 10px 0 rgba(0,0,0,0)",
 
+    "&:hover": {
+        color: "#fff",
+        border: "3px solid var(--falsa-escuadra-white)",
+    },
     ...(ownerState.active && {
         boxShadow: "0 4px 10px 0 rgba(0,0,0,.25)",
+        color: "#fff",
+        border: "3px solid var(--falsa-escuadra-white)",
     }),
-    ...(ownerState.completed && {}),
+    ...(ownerState.completed && {
+        color: "#fff",
+        border: "3px solid var(--falsa-escuadra-white)",
+    }),
 }));
 
-function ColorlibStepIcon(props: StepIconProps, steps: number) {
+function ColorlibStepIcon(
+    props: StepIconProps,
+    steps: number,
+    clickHandler: (selectedStep: ContactFormStageType) => void,
+    step: ContactFormStageType
+) {
     const { active, completed, className } = props;
+
+    const internalClickHandler = React.useCallback(() => {
+        clickHandler(step as ContactFormStageType);
+    }, []);
 
     const icons: { [index: string]: React.ReactElement } = {};
     for (let i = 0; i <= steps; i++) {
@@ -65,21 +92,44 @@ function ColorlibStepIcon(props: StepIconProps, steps: number) {
     }
 
     return (
-        <ColorlibStepIconRoot
-            ownerState={{ completed, active }}
-            className={className}
+        <button
+            onClick={internalClickHandler}
+            type="button"
+            aria-label={`stage ${steps}`}
+            style={{
+                cursor: "pointer",
+                backgroundColor: "transparent",
+                border: "none",
+                padding: "none",
+                borderRadius: "100%",
+            }}
         >
-            {icons[String(props.icon)]}
-        </ColorlibStepIconRoot>
+            <ColorlibStepIconRoot
+                ownerState={{ completed, active }}
+                className={className}
+            >
+                {icons[String(props.icon)]}
+            </ColorlibStepIconRoot>
+        </button>
     );
 }
 
-export const FormStepperComponent = ({ steps }: { steps: string[] }) => {
+export const FormStepperComponent = () => {
+    const steps: ContactFormStageType[] = [1, 2, 3, 4, 5, 6];
+    const currentStep = useAppSelector(
+        (state) => state.contactFormState.value.stage
+    );
+
+    const dispatch = useDispatch<AppDispatch>();
+
+    const clickHandler = (selectedStep: ContactFormStageType) => {
+        dispatch(setStage(selectedStep));
+    };
     return (
         <Stack sx={{ width: "100%" }} spacing={4}>
             <Stepper
                 alternativeLabel
-                activeStep={3}
+                activeStep={currentStep - 1}
                 connector={<ColorlibConnector />}
                 color="white"
             >
@@ -89,13 +139,13 @@ export const FormStepperComponent = ({ steps }: { steps: string[] }) => {
                             StepIconComponent={(props) => {
                                 const icons = ColorlibStepIcon(
                                     props,
-                                    steps.length
+                                    steps.length,
+                                    clickHandler,
+                                    label
                                 );
                                 return icons;
                             }}
-                        >
-                            {label}
-                        </StepLabel>
+                        ></StepLabel>
                     </Step>
                 ))}
             </Stepper>

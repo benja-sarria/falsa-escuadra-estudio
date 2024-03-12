@@ -1,3 +1,4 @@
+import contactFormState from "./features/website/contact-form-state-slice";
 import activeProjectsType from "./features/website/active-project-types-slice";
 import search from "./features/website/searchbox-slice";
 import openedProductValue from "./features/admin-opened-product-slice";
@@ -19,6 +20,7 @@ export const store = configureStore({
         adminDetailOpened,
         openedProductValue,
         search,
+        contactFormState,
     },
 });
 
