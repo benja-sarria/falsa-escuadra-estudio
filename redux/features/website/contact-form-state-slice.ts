@@ -1,4 +1,3 @@
-import { ContactFormStageType } from "./../../../types/contactFormTypes.d";
 import {
     ContactFormStageType,
     QueryCategoryInterface,
