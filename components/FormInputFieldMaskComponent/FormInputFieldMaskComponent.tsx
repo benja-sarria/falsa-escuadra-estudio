@@ -9,7 +9,7 @@ import { ReusableButtonComponent } from "../ReusableButtonComponent/ReusableButt
 import { AutoAdjustImgComponent } from "../AutoAdjustImgComponent/AutoAdjustImgComponent";
 
 const FormInputFieldMaskComponent: React.FC<{
-    children: ReactElement;
+    children: ReactElement | ReactElement[];
 }> = ({ children }) => {
     const currentStage = useAppSelector(
         (state) => state.contactFormState.value.stage

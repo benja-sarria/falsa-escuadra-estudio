@@ -11,11 +11,18 @@ import {
     ProductWithIncludeType,
 } from "@/types/projectTypes";
 import { Product } from "@prisma/client";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+    ActionCreatorWithPayload,
+    createSlice,
+    PayloadAction,
+} from "@reduxjs/toolkit";
 
 type initialFormStateType = {
     value: QueryInterface;
 };
+
+export type FieldType = "text" | "select" | "upload" | "phone";
+
 const initialFormStateValue: initialFormStateType = {
     value: {
         personalData: {
@@ -184,3 +191,45 @@ export const {
     setStage,
 } = contactFormState.actions;
 export default contactFormState.reducer;
+
+export type StateOptions = string &
+    QueryCategoryInterface &
+    QueryDimensionsInterface &
+    QueryComplementaryInfoType;
+
+export type FieldNames =
+    | "name"
+    | "lastName"
+    | "phone"
+    | "category"
+    | "height"
+    | "width"
+    | "depth"
+    | "complementary"
+    | "materials";
+
+export const stageFields: {
+    [id in ContactFormStageType]: {
+        qty: FieldNames[];
+        type: FieldType;
+    };
+} = {
+    1: {
+        qty: ["name", "lastName"],
+        type: "text",
+    },
+    2: { qty: ["phone"], type: "phone" },
+    3: {
+        qty: ["category"],
+        type: "select",
+    },
+    4: {
+        qty: ["height", "width", "depth"],
+        type: "text",
+    },
+    5: {
+        qty: ["complementary"],
+        type: "upload",
+    },
+    6: { qty: ["materials"], type: "select" },
+};
