@@ -12,6 +12,7 @@ import {
     addMaterials,
     setCategory,
     setDimensions,
+    setFullName,
     setLastName,
     setName,
     setPhone,
@@ -44,34 +45,41 @@ export const ContactFormComponent = () => {
         upload: TextInputComponent,
     };
 
-    const InputField = currentField.qty.map((field: FieldNames) => {
-        const onChangeFunction = (() => {
-            if (field === "name") {
-                return setName;
-            }
-            if (field === "lastName") {
-                return setLastName;
-            }
-            if (field === "phone") {
-                return setPhone;
-            }
-            if (field === "category") {
-                return setCategory;
-            }
-            if (field === "complementary") {
-                return addComplementaryInfo;
-            }
-            if (field === "depth" || field === "width" || field === "height") {
-                return setDimensions;
-            }
-
-            return addMaterials;
-        })();
-        return React.createElement(fieldTypes[currentField.type], {
-            fieldName: field,
-            onChange: onChangeFunction,
-        });
-    });
+    const InputField = (() => {
+        if (currentField.qty && currentField.qty.length > 0) {
+            const componentArray = currentField.qty.map((field) => {
+                return React.createElement(fieldTypes[currentField.type], {
+                    fieldName: field,
+                    onChange: setDimensions,
+                });
+            });
+            return componentArray;
+        }
+        if (currentField.data === "name") {
+            return React.createElement(fieldTypes[currentField.type], {
+                fieldName: currentField.data,
+                onChange: setFullName,
+            });
+        }
+        if (currentField.data === "phone") {
+            return React.createElement(fieldTypes[currentField.type], {
+                fieldName: currentField.data,
+                onChange: setPhone,
+            });
+        }
+        if (currentField.data === "category") {
+            return React.createElement(fieldTypes[currentField.type], {
+                fieldName: currentField.data,
+                onChange: setCategory,
+            });
+        }
+        if (currentField.data === "complementary") {
+            return React.createElement(fieldTypes[currentField.type], {
+                fieldName: currentField.data,
+                onChange: addComplementaryInfo,
+            });
+        }
+    })();
 
     return (
         <div className={styles[`${namespace}`]}>

@@ -52,25 +52,16 @@ export const contactFormState = createSlice({
             return initialFormStateValue;
         },
 
-        setName: (state, action: { payload: string }) => {
+        setFullName: (state, action: { payload: string }) => {
             const parsedNewState: initialFormStateType["value"] = {
                 ...state.value,
                 personalData: {
                     ...state.value.personalData,
-                    name: action.payload,
+                    name: action.payload.split(" ")[0],
+                    lastName: action.payload.split(" ")[1] ?? "",
                 },
             };
 
-            state.value = parsedNewState;
-        },
-        setLastName: (state, action: { payload: string }) => {
-            const parsedNewState: initialFormStateType["value"] = {
-                ...state.value,
-                personalData: {
-                    ...state.value.personalData,
-                    lastName: action.payload,
-                },
-            };
             state.value = parsedNewState;
         },
 
@@ -179,8 +170,8 @@ export const contactFormState = createSlice({
 
 export const {
     resetForm,
-    setName,
-    setLastName,
+    setFullName,
+
     setPhone,
     setCategory,
     setDimensions,
@@ -210,26 +201,24 @@ export type FieldNames =
 
 export const stageFields: {
     [id in ContactFormStageType]: {
-        qty: FieldNames[];
+        qty?: FieldNames[];
+        data: FieldNames | "dimensions";
         type: FieldType;
     };
 } = {
     1: {
-        qty: ["name", "lastName"],
+        data: "name",
         type: "text",
     },
-    2: { qty: ["phone"], type: "phone" },
+    2: { data: "phone", type: "phone" },
     3: {
-        qty: ["category"],
+        data: "category",
         type: "select",
     },
-    4: {
-        qty: ["height", "width", "depth"],
-        type: "text",
-    },
+    4: { data: "dimensions", qty: ["height", "width", "depth"], type: "text" },
     5: {
-        qty: ["complementary"],
+        data: "complementary",
         type: "upload",
     },
-    6: { qty: ["materials"], type: "select" },
+    6: { data: "materials", type: "select" },
 };
