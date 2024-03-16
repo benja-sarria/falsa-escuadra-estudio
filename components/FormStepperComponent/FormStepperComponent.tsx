@@ -22,23 +22,19 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
     },
     [`&.${stepConnectorClasses.active}`]: {
         [`& .${stepConnectorClasses.line}`]: {
-            backgroundImage:
-                theme.palette.mode === "dark"
-                    ? theme.palette.grey[800]
-                    : "#eaeaf0",
+            backgroundImage: `linear-gradient(to right, var(--falsa-escuadra-white), var(--falsa-escuadra-grey-mid-250))`,
         },
     },
     [`&.${stepConnectorClasses.completed}`]: {
         [`& .${stepConnectorClasses.line}`]: {
-            backgroundImage: "var(--falsa-escuadra-white)",
+            backgroundColor: "var(--falsa-escuadra-white)",
             color: "var(--falsa-escuadra-white)",
         },
     },
     [`& .${stepConnectorClasses.line}`]: {
         height: 2,
         border: 0,
-        backgroundColor:
-            theme.palette.mode === "dark" ? theme.palette.grey[800] : "#eaeaf0",
+        backgroundColor: "var(--falsa-escuadra-grey-mid-250)",
         borderRadius: 1,
     },
 }));

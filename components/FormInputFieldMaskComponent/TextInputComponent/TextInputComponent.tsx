@@ -1,21 +1,21 @@
 "use client";
 
-import {
-    StateOptions,
-    setName,
-} from "@/redux/features/website/contact-form-state-slice";
 import { AppDispatch } from "@/redux/store";
-import { PayloadAction } from "@reduxjs/toolkit";
-import React from "react";
-import { FormEvent, useCallback, useState } from "react";
+import React, { useEffect } from "react";
+import { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
+import styles from "@/components/FormInputFieldMaskComponent/TextInputComponent/TextInputComponent.module.scss";
+
+const namespace = "text-input-component";
 
 export const TextInputComponent = ({
     onChange,
     fieldName,
+    placeholder,
 }: {
     onChange: any;
     fieldName: string;
+    placeholder?: string;
 }) => {
     const [value, setValue] = useState<string>("");
     const dispatch = useDispatch<AppDispatch>();
@@ -25,16 +25,25 @@ export const TextInputComponent = ({
             if (target) {
                 setValue(target.value);
 
-                dispatch(onChange(target.value));
+                dispatch(onChange({ data: target.value, field: fieldName }));
             }
         },
         [onChange]
     );
+
+    useEffect(() => {
+        return () => {
+            setValue("");
+        };
+    }, [onChange]);
+
     return (
         <input
             aria-label="text-field"
             value={value}
             onChange={internalHandler}
+            className={styles[namespace]}
+            placeholder={placeholder ?? "Escribe aqui..."}
         />
     );
 };

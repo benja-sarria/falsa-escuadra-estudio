@@ -1,0 +1,15 @@
+.text-input-component {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid var(--falsa-escuadra-grey-mid);
+    font-size: 1.25rem;
+    color: var(--falsa-escuadra-white);
+    &::placeholder {
+        font-size: 1rem;
+        position: relative;
+        bottom: 0.25rem;
+    }
+    &:focus {
+        outline: transparent;
+    }
+}

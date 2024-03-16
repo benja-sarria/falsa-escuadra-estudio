@@ -1,5 +1,58 @@
 .contact-form-component {
-    min-height: 40vh;
+    min-height: 60vh;
     min-width: 100vw;
     background-color: var(--falsa-escuadra-brown);
+    display: flex;
+    padding: 2rem;
+    gap: 4rem;
+    &__input-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        min-width: 60vw;
+        max-width: 60vw;
+    }
+    &__label {
+        font-size: 1.25rem;
+        font-weight: 500;
+        font-family: "Montserrat";
+        color: var(--falsa-escuadra-white);
+    }
+
+    &__left-column {
+        max-width: 70%;
+        position: relative;
+    }
+
+    &__icon {
+        --img-min-height: 1rem;
+        position: relative;
+        min-height: var(--img-min-height);
+        max-height: var(--img-min-height);
+    }
+
+    &__fields-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        min-height: 10rem;
+        position: relative;
+    }
+
+    &__question {
+        position: absolute;
+        pointer-events: none;
+        opacity: 0;
+        transform: translateX(20%);
+        transition: transform 0ms ease-out, opacity 0ms ease-out;
+        &--active {
+            transition: transform 500ms 50ms ease-out,
+                opacity 400ms 150ms ease-out;
+            opacity: 1;
+
+            transform: scale(1);
+            pointer-events: all;
+        }
+    }
 }

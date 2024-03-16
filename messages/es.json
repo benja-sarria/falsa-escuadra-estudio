@@ -288,5 +288,19 @@
                 "link": "/contact"
             }
         }
+    },
+    "contactForm": {
+        "name": {
+            "label": "¿Cómo te llamas?"
+        },
+        "phone": {
+            "label": "¿Cuál es tu teléfono?"
+        },
+        "category": { "label": "¿En qué te podemos ayudar?" },
+        "dimensions": { "label": "¿Cuáles son las dimensiones de tu diseño?" },
+        "complementary": {
+            "label": "¿Quieres adjuntar fotos o links para describir tu idea?"
+        },
+        "materials": { "label": "¿Qué materiales te gustaría usar?" }
     }
 }

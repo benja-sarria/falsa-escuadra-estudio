@@ -18,10 +18,6 @@ export const ReusableButtonComponent = ({
     icon?: ReactNode;
     inverted?: Boolean;
 }) => {
-    useEffect(() => {
-        console.log(styleVariants);
-    }, [styleVariants]);
-
     return (
         <button
             className={`${styles["reusable-btn-base"]}${

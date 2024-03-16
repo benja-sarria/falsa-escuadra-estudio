@@ -44,11 +44,11 @@ export enum QueryCategoryNameEnum {
 }
 
 export interface QueryMaterialsInterface {
-    type: QueryMaterialsNameEnum;
-    material: QueryMaterialsNameEnum;
+    type: QueryMaterialsTypeEnum;
+    name: QueryMaterialsNameEnum;
 }
 
-export enum QueryMaterialsNameEnum {
+export enum QueryMaterialsTypeEnum {
     iron = "iron",
     solidWood = "solidWood",
     laminatedWood = "laminatedWood",

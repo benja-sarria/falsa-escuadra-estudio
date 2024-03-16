@@ -79,8 +79,6 @@ export const NavbarComponent = ({
         }
     }, []);
 
-    console.log("[NAVBAR-TEXTS]", siteTexts);
-
     return (
         <div
             className={`${styles["navbar-container"]}${

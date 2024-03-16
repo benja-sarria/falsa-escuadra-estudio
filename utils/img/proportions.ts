@@ -17,7 +17,6 @@ export const caclulateWidthProportions = (
                 width / height
             })`;
 
-            console.log("[CALCULATE]", imgMock, imgId, parent);
             parent.style.maxWidth = `calc(var(${heightVariable}) * ${
                 width / height
             })`;
@@ -35,7 +34,6 @@ export const caclulateHeightProportions = (
     /*   const newimage = document.createElement("img");
     newimage.src = imgSrc; */
     imgMock.onload = function () {
-        console.log("[CALCULATE-ID-SRC]", imgId, imgSrc, imgMock.naturalHeight);
         const img = document.querySelector(`#${imgId}`) as HTMLElement;
         if (img) {
             const width = (this as HTMLImageElement).naturalWidth;
@@ -47,7 +45,6 @@ export const caclulateHeightProportions = (
                 height / width
             })`;
 
-            console.log("[CALCULATE]", imgMock, imgId, parent);
             parent.style.maxHeight = `calc(var(${widthVariable}) * ${
                 height / width
             })`;
@@ -59,7 +56,6 @@ export const caclulateWidthPropsWithoutLoader = (
     img: HTMLImageElement,
     widthVariable: string
 ) => {
-    console.log("[CALCULATE-COMPLEX]", img);
     if (img) {
         const width = img.naturalWidth;
         const height = img.naturalHeight;
@@ -80,7 +76,6 @@ export const caclulateHeightPropsWithoutLoader = (
     img: HTMLImageElement,
     widthVariable: string
 ) => {
-    console.log("[CALCULATE-COMPLEX]", img);
     if (img) {
         const width = img.naturalWidth;
         const height = img.naturalHeight;
@@ -101,14 +96,11 @@ export const autoFigureItOutMeasureAfterLoad = (
     img: HTMLImageElement,
     measureVariable: string
 ) => {
-    console.log("CHECKING", img);
-
     if (img) {
         const imgElement = img as HTMLImageElement;
         const width = imgElement.naturalWidth;
         const height = imgElement.naturalHeight;
         const parent = img.parentElement as HTMLElement;
-        console.log("[ELEMENT]", imgElement, width, height, parent);
 
         parent.style.removeProperty("min-width");
         parent.style.removeProperty("max-width");
@@ -145,12 +137,10 @@ export const calculateWithMax = (
     widthVariable: string,
     heightVariable: string
 ) => {
-    console.log("[CALCULATE-COMPLEX]", img);
     if (img) {
         const width = img.naturalWidth;
         const height = img.naturalHeight;
         const parent = img.parentElement as HTMLElement;
-        console.log("[CALCULATE-COMPLEX]", parent, width, height);
 
         parent.style.removeProperty("min-width");
         parent.style.removeProperty("max-width");

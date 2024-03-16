@@ -1,10 +1,14 @@
 import {
     ContactFormStageType,
     QueryCategoryInterface,
+    QueryCategoryNameEnum,
+    QueryCategoryTypeEnum,
     QueryComplementaryInfoType,
     QueryDimensionsInterface,
     QueryInterface,
     QueryMaterialsInterface,
+    QueryMaterialsNameEnum,
+    QueryMaterialsTypeEnum,
 } from "@/types/contactFormTypes";
 import {
     ProductReceivedType,
@@ -44,6 +48,11 @@ const initialFormStateValue: initialFormStateType = {
     },
 };
 
+type TextFieldPayload = {
+    data: string;
+    field: FieldNames;
+};
+
 export const contactFormState = createSlice({
     name: "contactFormState",
     initialState: initialFormStateValue,
@@ -52,30 +61,36 @@ export const contactFormState = createSlice({
             return initialFormStateValue;
         },
 
-        setFullName: (state, action: { payload: string }) => {
+        setFullName: (state, action: { payload: TextFieldPayload }) => {
+            const [name, ...rest] = action.payload.data.split(" ");
             const parsedNewState: initialFormStateType["value"] = {
                 ...state.value,
                 personalData: {
                     ...state.value.personalData,
-                    name: action.payload.split(" ")[0],
-                    lastName: action.payload.split(" ")[1] ?? "",
+                    name: name,
+                    lastName: rest.toString().replaceAll(",", " ") ?? "",
                 },
             };
 
             state.value = parsedNewState;
         },
 
-        setPhone: (state, action: { payload: string }) => {
+        setPhone: (state, action: { payload: TextFieldPayload }) => {
             const parsedNewState: initialFormStateType["value"] = {
                 ...state.value,
                 personalData: {
                     ...state.value.personalData,
-                    phone: action.payload,
+                    phone: action.payload.data,
                 },
             };
             state.value = parsedNewState;
         },
-        setCategory: (state, action: { payload: QueryCategoryInterface }) => {
+        setCategory: (
+            state,
+            action: {
+                payload: QueryCategoryInterface;
+            }
+        ) => {
             const parsedNewState: initialFormStateType["value"] = {
                 ...state.value,
                 query: {
@@ -86,15 +101,15 @@ export const contactFormState = createSlice({
             state.value = parsedNewState;
         },
 
-        setDimensions: (
-            state,
-            action: { payload: QueryDimensionsInterface }
-        ) => {
+        setDimensions: (state, action: { payload: TextFieldPayload }) => {
             const parsedNewState: initialFormStateType["value"] = {
                 ...state.value,
                 query: {
                     ...state.value.query,
-                    dimensions: action.payload,
+                    dimensions: {
+                        ...state.value.query.dimensions,
+                        [action.payload.field]: action.payload.data,
+                    },
                 },
             };
 
@@ -121,17 +136,15 @@ export const contactFormState = createSlice({
             state.value = parsedNewState;
         },
 
-        addMaterials: (state, action: { payload: QueryMaterialsInterface }) => {
-            const parsedStateMaterials = state?.value?.query?.materials
-                ? state?.value?.query?.materials
-                : [];
-            const parsedMaterials = [...parsedStateMaterials, action.payload];
-
+        addMaterials: (
+            state,
+            action: { payload: QueryMaterialsInterface[] }
+        ) => {
             const parsedNewState: initialFormStateType["value"] = {
                 ...state.value,
                 query: {
                     ...state.value.query,
-                    materials: parsedMaterials,
+                    materials: action.payload,
                 },
             };
 
@@ -139,7 +152,7 @@ export const contactFormState = createSlice({
         },
 
         advanceStage: (state) => {
-            if (state.value.stage + 1 < 6) {
+            if (state.value.stage + 1 <= 6) {
                 const parsedNewState: initialFormStateType["value"] = {
                     ...state.value,
                     stage: (state.value.stage + 1) as ContactFormStageType,
@@ -171,7 +184,6 @@ export const contactFormState = createSlice({
 export const {
     resetForm,
     setFullName,
-
     setPhone,
     setCategory,
     setDimensions,
@@ -199,26 +211,72 @@ export type FieldNames =
     | "complementary"
     | "materials";
 
+export type DimensionsType = "height" | "width" | "depth";
+
+export type LabelNames =
+    | "name"
+    | "phone"
+    | "category"
+    | "dimensions"
+    | "complementary"
+    | "materials";
+
+export type CategoryOptionsType = {
+    [key in QueryCategoryTypeEnum]: QueryCategoryNameEnum[keyof QueryCategoryNameEnum];
+};
+
+export type MaterialsOptionsType = {
+    [key in QueryMaterialsTypeEnum]: QueryMaterialsNameEnum[keyof QueryMaterialsNameEnum];
+};
+
+export interface CurrentFieldInterface {
+    qty?: DimensionsType[];
+    data: LabelNames;
+    type: FieldType;
+    placeholder?: string | { [key in DimensionsType]: string };
+    options?: CategoryOptionsType | MaterialsOptionsType;
+}
+
 export const stageFields: {
-    [id in ContactFormStageType]: {
-        qty?: FieldNames[];
-        data: FieldNames | "dimensions";
-        type: FieldType;
-    };
+    [id in ContactFormStageType]: CurrentFieldInterface;
 } = {
     1: {
         data: "name",
         type: "text",
+        placeholder: "Escribe aqui...",
     },
-    2: { data: "phone", type: "phone" },
+    2: { data: "phone", type: "phone", placeholder: "Escribe aqui..." },
     3: {
         data: "category",
         type: "select",
+        options: {
+            furnitureDesign: "Diseño de mobiliario",
+            interior: "Diseño de interiores",
+            custom: "Produccion de mobiliario a medida",
+        },
     },
-    4: { data: "dimensions", qty: ["height", "width", "depth"], type: "text" },
+    4: {
+        data: "dimensions",
+        qty: ["height", "width", "depth"],
+        type: "text",
+        placeholder: {
+            height: "Escribe la altura de tu diseño...",
+            width: "Escribe el ancho de tu diseño...",
+            depth: "Escribe la profundidad de tu diseño...",
+        },
+    },
     5: {
         data: "complementary",
         type: "upload",
     },
-    6: { data: "materials", type: "select" },
+    6: {
+        data: "materials",
+        type: "select",
+        options: {
+            iron: "Hierro",
+            solidWood: "Madera maciza",
+            laminatedWood: "Madera laminada",
+            melamina: "Melamina",
+        },
+    },
 };
