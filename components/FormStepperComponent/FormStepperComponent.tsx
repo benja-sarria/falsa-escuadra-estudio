@@ -14,7 +14,15 @@ import { StepIconProps } from "@mui/material/StepIcon";
 import { AppDispatch, useAppSelector } from "@/redux/store";
 import { ContactFormStageType } from "@/types/contactFormTypes";
 import { useDispatch } from "react-redux";
-import { setStage } from "@/redux/features/website/contact-form-state-slice";
+import {
+    FieldNames,
+    setStage,
+    stageFields,
+} from "@/redux/features/website/contact-form-state-slice";
+
+import styles from "@/components/FormStepperComponent/FormStepperComponent.module.scss";
+
+const namespace = "form-stepper-component";
 
 const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -110,40 +118,94 @@ function ColorlibStepIcon(
     );
 }
 
+const initialErrorState = {
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+    6: false,
+};
+
 export const FormStepperComponent = () => {
+    const [errorState, setErrorState] = React.useState<{
+        [key in ContactFormStageType]: boolean;
+    }>(initialErrorState);
     const steps: ContactFormStageType[] = [1, 2, 3, 4, 5, 6];
     const currentStep = useAppSelector(
         (state) => state.contactFormState.value.stage
     );
+    const formErrors = useAppSelector(
+        (state) => state.contactFormState.value.errors
+    );
+
+    const validate =
+        stageFields[currentStep as keyof typeof stageFields].validate;
+
+    const errors = validate?.some((error: FieldNames) => formErrors[error]);
 
     const dispatch = useDispatch<AppDispatch>();
 
     const clickHandler = (selectedStep: ContactFormStageType) => {
-        dispatch(setStage(selectedStep));
+        console.log(selectedStep, currentStep);
+
+        if (selectedStep < currentStep) {
+            dispatch(setStage(selectedStep));
+        }
     };
+
+    React.useEffect(() => {
+        if (errors && !errorState[currentStep]) {
+            setErrorState((prevState) => ({
+                ...prevState,
+                [currentStep]: true,
+            }));
+        }
+    }, [currentStep, errorState, errors]);
+
+    React.useEffect(() => {
+        setErrorState(initialErrorState);
+    }, [currentStep]);
+
     return (
-        <Stack sx={{ width: "100%" }} spacing={4}>
+        <Stack sx={{ width: "100%" }} spacing={4} className={styles[namespace]}>
             <Stepper
                 alternativeLabel
                 activeStep={currentStep - 1}
                 connector={<ColorlibConnector />}
                 color="white"
             >
-                {steps.map((label) => (
-                    <Step key={label}>
-                        <StepLabel
-                            StepIconComponent={(props) => {
-                                const icons = ColorlibStepIcon(
-                                    props,
-                                    steps.length,
-                                    clickHandler,
-                                    label
-                                );
-                                return icons;
-                            }}
-                        ></StepLabel>
-                    </Step>
-                ))}
+                {steps.map((label) => {
+                    const success = currentStep > label && !errorState[label];
+
+                    return (
+                        <Step key={label}>
+                            <StepLabel
+                                error={errorState[label]}
+                                sx={
+                                    success
+                                        ? {
+                                              div: {
+                                                  color: "var(--falsa-escuadra-success)",
+                                                  borderColor:
+                                                      "var(--falsa-escuadra-success)",
+                                              },
+                                          }
+                                        : undefined
+                                }
+                                StepIconComponent={(props) => {
+                                    const icons = ColorlibStepIcon(
+                                        props,
+                                        steps.length,
+                                        clickHandler,
+                                        label
+                                    );
+                                    return icons;
+                                }}
+                            ></StepLabel>
+                        </Step>
+                    );
+                })}
             </Stepper>
         </Stack>
     );

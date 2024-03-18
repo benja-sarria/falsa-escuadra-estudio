@@ -14,6 +14,10 @@ import {
     ProductReceivedType,
     ProductWithIncludeType,
 } from "@/types/projectTypes";
+import {
+    parseFormData,
+    validateFormData,
+} from "@/utils/validations/validations";
 import { Product } from "@prisma/client";
 import {
     ActionCreatorWithPayload,
@@ -26,6 +30,18 @@ type initialFormStateType = {
 };
 
 export type FieldType = "text" | "select" | "upload" | "phone";
+
+const initialFormErrors = {
+    name: false,
+    lastName: false,
+    phone: false,
+    category: false,
+    height: false,
+    width: false,
+    depth: false,
+    complementaryInfo: false,
+    materials: false,
+};
 
 const initialFormStateValue: initialFormStateType = {
     value: {
@@ -45,13 +61,18 @@ const initialFormStateValue: initialFormStateType = {
             materials: [],
         },
         stage: 1,
+        errors: initialFormErrors,
     },
 };
 
 type TextFieldPayload = {
-    data: string;
+    data: string | null;
     field: FieldNames;
 };
+
+export type ErrorObject = {
+    [key in FieldNames]?: boolean;
+} & { message?: string };
 
 export const contactFormState = createSlice({
     name: "contactFormState",
@@ -61,29 +82,67 @@ export const contactFormState = createSlice({
             return initialFormStateValue;
         },
 
-        setFullName: (state, action: { payload: TextFieldPayload }) => {
-            const [name, ...rest] = action.payload.data.split(" ");
-            const parsedNewState: initialFormStateType["value"] = {
+        setFormErrors: (state, action: { payload: ErrorObject; type: any }) => {
+            state.value = {
                 ...state.value,
-                personalData: {
-                    ...state.value.personalData,
-                    name: name,
-                    lastName: rest.toString().replaceAll(",", " ") ?? "",
-                },
+                errors: { ...state.value.errors, ...action.payload },
             };
+        },
 
-            state.value = parsedNewState;
+        resetFormErrors: (state) => {
+            state.value = {
+                ...state.value,
+                errors: initialFormErrors,
+            };
+        },
+
+        setFullName: (state, action: { payload: TextFieldPayload }) => {
+            if (action.payload.data) {
+                const [name, ...rest] = action.payload.data.split(" ");
+                const parsedNewState: initialFormStateType["value"] = {
+                    ...state.value,
+                    personalData: {
+                        ...state.value.personalData,
+                        name: name,
+                        lastName: rest.toString().replaceAll(",", " ") ?? "",
+                    },
+                };
+
+                state.value = parsedNewState;
+            } else {
+                const parsedNewState: initialFormStateType["value"] = {
+                    ...state.value,
+                    personalData: {
+                        ...state.value.personalData,
+                        name: null,
+                        lastName: null,
+                    },
+                };
+
+                state.value = parsedNewState;
+            }
         },
 
         setPhone: (state, action: { payload: TextFieldPayload }) => {
-            const parsedNewState: initialFormStateType["value"] = {
-                ...state.value,
-                personalData: {
-                    ...state.value.personalData,
-                    phone: action.payload.data,
-                },
-            };
-            state.value = parsedNewState;
+            if (action.payload.data) {
+                const parsedNewState: initialFormStateType["value"] = {
+                    ...state.value,
+                    personalData: {
+                        ...state.value.personalData,
+                        phone: action.payload.data,
+                    },
+                };
+                state.value = parsedNewState;
+            } else {
+                const parsedNewState: initialFormStateType["value"] = {
+                    ...state.value,
+                    personalData: {
+                        ...state.value.personalData,
+                        phone: null,
+                    },
+                };
+                state.value = parsedNewState;
+            }
         },
         setCategory: (
             state,
@@ -102,18 +161,33 @@ export const contactFormState = createSlice({
         },
 
         setDimensions: (state, action: { payload: TextFieldPayload }) => {
-            const parsedNewState: initialFormStateType["value"] = {
-                ...state.value,
-                query: {
-                    ...state.value.query,
-                    dimensions: {
-                        ...state.value.query.dimensions,
-                        [action.payload.field]: action.payload.data,
+            if (action.payload.data) {
+                const parsedNewState: initialFormStateType["value"] = {
+                    ...state.value,
+                    query: {
+                        ...state.value.query,
+                        dimensions: {
+                            ...state.value.query.dimensions,
+                            [action.payload.field]: action.payload.data,
+                        },
                     },
-                },
-            };
+                };
 
-            state.value = parsedNewState;
+                state.value = parsedNewState;
+            } else {
+                const parsedNewState: initialFormStateType["value"] = {
+                    ...state.value,
+                    query: {
+                        ...state.value.query,
+                        dimensions: {
+                            ...state.value.query.dimensions,
+                            [action.payload.field]: null,
+                        },
+                    },
+                };
+
+                state.value = parsedNewState;
+            }
         },
 
         addComplementaryInfo: (
@@ -192,6 +266,8 @@ export const {
     advanceStage,
     rewindStage,
     setStage,
+    setFormErrors,
+    resetFormErrors,
 } = contactFormState.actions;
 export default contactFormState.reducer;
 
@@ -208,7 +284,7 @@ export type FieldNames =
     | "height"
     | "width"
     | "depth"
-    | "complementary"
+    | "complementaryInfo"
     | "materials";
 
 export type DimensionsType = "height" | "width" | "depth";
@@ -218,7 +294,7 @@ export type LabelNames =
     | "phone"
     | "category"
     | "dimensions"
-    | "complementary"
+    | "complementaryInfo"
     | "materials";
 
 export type CategoryOptionsType = {
@@ -235,6 +311,7 @@ export interface CurrentFieldInterface {
     type: FieldType;
     placeholder?: string | { [key in DimensionsType]: string };
     options?: CategoryOptionsType | MaterialsOptionsType;
+    validate?: FieldNames[];
 }
 
 export const stageFields: {
@@ -244,8 +321,14 @@ export const stageFields: {
         data: "name",
         type: "text",
         placeholder: "Escribe aqui...",
+        validate: ["name", "lastName"],
     },
-    2: { data: "phone", type: "phone", placeholder: "Escribe aqui..." },
+    2: {
+        data: "phone",
+        type: "phone",
+        placeholder: "Escribe aqui...",
+        validate: ["phone"],
+    },
     3: {
         data: "category",
         type: "select",
@@ -254,6 +337,7 @@ export const stageFields: {
             interior: "Diseño de interiores",
             custom: "Produccion de mobiliario a medida",
         },
+        validate: ["category"],
     },
     4: {
         data: "dimensions",
@@ -264,9 +348,10 @@ export const stageFields: {
             width: "Escribe el ancho de tu diseño...",
             depth: "Escribe la profundidad de tu diseño...",
         },
+        validate: ["height", "width", "depth"],
     },
     5: {
-        data: "complementary",
+        data: "complementaryInfo",
         type: "upload",
     },
     6: {
@@ -278,5 +363,6 @@ export const stageFields: {
             laminatedWood: "Madera laminada",
             melamina: "Melamina",
         },
+        validate: ["materials"],
     },
 };

@@ -298,7 +298,7 @@
         },
         "category": { "label": "¿En qué te podemos ayudar?" },
         "dimensions": { "label": "¿Cuáles son las dimensiones de tu diseño?" },
-        "complementary": {
+        "complementaryInfo": {
             "label": "¿Quieres adjuntar fotos o links para describir tu idea?"
         },
         "materials": { "label": "¿Qué materiales te gustaría usar?" }

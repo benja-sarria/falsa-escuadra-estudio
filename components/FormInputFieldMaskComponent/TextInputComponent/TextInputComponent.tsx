@@ -17,15 +17,20 @@ export const TextInputComponent = ({
     fieldName: string;
     placeholder?: string;
 }) => {
-    const [value, setValue] = useState<string>("");
+    const [value, setValue] = useState<string | null>(null);
     const dispatch = useDispatch<AppDispatch>();
     const internalHandler = useCallback(
         (evt: React.ChangeEvent<HTMLInputElement>) => {
             const target = evt.target;
             if (target) {
-                setValue(target.value);
+                setValue(target.value !== "" ? target.value : null);
 
-                dispatch(onChange({ data: target.value, field: fieldName }));
+                dispatch(
+                    onChange({
+                        data: target.value !== "" ? target.value : null,
+                        field: fieldName,
+                    })
+                );
             }
         },
         [onChange]

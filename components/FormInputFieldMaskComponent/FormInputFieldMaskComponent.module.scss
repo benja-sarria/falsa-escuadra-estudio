@@ -1,10 +1,27 @@
 .form-input-field-mask {
     display: flex;
     gap: 1.5rem;
+
+    &--error {
+        div:is([class*="__number-pill"]) {
+            color: var(--falsa-escuadra-error);
+            border-color: var(--falsa-escuadra-error);
+        }
+
+        div:is([class*="contact-form-component__input-container"]) {
+            background-color: rgba(0, 0, 0, 0.23);
+            border-radius: 0.25rem;
+        }
+
+        input:is([class*="input-component"]) {
+            border-color: var(--falsa-escuadra-error);
+        }
+    }
+
     &__number-pill {
         padding: 0.25rem 1rem;
         border: 2px solid var(--falsa-escuadra-white);
-        color: white;
+        color: var(--falsa-escuadra-white);
         border-radius: 2rem;
         font-weight: 600;
         max-width: 3.5rem;
@@ -23,5 +40,18 @@
         align-items: flex-start;
         gap: 2rem;
         transition: heigh 200ms ease-out;
+    }
+
+    &__error-text {
+        color: var(--falsa-escuadra-error);
+        padding: 0.5rem 0 0.25rem 0.5rem;
+        margin-left: 5rem;
+        opacity: 0;
+        transition: opacity 200ms ease-out, background-color 200ms ease-out;
+
+        &--visible {
+            background-color: rgba(0, 0, 0, 0.232);
+            opacity: 1;
+        }
     }
 }

@@ -1,0 +1,8 @@
+.form-stepper-component {
+    span:is([class*="Mui-error"]):not(span:has([class*="Mui-error"])) {
+        div {
+            border-color: var(--falsa-escuadra-error);
+            color: var(--falsa-escuadra-error);
+        }
+    }
+}

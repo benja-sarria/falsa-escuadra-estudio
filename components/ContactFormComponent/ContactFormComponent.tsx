@@ -8,12 +8,16 @@ import styles from "@/components/ContactFormComponent/ContactFormComponent.modul
 import {
     CategoryOptionsType,
     DimensionsType,
+    ErrorObject,
+    FieldNames,
     FieldType,
     LabelNames,
     addMaterials,
     advanceStage,
+    resetFormErrors,
     setCategory,
     setDimensions,
+    setFormErrors,
     setFullName,
     setPhone,
     stageFields,
@@ -27,6 +31,11 @@ import { SelectInputComponent } from "../FormInputFieldMaskComponent/SelectInput
 import { ReusableButtonComponent } from "../ReusableButtonComponent/ReusableButtonComponent";
 import { AutoAdjustImgComponent } from "../AutoAdjustImgComponent/AutoAdjustImgComponent";
 import { useDispatch } from "react-redux";
+import {
+    getStageErrors,
+    parseFormData,
+    validateFormData,
+} from "@/utils/validations/validations";
 
 const namespace = "contact-form-component";
 
@@ -50,8 +59,22 @@ export const ContactFormComponent = () => {
     const dispatch = useDispatch<AppDispatch>();
 
     const onClickHandler = useCallback(() => {
-        dispatch(advanceStage());
-    }, [dispatch]);
+        const stageErrors = getStageErrors(contactForm);
+
+        if (stageErrors?.errors && stageErrors?.errors?.length > 0) {
+            const errorObject: ErrorObject = {};
+            stageErrors.errors.forEach((stageError: FieldNames) => {
+                errorObject[stageError] = true;
+            });
+            errorObject.message = stageErrors.message;
+            console.log("STAGE-ERRORS", errorObject);
+            dispatch(setFormErrors(errorObject));
+        } else {
+            dispatch(resetFormErrors());
+
+            dispatch(advanceStage());
+        }
+    }, [dispatch, contactForm]);
 
     const stageComponents = {
         1: (
@@ -137,7 +160,13 @@ export const ContactFormComponent = () => {
                                         : ""
                                 }`}
                             >
-                                <FormInputFieldMaskComponent>
+                                <FormInputFieldMaskComponent
+                                    validate={
+                                        stageFields[
+                                            stageQuestion as unknown as keyof typeof stageFields
+                                        ].validate
+                                    }
+                                >
                                     <div
                                         className={
                                             styles[

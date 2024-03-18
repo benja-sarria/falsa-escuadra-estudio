@@ -1,8 +1,10 @@
+import { FieldNames } from "@/redux/features/website/contact-form-state-slice";
+
 export interface QueryInterface {
     personalData: {
-        name: string;
-        lastName: string;
-        phone: string;
+        name: string | null;
+        lastName: string | null;
+        phone: string | null;
     };
     query: {
         category: QueryCategoryInterface | null;
@@ -11,6 +13,7 @@ export interface QueryInterface {
         complementaryInfo: QueryComplementaryInfoType[];
     };
     stage: ContactFormStageType;
+    errors: { [key in FieldNames]: boolean } & { message?: string };
 }
 
 export interface QueryCategoryInterface {
