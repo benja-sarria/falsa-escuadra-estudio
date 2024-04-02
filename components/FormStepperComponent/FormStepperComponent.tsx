@@ -125,13 +125,14 @@ const initialErrorState = {
     4: false,
     5: false,
     6: false,
+    7: false,
 };
 
 export const FormStepperComponent = () => {
     const [errorState, setErrorState] = React.useState<{
         [key in ContactFormStageType]: boolean;
     }>(initialErrorState);
-    const steps: ContactFormStageType[] = [1, 2, 3, 4, 5, 6];
+    const steps: ContactFormStageType[] = [1, 2, 3, 4, 5, 6, 7];
     const currentStep = useAppSelector(
         (state) => state.contactFormState.value.stage
     );

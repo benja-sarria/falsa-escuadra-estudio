@@ -296,6 +296,7 @@
         "phone": {
             "label": "¿Cuál es tu teléfono?"
         },
+        "city": { "label": "¿Dónde vivís?" },
         "category": { "label": "¿En qué te podemos ayudar?" },
         "dimensions": { "label": "¿Cuáles son las dimensiones de tu diseño?" },
         "complementaryInfo": {

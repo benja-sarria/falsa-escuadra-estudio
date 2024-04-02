@@ -2,7 +2,10 @@ import {
     FieldNames,
     stageFields,
 } from "@/redux/features/website/contact-form-state-slice";
-import { QueryInterface } from "@/types/contactFormTypes";
+import {
+    FormDataErrorInterface,
+    QueryInterface,
+} from "@/types/contactFormTypes";
 import Joi from "joi";
 
 export const schema = Joi.object({
@@ -35,19 +38,34 @@ export const schema = Joi.object({
         "object.empty": `Debes seleccionar una categoría`,
         "any.required": `Debes seleccionar una categoría`,
     }),
-    height: Joi.alternatives(
-        Joi.when("width", {
-            is: null,
-            then: Joi.allow(null),
-            otherwise: Joi.string().alphanum(),
-        })
-    ),
-    width: Joi.when("height", {
-        is: null,
+    meassures: Joi.boolean().required(),
+    height: Joi.when("meassures", {
+        is: false,
         then: Joi.allow(null),
-        otherwise: Joi.string().alphanum(),
+        otherwise: Joi.string().alphanum().messages({
+            "string.base": `Debes ingresar todas las medidas`,
+            "string.empty": `Debes ingresar todas las medidas`,
+            "any.required": `Debes ingresar todas las medidas`,
+        }),
     }),
-    depth: Joi.string().alphanum().allow(null),
+    width: Joi.when("meassures", {
+        is: false,
+        then: Joi.allow(null),
+        otherwise: Joi.string().alphanum().messages({
+            "string.base": `Debes ingresar todas las medidas`,
+            "string.empty": `Debes ingresar todas las medidas`,
+            "any.required": `Debes ingresar todas las medidas`,
+        }),
+    }),
+    depth: Joi.when("meassures", {
+        is: false,
+        then: Joi.allow(null),
+        otherwise: Joi.string().alphanum().messages({
+            "string.base": `Debes ingresar todas las medidas`,
+            "string.empty": `Debes ingresar todas las medidas`,
+            "any.required": `Debes ingresar todas las medidas`,
+        }),
+    }),
     materials: Joi.array().min(1).required(),
 })
     .with("height", ["width", "depth"])
@@ -58,9 +76,12 @@ export const validateFormData = (data: unknown) => {
     return schema.validate(data, { abortEarly: false });
 };
 
-export const parseFormData = (data: QueryInterface) => ({
+export const parseFormData = (
+    data: QueryInterface
+): FormDataErrorInterface => ({
     name: data.personalData.name,
     lastName: data.personalData.lastName,
+    meassures: data.query.meassures,
     phone: data.personalData.phone,
     category: data.query.category,
     height: data.query.dimensions.height,
@@ -70,7 +91,11 @@ export const parseFormData = (data: QueryInterface) => ({
 });
 
 export const getStageErrors = (contactForm: QueryInterface) => {
+    console.log("CHECKING-FORM", contactForm);
+
     const parsedData = parseFormData(contactForm);
+
+    console.log("CHECKING-FORM", parsedData);
 
     const stageErrors = validateFormData(parsedData);
 

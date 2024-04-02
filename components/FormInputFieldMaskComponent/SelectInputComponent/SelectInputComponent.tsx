@@ -8,7 +8,6 @@ import styles from "@/components/FormInputFieldMaskComponent/SelectInputComponen
 import { CategoryOptionsType } from "@/redux/features/website/contact-form-state-slice";
 import { ReusableButtonComponent } from "@/components/ReusableButtonComponent/ReusableButtonComponent";
 import { QueryCategoryInterface } from "@/types/contactFormTypes";
-import { FieldTypesType } from "@/utils/form/getInputField";
 
 const namespace = "select-input-component";
 
@@ -18,7 +17,7 @@ export const SelectInputComponent = ({
     placeholder,
     options,
     multiple = false,
-}: FieldTypesType) => {
+}: any) => {
     const [selectedState, setSelectedState] = useState<
         | { type: string; name: string }
         | { type: string; name: string }[]

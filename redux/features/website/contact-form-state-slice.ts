@@ -41,6 +41,7 @@ const initialFormErrors = {
     depth: false,
     complementaryInfo: false,
     materials: false,
+    city: false,
 };
 
 const initialFormStateValue: initialFormStateType = {
@@ -49,9 +50,11 @@ const initialFormStateValue: initialFormStateType = {
             name: "",
             lastName: "",
             phone: "",
+            city: "",
         },
         query: {
             category: null,
+            meassures: false,
             dimensions: {
                 height: null,
                 width: null,
@@ -123,6 +126,20 @@ export const contactFormState = createSlice({
             }
         },
 
+        setCity: (state, action: { payload: TextFieldPayload }) => {
+            const data = action.payload.data ?? null;
+
+            const parsedNewState: initialFormStateType["value"] = {
+                ...state.value,
+                personalData: {
+                    ...state.value.personalData,
+                    city: data,
+                },
+            };
+
+            state.value = parsedNewState;
+        },
+
         setPhone: (state, action: { payload: TextFieldPayload }) => {
             if (action.payload.data) {
                 const parsedNewState: initialFormStateType["value"] = {
@@ -144,6 +161,7 @@ export const contactFormState = createSlice({
                 state.value = parsedNewState;
             }
         },
+
         setCategory: (
             state,
             action: {
@@ -166,6 +184,7 @@ export const contactFormState = createSlice({
                     ...state.value,
                     query: {
                         ...state.value.query,
+                        meassures: true,
                         dimensions: {
                             ...state.value.query.dimensions,
                             [action.payload.field]: action.payload.data,
@@ -175,10 +194,30 @@ export const contactFormState = createSlice({
 
                 state.value = parsedNewState;
             } else {
+                const validation = {
+                    depth:
+                        action.payload.field === "depth"
+                            ? action.payload.data
+                            : state.value.query.dimensions.depth,
+                    height:
+                        action.payload.field === "height"
+                            ? action.payload.data
+                            : state.value.query.dimensions.height,
+                    width:
+                        action.payload.field === "width"
+                            ? action.payload.data
+                            : state.value.query.dimensions.width,
+                };
+
                 const parsedNewState: initialFormStateType["value"] = {
                     ...state.value,
                     query: {
                         ...state.value.query,
+                        meassures: Object.values(validation).every(
+                            (value) => !value
+                        )
+                            ? false
+                            : true,
                         dimensions: {
                             ...state.value.query.dimensions,
                             [action.payload.field]: null,
@@ -226,7 +265,7 @@ export const contactFormState = createSlice({
         },
 
         advanceStage: (state) => {
-            if (state.value.stage + 1 <= 6) {
+            if (state.value.stage + 1 <= 7) {
                 const parsedNewState: initialFormStateType["value"] = {
                     ...state.value,
                     stage: (state.value.stage + 1) as ContactFormStageType,
@@ -259,6 +298,7 @@ export const {
     resetForm,
     setFullName,
     setPhone,
+    setCity,
     setCategory,
     setDimensions,
     addComplementaryInfo,
@@ -280,6 +320,7 @@ export type FieldNames =
     | "name"
     | "lastName"
     | "phone"
+    | "city"
     | "category"
     | "height"
     | "width"
@@ -292,6 +333,7 @@ export type DimensionsType = "height" | "width" | "depth";
 export type LabelNames =
     | "name"
     | "phone"
+    | "city"
     | "category"
     | "dimensions"
     | "complementaryInfo"
@@ -330,6 +372,12 @@ export const stageFields: {
         validate: ["phone"],
     },
     3: {
+        data: "city",
+        type: "text",
+        placeholder: "Por favor ingresa tu ciudad y dirección...",
+        validate: ["city"],
+    },
+    4: {
         data: "category",
         type: "select",
         options: {
@@ -339,7 +387,7 @@ export const stageFields: {
         },
         validate: ["category"],
     },
-    4: {
+    5: {
         data: "dimensions",
         qty: ["height", "width", "depth"],
         type: "text",
@@ -350,11 +398,11 @@ export const stageFields: {
         },
         validate: ["height", "width", "depth"],
     },
-    5: {
+    6: {
         data: "complementaryInfo",
         type: "upload",
     },
-    6: {
+    7: {
         data: "materials",
         type: "select",
         options: {

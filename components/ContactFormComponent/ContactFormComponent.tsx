@@ -16,6 +16,7 @@ import {
     advanceStage,
     resetFormErrors,
     setCategory,
+    setCity,
     setDimensions,
     setFormErrors,
     setFullName,
@@ -92,43 +93,50 @@ export const ContactFormComponent = () => {
             />
         ),
         3: (
-            <SelectInputComponent
+            <TextInputComponent
                 fieldName={`${stageFields[3].data}`}
-                onChange={setCategory}
+                onChange={setCity}
                 placeholder={`${stageFields[3].placeholder}`}
-                options={stageFields[3].options as CategoryOptionsType}
             />
         ),
-        4: (() =>
-            stageFields[4]?.qty?.map((field) => (
+        4: (
+            <SelectInputComponent
+                fieldName={`${stageFields[4].data}`}
+                onChange={setCategory}
+                placeholder={`${stageFields[4].placeholder}`}
+                options={stageFields[4].options as CategoryOptionsType}
+            />
+        ),
+        5: (() =>
+            stageFields[5]?.qty?.map((field) => (
                 <TextInputComponent
                     key={field}
                     fieldName={`${field}`}
                     onChange={setDimensions}
                     placeholder={`${
-                        stageFields[4] &&
-                        stageFields[4].placeholder &&
-                        typeof stageFields[4]?.placeholder !== "string"
-                            ? stageFields[4].placeholder[
+                        stageFields[5] &&
+                        stageFields[5].placeholder &&
+                        typeof stageFields[5]?.placeholder !== "string"
+                            ? stageFields[5].placeholder[
                                   `${field}` as DimensionsType
                               ]
                             : ""
                     }`}
                 />
             )))(),
-        5: (
+        6: (
             <TextInputComponent
-                fieldName={`${stageFields[1].data}`}
+                fieldName={`${stageFields[6].data}`}
                 onChange={setFullName}
-                placeholder={`${stageFields[1].placeholder}`}
+                placeholder={`${stageFields[6].placeholder}`}
             />
         ),
-        6: (
+        7: (
             <SelectInputComponent
-                fieldName={`${stageFields[6].data}`}
+                fieldName={`${stageFields[7].data}`}
                 onChange={addMaterials}
-                placeholder={`${stageFields[6].placeholder}`}
-                options={stageFields[6].options as CategoryOptionsType}
+                placeholder={`${stageFields[7].placeholder}`}
+                options={stageFields[7].options as CategoryOptionsType}
                 multiple={true}
             />
         ),
@@ -186,7 +194,7 @@ export const ContactFormComponent = () => {
                                                             +stageQuestion as keyof typeof stageFields
                                                         ]
                                                             .data as keyof typeof labelTexts
-                                                    ].label
+                                                    ]?.label
                                                 }`}
                                         </label>
                                         {

@@ -13,7 +13,8 @@
             border-radius: 0.25rem;
         }
 
-        input:is([class*="input-component"]) {
+        input:is([class*="input-component"]),
+        span:is([class*="__unit--show"]) {
             border-color: var(--falsa-escuadra-error);
         }
     }

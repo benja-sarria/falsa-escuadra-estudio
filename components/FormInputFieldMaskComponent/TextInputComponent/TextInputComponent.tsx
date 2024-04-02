@@ -18,16 +18,27 @@ export const TextInputComponent = ({
     placeholder?: string;
 }) => {
     const [value, setValue] = useState<string | null>(null);
+    const isDimensional =
+        fieldName === "height" ||
+        fieldName === "width" ||
+        fieldName === "depth";
+
     const dispatch = useDispatch<AppDispatch>();
     const internalHandler = useCallback(
         (evt: React.ChangeEvent<HTMLInputElement>) => {
             const target = evt.target;
             if (target) {
-                setValue(target.value !== "" ? target.value : null);
+                let parsedValue = null;
+
+                if (target.value !== "") {
+                    parsedValue = target.value.replaceAll(",", ".");
+                }
+
+                setValue(parsedValue);
 
                 dispatch(
                     onChange({
-                        data: target.value !== "" ? target.value : null,
+                        data: parsedValue,
                         field: fieldName,
                     })
                 );
@@ -43,12 +54,21 @@ export const TextInputComponent = ({
     }, [onChange]);
 
     return (
-        <input
-            aria-label="text-field"
-            value={value}
-            onChange={internalHandler}
-            className={styles[namespace]}
-            placeholder={placeholder ?? "Escribe aqui..."}
-        />
+        <div className={styles[namespace]}>
+            <input
+                aria-label="text-field"
+                value={value ?? ""}
+                onChange={internalHandler}
+                className={`${styles[`${namespace}__input`]}${
+                    isDimensional
+                        ? ` ${styles[`${namespace}__input--shorten`]}`
+                        : ""
+                }`}
+                placeholder={placeholder ?? "Escribe aqui..."}
+            />
+            {isDimensional && (
+                <span className={styles[`${namespace}__unit--show`]}>cm</span>
+            )}
+        </div>
     );
 };
