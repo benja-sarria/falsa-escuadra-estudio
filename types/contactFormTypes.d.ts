@@ -12,9 +12,10 @@ export interface QueryInterface {
         materials: QueryMaterialsInterface[] | null;
         meassures: boolean;
         dimensions: QueryDimensionsInterface;
-        complementaryInfo: QueryComplementaryInfoType[];
+        complementaryInfo: string | null;
     };
     stage: ContactFormStageType;
+    steps: ContactFormStageType[];
     errors: { [key in FieldNames]: boolean } & { message?: string };
 }
 
@@ -68,14 +69,15 @@ export enum QueryMaterialsNameEnum {
 }
 
 export interface FormDataErrorInterface {
-    name: QueryInterface.personalData.name;
-    lastName: QueryInterface.personalData.lastName;
-    city: QueryInterface.personalData.city;
-    meassures: QueryInterface.query.meassures;
-    phone: QueryInterface.personalData.phone;
-    category: QueryInterface.query.category;
-    height: QueryInterface.query.dimensions.height;
-    width: QueryInterface.query.dimensions.width;
-    depth: QueryInterface.query.dimensions.depth;
-    materials: QueryInterface.query.materials;
+    name: QueryInterface["personalData"]["name"];
+    lastName: QueryInterface["personalData"]["lastName"];
+    city: QueryInterface["personalData"]["city"];
+    meassures: QueryInterface["query"]["meassures"];
+    phone: QueryInterface["personalData"]["phone"];
+    category: QueryInterface["query"]["category"];
+    height: QueryInterface["query"]["dimensions"]["height"];
+    width: QueryInterface["query"]["dimensions"]["width"];
+    depth: QueryInterface["query"]["dimensions"]["depth"];
+    materials: QueryInterface["query"]["materials"];
+    complementaryInfo: QueryInterface["query"]["complementaryInfo"];
 }

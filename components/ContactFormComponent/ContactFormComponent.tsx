@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { AppDispatch, useAppSelector } from "@/redux/store";
 import FormInputFieldMaskComponent from "../FormInputFieldMaskComponent/FormInputFieldMaskComponent";
 import { FormStepperComponent } from "../FormStepperComponent/FormStepperComponent";
@@ -17,6 +17,7 @@ import {
     resetFormErrors,
     setCategory,
     setCity,
+    setComplementaryInfo,
     setDimensions,
     setFormErrors,
     setFullName,
@@ -38,6 +39,13 @@ import {
     validateFormData,
 } from "@/utils/validations/validations";
 
+import {
+    GoogleReCaptchaProvider,
+    useGoogleReCaptcha,
+} from "react-google-recaptcha-v3";
+import { submitContactForm, validateRecaptcha } from "@/app/actions";
+import { QueryInterface } from "@/types/contactFormTypes";
+
 const namespace = "contact-form-component";
 
 export const ContactFormComponent = () => {
@@ -46,7 +54,44 @@ export const ContactFormComponent = () => {
     );
 
     const contactForm = useAppSelector((state) => state.contactFormState.value);
+    const steps = useAppSelector((state) => state.contactFormState.value.steps);
     const currentField = stageFields[currentStep];
+
+    const { executeRecaptcha } = useGoogleReCaptcha();
+
+    // Create an event handler so you can call the verification on button click event or form submit
+    const handleReCaptchaVerify = useCallback(async () => {
+        if (!executeRecaptcha) {
+            console.log("Execute recaptcha not yet available");
+            return;
+        }
+
+        const token = await executeRecaptcha("contact_form");
+        // Do whatever you want with the token
+        return token;
+    }, [executeRecaptcha]);
+
+    const handleSubmitForm = useCallback(
+        async (formData: QueryInterface) => {
+            const token = await handleReCaptchaVerify();
+            console.log(token);
+            if (!token) {
+                return;
+            }
+            const validationResult = await validateRecaptcha(token);
+            console.log("VALIDATION", validationResult);
+            if (!validationResult.success || !validationResult.isValidated) {
+                return;
+            }
+
+            console.log("SENDING", formData);
+
+            const formSubmitted = submitContactForm(formData);
+        },
+        [handleReCaptchaVerify]
+    );
+
+    // You can use useEffect to trigger the verification as soon as the component being loaded
 
     const labelTexts:
         | {
@@ -127,7 +172,7 @@ export const ContactFormComponent = () => {
         6: (
             <TextInputComponent
                 fieldName={`${stageFields[6].data}`}
-                onChange={setFullName}
+                onChange={setComplementaryInfo}
                 placeholder={`${stageFields[6].placeholder}`}
             />
         ),
@@ -142,13 +187,22 @@ export const ContactFormComponent = () => {
         ),
     };
 
+    const isLastStep =
+        currentStep === steps[steps.length - 1] &&
+        contactForm.query.materials &&
+        contactForm.query.materials.length > 0;
+
+    useEffect(() => {
+        handleReCaptchaVerify();
+    }, [handleReCaptchaVerify]);
+
     return (
         <div className={styles[`${namespace}`]}>
             <div className={styles[`${namespace}__left-column`]}>
                 <FormStepperComponent />
-                <div style={{ color: "white", padding: "3rem 0" }}>
+                {/*     <div style={{ color: "white", padding: "3rem 0" }}>
                     {JSON.stringify(contactForm)}
-                </div>
+                </div> */}
                 {!labelTexts ? (
                     <></>
                 ) : (
@@ -209,7 +263,11 @@ export const ContactFormComponent = () => {
                     })
                 )}
                 <ReusableButtonComponent
-                    onClickHandler={onClickHandler}
+                    onClickHandler={
+                        isLastStep
+                            ? () => handleSubmitForm(contactForm)
+                            : onClickHandler
+                    }
                     icon={
                         <AutoAdjustImgComponent
                             alt="arrow"

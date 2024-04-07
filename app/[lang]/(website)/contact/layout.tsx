@@ -5,6 +5,8 @@ import { acceptedLocales } from "@/utils/api/getLocale";
 import { NavbarContainer } from "@/containers/NavbarContainer/NavbarContainer";
 import { SearchBoxContainer } from "@/containers/SearchBoxContainer/SearchBoxContainer";
 import { FooterComponent } from "@/components/FooterComponent/FooterComponent";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+import { RecaptchaWrapperProvider } from "@/context/RecaptchaWrapperProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,13 +23,16 @@ export default async function ContactLayout({
     children: React.ReactNode;
     params: { lang: (typeof acceptedLocales)[number] };
 }) {
+    const { GOOGLE_RECAPTCHA_SITE_KEY } = process.env;
     return (
         <>
-            <NavbarContainer>
-                <SearchBoxContainer />
-            </NavbarContainer>
-            {children}
-            <FooterComponent />
+            <RecaptchaWrapperProvider siteKey={`${GOOGLE_RECAPTCHA_SITE_KEY}`}>
+                <NavbarContainer>
+                    <SearchBoxContainer />
+                </NavbarContainer>
+                {children}
+                <FooterComponent />
+            </RecaptchaWrapperProvider>
         </>
     );
 }

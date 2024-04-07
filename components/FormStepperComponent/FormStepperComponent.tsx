@@ -132,10 +132,11 @@ export const FormStepperComponent = () => {
     const [errorState, setErrorState] = React.useState<{
         [key in ContactFormStageType]: boolean;
     }>(initialErrorState);
-    const steps: ContactFormStageType[] = [1, 2, 3, 4, 5, 6, 7];
+
     const currentStep = useAppSelector(
         (state) => state.contactFormState.value.stage
     );
+    const steps = useAppSelector((state) => state.contactFormState.value.steps);
     const formErrors = useAppSelector(
         (state) => state.contactFormState.value.errors
     );
@@ -169,7 +170,11 @@ export const FormStepperComponent = () => {
     }, [currentStep]);
 
     return (
-        <Stack sx={{ width: "100%" }} spacing={4} className={styles[namespace]}>
+        <Stack
+            sx={{ width: "100%", marginBottom: "3rem" }}
+            spacing={4}
+            className={styles[namespace]}
+        >
             <Stepper
                 alternativeLabel
                 activeStep={currentStep - 1}

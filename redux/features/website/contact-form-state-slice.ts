@@ -60,10 +60,11 @@ const initialFormStateValue: initialFormStateType = {
                 width: null,
                 depth: null,
             },
-            complementaryInfo: [],
+            complementaryInfo: null,
             materials: [],
         },
         stage: 1,
+        steps: [1, 2, 3, 4, 5, 6, 7],
         errors: initialFormErrors,
     },
 };
@@ -229,23 +230,37 @@ export const contactFormState = createSlice({
             }
         },
 
-        addComplementaryInfo: (
-            state,
-            action: { payload: QueryComplementaryInfoType }
-        ) => {
-            const parsedComplementaryInfo = [
-                ...state.value.query.complementaryInfo,
-                action.payload,
-            ];
+        // addComplementaryInfo: (
+        //     state,
+        //     action: { payload: QueryComplementaryInfoType }
+        // ) => {
+        //     const parsedComplementaryInfo = [
+        //         ...state.value.query.complementaryInfo,
+        //         action.payload,
+        //     ];
 
+        //     const parsedNewState: initialFormStateType["value"] = {
+        //         ...state.value,
+        //         query: {
+        //             ...state.value.query,
+        //             complementaryInfo: parsedComplementaryInfo,
+        //         },
+        //     };
+
+        //     state.value = parsedNewState;
+        // },
+
+        setComplementaryInfo: (
+            state,
+            action: { payload: { field: string; data: string } }
+        ) => {
             const parsedNewState: initialFormStateType["value"] = {
                 ...state.value,
                 query: {
                     ...state.value.query,
-                    complementaryInfo: parsedComplementaryInfo,
+                    complementaryInfo: action.payload.data,
                 },
             };
-
             state.value = parsedNewState;
         },
 
@@ -301,7 +316,7 @@ export const {
     setCity,
     setCategory,
     setDimensions,
-    addComplementaryInfo,
+    setComplementaryInfo,
     addMaterials,
     advanceStage,
     rewindStage,
@@ -402,6 +417,7 @@ export const stageFields: {
         data: "complementaryInfo",
         placeholder: "Adjunta un link a un archivo o carpeta de Google Drive",
         type: "upload",
+        validate: ["complementaryInfo"],
     },
     7: {
         data: "materials",

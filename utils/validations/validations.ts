@@ -71,7 +71,12 @@ export const schema = Joi.object({
             "any.required": `Debes ingresar todas las medidas`,
         }),
     }),
-    materials: Joi.array().min(1).required(),
+    complementaryInfo: Joi.string().uri().allow(null),
+    materials: Joi.array().min(1).required().messages({
+        "array.base": `Debes seleccionar al menos un material`,
+        "array.empty": `Debes seleccionar al menos un material`,
+        "any.required": `Debes seleccionar al menos un material`,
+    }),
 })
     .with("height", ["width", "depth"])
     .with("width", ["height", "depth"])
@@ -94,6 +99,7 @@ export const parseFormData = (
     width: data.query.dimensions.width,
     depth: data.query.dimensions.depth,
     materials: data.query.materials,
+    complementaryInfo: data.query.complementaryInfo,
 });
 
 export const getStageErrors = (contactForm: QueryInterface) => {
@@ -104,6 +110,10 @@ export const getStageErrors = (contactForm: QueryInterface) => {
     console.log("CHECKING-FORM", parsedData);
 
     const stageErrors = validateFormData(parsedData);
+
+    const isValidAttachment = parsedData.complementaryInfo
+        ? isValidUrl(parsedData.complementaryInfo)
+        : true;
 
     const errorsToSet: FieldNames[] = [];
     const errorObject: { errors?: FieldNames[]; message?: string } = {};
@@ -125,6 +135,21 @@ export const getStageErrors = (contactForm: QueryInterface) => {
             }
         });
     }
+    if (!isValidAttachment) {
+        errorsToSet.push("complementaryInfo");
+        errorObject.message = "Debes ingresar un link válido";
+    }
     errorObject.errors = errorsToSet;
+    console.log(errorObject);
+
     return errorObject;
 };
+
+function isValidUrl(string: string) {
+    try {
+        new URL(string);
+        return true;
+    } catch (err) {
+        return false;
+    }
+}
