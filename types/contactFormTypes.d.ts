@@ -70,6 +70,7 @@ export enum QueryMaterialsNameEnum {
 export interface FormDataErrorInterface {
     name: QueryInterface.personalData.name;
     lastName: QueryInterface.personalData.lastName;
+    city: QueryInterface.personalData.city;
     meassures: QueryInterface.query.meassures;
     phone: QueryInterface.personalData.phone;
     category: QueryInterface.query.category;

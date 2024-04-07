@@ -33,6 +33,11 @@ export const schema = Joi.object({
             "any.required": `Ingresa tu número de teléfono completo`,
         })
         .required(),
+    city: Joi.string().min(3).max(30).required().messages({
+        "string.base": `Necesitamos que nos cuentes donde vivís`,
+        "string.empty": `Necesitamos que nos cuentes donde vivís`,
+        "any.required": `Necesitamos que nos cuentes donde vivís`,
+    }),
     category: Joi.object().required().messages({
         "object.base": `Debes seleccionar una categoría`,
         "object.empty": `Debes seleccionar una categoría`,
@@ -81,6 +86,7 @@ export const parseFormData = (
 ): FormDataErrorInterface => ({
     name: data.personalData.name,
     lastName: data.personalData.lastName,
+    city: data.personalData.city,
     meassures: data.query.meassures,
     phone: data.personalData.phone,
     category: data.query.category,

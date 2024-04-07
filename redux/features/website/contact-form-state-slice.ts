@@ -400,6 +400,7 @@ export const stageFields: {
     },
     6: {
         data: "complementaryInfo",
+        placeholder: "Adjunta un link a un archivo o carpeta de Google Drive",
         type: "upload",
     },
     7: {
