@@ -303,5 +303,19 @@
             "label": "¿Quieres adjuntar fotos o links para describir tu idea?"
         },
         "materials": { "label": "¿Qué materiales te gustaría usar?" }
+    },
+    "contactPiece": {
+        "tel": {
+            "value": "+54 351 654321",
+            "label": "Llamanos"
+        },
+        "email": {
+            "value": "contacto@falsaescuadraestudio.com",
+            "label": "E-mail"
+        },
+        "address": {
+            "value": "Charcas 1931 - B° Pueyrredón, Córdoba",
+            "label": "Dirección"
+        }
     }
 }

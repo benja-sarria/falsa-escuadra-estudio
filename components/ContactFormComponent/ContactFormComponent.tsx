@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { AppDispatch, useAppSelector } from "@/redux/store";
 import FormInputFieldMaskComponent from "../FormInputFieldMaskComponent/FormInputFieldMaskComponent";
 import { FormStepperComponent } from "../FormStepperComponent/FormStepperComponent";
@@ -49,6 +49,9 @@ import { QueryInterface } from "@/types/contactFormTypes";
 const namespace = "contact-form-component";
 
 export const ContactFormComponent = () => {
+    const [isSending, setIsSending] = useState<
+        "false" | "true" | "success" | "error"
+    >("false");
     const currentStep = useAppSelector(
         (state) => state.contactFormState.value.stage
     );
@@ -73,20 +76,30 @@ export const ContactFormComponent = () => {
 
     const handleSubmitForm = useCallback(
         async (formData: QueryInterface) => {
+            setIsSending("true");
             const token = await handleReCaptchaVerify();
             console.log(token);
             if (!token) {
+                setIsSending("error");
                 return;
             }
             const validationResult = await validateRecaptcha(token);
             console.log("VALIDATION", validationResult);
             if (!validationResult.success || !validationResult.isValidated) {
+                setIsSending("error");
                 return;
             }
 
             console.log("SENDING", formData);
 
-            const formSubmitted = submitContactForm(formData);
+            const formSubmitted = await submitContactForm(formData);
+
+            if (!formSubmitted.success) {
+                setIsSending("error");
+                return;
+            }
+
+            setIsSending("success");
         },
         [handleReCaptchaVerify]
     );
@@ -187,6 +200,26 @@ export const ContactFormComponent = () => {
         ),
     };
 
+    const isSendingSigns = {
+        error: (
+            <h5 className={styles[`${namespace}__status-message`]}>
+                Hubo un error al enviar el formulario, lo sentimos. Inténtalo
+                nuevamente.
+            </h5>
+        ),
+        success: (
+            <h5 className={styles[`${namespace}__status-message`]}>
+                Tu mensaje se envió correctamente! En breve te estaremos
+                contactando.
+            </h5>
+        ),
+        true: (
+            <h5 className={styles[`${namespace}__status-message`]}>
+                Por favor espera mientras enviamos tu mensaje...
+            </h5>
+        ),
+    };
+
     const isLastStep =
         currentStep === steps[steps.length - 1] &&
         contactForm.query.materials &&
@@ -199,87 +232,95 @@ export const ContactFormComponent = () => {
     return (
         <div className={styles[`${namespace}`]}>
             <div className={styles[`${namespace}__left-column`]}>
-                <FormStepperComponent />
-                {/*     <div style={{ color: "white", padding: "3rem 0" }}>
-                    {JSON.stringify(contactForm)}
-                </div> */}
-                {!labelTexts ? (
-                    <></>
+                {isSending !== "false" ? (
+                    isSendingSigns[isSending]
                 ) : (
-                    Object.keys(stageFields).map((stageQuestion) => {
-                        return (
-                            <div
-                                key={`${stageQuestion}-question`}
-                                className={`${
-                                    styles[`${namespace}__question`]
-                                }${
-                                    +stageQuestion === +currentStep
-                                        ? ` ${
-                                              styles[
-                                                  `${namespace}__question--active`
-                                              ]
-                                          }`
-                                        : ""
-                                }`}
-                            >
-                                <FormInputFieldMaskComponent
-                                    validate={
-                                        stageFields[
-                                            stageQuestion as unknown as keyof typeof stageFields
-                                        ].validate
-                                    }
-                                >
+                    <>
+                        <FormStepperComponent />
+
+                        {!labelTexts ? (
+                            <></>
+                        ) : (
+                            Object.keys(stageFields).map((stageQuestion) => {
+                                return (
                                     <div
-                                        className={
-                                            styles[
-                                                `${namespace}__input-container`
-                                            ]
-                                        }
+                                        key={`${stageQuestion}-question`}
+                                        className={`${
+                                            styles[`${namespace}__question`]
+                                        }${
+                                            +stageQuestion === +currentStep
+                                                ? ` ${
+                                                      styles[
+                                                          `${namespace}__question--active`
+                                                      ]
+                                                  }`
+                                                : ""
+                                        }`}
                                     >
-                                        <label
-                                            className={
-                                                styles[`${namespace}__label`]
+                                        <FormInputFieldMaskComponent
+                                            validate={
+                                                stageFields[
+                                                    stageQuestion as unknown as keyof typeof stageFields
+                                                ].validate
                                             }
                                         >
-                                            {labelTexts &&
-                                                `${
-                                                    labelTexts[
-                                                        stageFields[
-                                                            +stageQuestion as keyof typeof stageFields
+                                            <div
+                                                className={
+                                                    styles[
+                                                        `${namespace}__input-container`
+                                                    ]
+                                                }
+                                            >
+                                                <label
+                                                    className={
+                                                        styles[
+                                                            `${namespace}__label`
                                                         ]
-                                                            .data as keyof typeof labelTexts
-                                                    ]?.label
-                                                }`}
-                                        </label>
-                                        {
-                                            stageComponents[
-                                                +stageQuestion as keyof typeof stageComponents
-                                            ]
-                                        }
+                                                    }
+                                                >
+                                                    {labelTexts &&
+                                                        `${
+                                                            labelTexts[
+                                                                stageFields[
+                                                                    +stageQuestion as keyof typeof stageFields
+                                                                ]
+                                                                    .data as keyof typeof labelTexts
+                                                            ]?.label
+                                                        }`}
+                                                </label>
+                                                {
+                                                    stageComponents[
+                                                        +stageQuestion as keyof typeof stageComponents
+                                                    ]
+                                                }
+                                            </div>
+                                        </FormInputFieldMaskComponent>
                                     </div>
-                                </FormInputFieldMaskComponent>
-                            </div>
-                        );
-                    })
-                )}
-                <ReusableButtonComponent
-                    onClickHandler={
-                        isLastStep
-                            ? () => handleSubmitForm(contactForm)
-                            : onClickHandler
-                    }
-                    icon={
-                        <AutoAdjustImgComponent
-                            alt="arrow"
-                            givenClassName={styles[`${namespace}__icon`]}
-                            src="/assets/img/icons/arrow.svg"
-                            calculate="width"
-                            fixedParameter="--img-min-height"
+                                );
+                            })
+                        )}
+                        <ReusableButtonComponent
+                            onClickHandler={
+                                isLastStep
+                                    ? () => handleSubmitForm(contactForm)
+                                    : onClickHandler
+                            }
+                            icon={
+                                <AutoAdjustImgComponent
+                                    alt="arrow"
+                                    givenClassName={
+                                        styles[`${namespace}__icon`]
+                                    }
+                                    src="/assets/img/icons/arrow.svg"
+                                    calculate="width"
+                                    fixedParameter="--img-min-height"
+                                />
+                            }
+                            aria-label="next button"
+                            styleVariants={[`${namespace}__next-button`]}
                         />
-                    }
-                    aria-label="next button"
-                    styleVariants={[`${namespace}__next-button`]}
-                />
+                    </>
+                )}
             </div>
             <div className={styles[`${namespace}__right-column`]}>
                 <ContactPieceComponent />

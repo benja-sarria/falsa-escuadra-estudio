@@ -167,4 +167,6 @@ export async function submitContactForm(formData: QueryInterface) {
     const result = await contactServices.sendEmail(mailData);
 
     console.log("RESULT", result);
+
+    return result;
 }
