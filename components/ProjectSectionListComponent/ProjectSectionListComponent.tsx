@@ -28,11 +28,11 @@ export const ProjectSectionListComponent = ({
             setStateProducts(
                 (() => {
                     if (activeProductType === "own")
-                        return products.filter(
+                        return products?.filter(
                             (product) =>
                                 product.productType.type === activeProductType
                         );
-                    return products.filter(
+                    return products?.filter(
                         (products) => products.productType.type === "custom"
                     );
                 })()
