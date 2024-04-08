@@ -1,4 +1,4 @@
-FROM node:18.16-buster-slim
+FROM node:20.12-buster-slim
 
 WORKDIR /tmp
 RUN apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade && apt-get install nano && apt-get install wget -y

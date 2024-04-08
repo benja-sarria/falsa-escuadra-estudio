@@ -8,7 +8,13 @@ const nextConfig = {
         return config;
     },
     experimental: {
-        serverActions: true,
+        serverActions: {
+            allowedOrigins: [
+                "falsaescuadraestudio.com",
+                "localhost",
+                "test.falsaescuadraestudio.com",
+            ],
+        },
     },
 };
 
