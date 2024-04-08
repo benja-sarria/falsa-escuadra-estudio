@@ -74,6 +74,7 @@ export const schema = Joi.object({
     complementaryInfo: Joi.string().uri().allow(null),
     materials: Joi.array().min(1).required().messages({
         "array.base": `Debes seleccionar al menos un material`,
+        "array.min": `Debes seleccionar al menos un material`,
         "array.empty": `Debes seleccionar al menos un material`,
         "any.required": `Debes seleccionar al menos un material`,
     }),

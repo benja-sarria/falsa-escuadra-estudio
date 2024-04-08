@@ -184,8 +184,11 @@ div:is([class*="log-in-btn-container"]):has(.glowing-btn) {
     right: 15%;
     bottom: 18%;
     @media (max-width: 768px) {
-        right: 33%;
-        bottom: -2rem;
+        /*  right: 33%;
+        bottom: -2rem; */
+        position: revert;
+        right: revert;
+        bottom: revert;
     }
     &:hover {
         padding: 0.75rem 1.5rem;
@@ -203,6 +206,9 @@ div:is([class*="log-in-btn-container"]):has(.glowing-btn) {
     color: var(--falsa-escuadra-white);
     max-height: 2.5rem;
     min-height: 2.5rem;
+    @media (max-width: 768px) {
+        max-height: 3.5rem;
+    }
     &:hover {
         padding: 0.5rem 1.5rem;
         transform: scale(1.05);

@@ -45,7 +45,8 @@
         gap: 2rem;
         transition: heigh 200ms ease-out;
         @media (max-width: 768px) {
-            min-width: 100vw;
+            min-width: 100%;
+            align-items: center;
         }
     }
 
@@ -55,6 +56,13 @@
         margin-left: 5rem;
         opacity: 0;
         transition: opacity 200ms ease-out, background-color 200ms ease-out;
+
+        @media (max-width: 768px) {
+            margin-left: 0rem;
+            min-width: 75vw;
+            max-width: 75vw;
+            margin-bottom: 1rem;
+        }
 
         &--visible {
             background-color: rgba(0, 0, 0, 0.232);
