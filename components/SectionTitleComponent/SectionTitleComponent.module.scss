@@ -30,12 +30,19 @@
     font-size: 6rem;
     max-width: 70%;
     margin: 0;
+    @media (max-width: 768px) {
+        font-size: 4rem;
+        text-align: center;
+    }
 }
 
 .about-us {
     margin: 0;
     position: relative;
     font-size: 2.5rem;
+    @media (max-width: 768px) {
+        text-align: center;
+    }
 }
 
 .m {

@@ -42,33 +42,41 @@ export const ProjectSectionListComponent = ({
     return (
         <div
             className={`${styles["project-section-container"]}${
-                activeProductType === "own" ? ` ${styles["own-section"]}` : ""
+                activeProductType === "own" && stateProducts.length > 0
+                    ? ` ${styles["own-section"]}`
+                    : ""
             } `}
         >
-            {activeProductType === "own" && (
+            {activeProductType === "own" && stateProducts.length > 0 && (
                 <div className={styles["background-overlay"]}></div>
             )}
-            {stateProducts.map((product, index) =>
-                activeProductType === "custom" ? (
-                    <ProductCardComponent
-                        key={product.id}
-                        product={product}
-                        type={
-                            (index + 1) % 4 == 0 || (index + 4) % 4 == 0
-                                ? "large"
-                                : "small"
-                        }
-                    />
-                ) : (
-                    <CustomProductCardComponent
-                        key={product.id}
-                        product={product}
-                        type={
-                            (index + 2) % 4 == 0 || (index + 3) % 4 == 0
-                                ? "large"
-                                : "small"
-                        }
-                    />
+            {stateProducts.length < 1 ? (
+                <h3 className={styles["not-found"]}>
+                    Proximamente tendremos más productos para sorprenderte...
+                </h3>
+            ) : (
+                stateProducts.map((product, index) =>
+                    activeProductType === "custom" ? (
+                        <ProductCardComponent
+                            key={product.id}
+                            product={product}
+                            type={
+                                (index + 1) % 4 == 0 || (index + 4) % 4 == 0
+                                    ? "large"
+                                    : "small"
+                            }
+                        />
+                    ) : (
+                        <CustomProductCardComponent
+                            key={product.id}
+                            product={product}
+                            type={
+                                (index + 2) % 4 == 0 || (index + 3) % 4 == 0
+                                    ? "large"
+                                    : "small"
+                            }
+                        />
+                    )
                 )
             )}
         </div>

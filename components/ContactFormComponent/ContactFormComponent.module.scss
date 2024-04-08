@@ -5,6 +5,9 @@
     display: flex;
     padding: 2rem;
     gap: 4rem;
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
     &__input-container {
         display: flex;
         flex-direction: column;
@@ -23,6 +26,9 @@
         max-width: 70%;
         min-width: 70%;
         position: relative;
+        @media (max-width: 768px) {
+            min-height: 40vh;
+        }
     }
 
     &__icon {

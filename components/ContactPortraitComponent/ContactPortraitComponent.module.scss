@@ -1,6 +1,8 @@
 .portrait-container {
     display: flex;
-
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
     .left-column {
         min-width: 70%;
         max-width: 70%;
@@ -10,8 +12,18 @@
         flex-direction: column;
         justify-content: flex-start;
         row-gap: 5rem;
+        @media (max-width: 768px) {
+            min-width: 100%;
+            max-width: 100%;
+            padding: 6rem 3rem 3rem;
+            row-gap: 1.5rem;
+            min-height: revert;
+        }
         .page-subtitle {
             font-size: 1.5rem;
+            @media (max-width: 768px) {
+                text-align: center;
+            }
         }
     }
     .right-column {
@@ -24,6 +36,11 @@
         justify-content: flex-start;
         padding: 8rem 3rem 4rem;
         align-items: center;
+        @media (max-width: 768px) {
+            min-width: 100%;
+            max-width: 100%;
+            padding: 0rem 3rem 1rem;
+        }
         .seal-container {
             position: relative;
             min-width: var(--seal-min-width);

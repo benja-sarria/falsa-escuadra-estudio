@@ -32,6 +32,9 @@
         align-items: center;
         font-family: "Montserrat";
         font-size: 1.2rem;
+        @media (max-width: 768px) {
+            display: none;
+        }
     }
 
     &__input-container {
@@ -41,6 +44,9 @@
         align-items: flex-start;
         gap: 2rem;
         transition: heigh 200ms ease-out;
+        @media (max-width: 768px) {
+            min-width: 100vw;
+        }
     }
 
     &__error-text {

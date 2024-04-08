@@ -13,7 +13,7 @@ export default function Projects() {
             <AboutUsPortraitComponent />
             <AboutUsCarouselComponent />
             <AboutUsInfoComponent />
-            <AboutUsMapContainer />
+            {/*   <AboutUsMapContainer /> */}
             <AboutUsHeroComponent />
         </main>
     );

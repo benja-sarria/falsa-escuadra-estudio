@@ -6,6 +6,7 @@
     padding: 10rem 20vw;
     row-gap: 10rem;
     position: relative;
+
     div:is([class*="product-card-container"]) {
         flex-basis: 100%;
         transform: scale(1.4);
@@ -61,6 +62,10 @@
         background-color: #e4dbcf;
         mix-blend-mode: multiply;
     }
+
+    .not-found {
+        text-align: center;
+    }
 }
 
 .own-section {
@@ -71,4 +76,7 @@
     background-image: url("/assets/img/layout/texture.webp");
     background-size: contain;
     background-repeat: repeat;
+    @media (max-width: 768px) {
+        padding: 4rem;
+    }
 }

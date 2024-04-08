@@ -77,11 +77,17 @@
     &:nth-child(odd) {
         &:has(div:not([data-type="skeleton"])):hover {
             transform: scale(1.4) translate(2rem, -2rem) rotate(-4deg);
+            @media (max-width: 768px) {
+                transform: scale(1.4);
+            }
         }
     }
     &:nth-child(even) {
         &:has(div:not([data-type="skeleton"])):hover {
             transform: scale(1.4) translate(2rem, -2rem) rotate(4deg);
+            @media (max-width: 768px) {
+                transform: scale(1.4);
+            }
         }
     }
     &:nth-child(4n + 1),

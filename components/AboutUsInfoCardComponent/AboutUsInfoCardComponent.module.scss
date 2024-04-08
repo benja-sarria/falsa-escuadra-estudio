@@ -9,6 +9,9 @@
         font-size: 0.75rem;
         display: flex;
         flex-direction: column;
+        @media (max-width: 768px) {
+            font-size: 0.85rem;
+        }
     }
 
     .title {
@@ -16,5 +19,8 @@
     }
 
     .content {
+        @media (max-width: 768px) {
+            font-size: 1.15rem;
+        }
     }
 }

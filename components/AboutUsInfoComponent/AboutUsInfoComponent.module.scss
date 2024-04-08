@@ -2,6 +2,9 @@
     background-color: var(--falsa-escuadra-black);
     color: var(--falsa-escuadra-white);
     padding: 4rem 10rem 6rem;
+    @media (max-width: 768px) {
+        padding: 4rem 2rem 6rem;
+    }
     .grid-section {
         display: grid;
         border-top: 1px solid var(--falsa-escuadra-white);
@@ -13,8 +16,13 @@
         // grid-template-rows: repeat(3, 12rem);
         grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
+        @media (max-width: 768px) {
+            display: flex;
+            flex-direction: column;
+        }
         .title-element {
             grid-area: title;
+
             p {
                 font-size: 1.25rem;
                 font-weight: 600;
@@ -24,6 +32,9 @@
             grid-area: hero;
             font-size: 2rem;
             padding: 1rem 0rem 3rem;
+            @media (max-width: 768px) {
+                font-size: 1rem;
+            }
         }
         div:is([class*="card-container"]) {
             &:nth-child(3) {

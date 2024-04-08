@@ -183,6 +183,10 @@ div:is([class*="log-in-btn-container"]):has(.glowing-btn) {
     position: absolute;
     right: 15%;
     bottom: 18%;
+    @media (max-width: 768px) {
+        right: 33%;
+        bottom: -2rem;
+    }
     &:hover {
         padding: 0.75rem 1.5rem;
         transform: scale(1.15);

@@ -23,7 +23,6 @@ export default async function ProjectsLayout({
 }) {
     return (
         <>
-            {" "}
             <NavbarContainer>
                 <SearchBoxContainer />
             </NavbarContainer>
