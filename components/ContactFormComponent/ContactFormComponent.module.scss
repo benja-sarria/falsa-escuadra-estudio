@@ -26,6 +26,7 @@
         max-width: 70%;
         min-width: 70%;
         position: relative;
+        overflow: hidden;
         @media (max-width: 768px) {
             min-height: 40vh;
             max-width: 100%;

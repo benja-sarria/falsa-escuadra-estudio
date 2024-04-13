@@ -91,7 +91,7 @@
         },
         "videoSection": {
             "textContent": {
-                "text": "<b>Introducción breve contando quienes somos y qué hacemos.</b> | Se puede mostrar en números los proyectos finalizados y todas las | <b>ciudades a las que se ha enviado.</b>"
+                "text": "<b>Diseñamos y producimos de mobiliario a medida.</b> | Nuestra pasión por crear espacios únicos nos impulsó a dar el paso de emprender. | <b>No creamos muebles, creamos experiencias</b> | brindando un toque único a cada espacio. "
             },
             "indicators": {
                 "projects": {
@@ -99,12 +99,16 @@
                     "subtitle": "Proyectos Finalizados"
                 },
                 "designs": {
-                    "number": "300",
+                    "number": "150",
                     "subtitle": "Diseños únicos"
                 },
                 "cities": {
-                    "number": "50",
+                    "number": "7",
                     "subtitle": "Ciudades"
+                },
+                "countries": {
+                    "number": "2",
+                    "subtitle": "Paises"
                 }
             },
             "button": {
@@ -194,7 +198,7 @@
             },
             "texts": {
                 "title": "Conocé nuestros proyectos",
-                "description": "Lorem ipsum dolor sit amet consectetur. Feugiat sed pulvinar aenean sit erat sollicitudin ullamcorper. Accumsan amet."
+                "description": "Cada proyecto es una historia única. Desde espacios minimalistas hasta diseños extravagantes, cada mueble a medida cuenta una historia de creatividad y funcionalidad."
             }
         },
         "selector": {
