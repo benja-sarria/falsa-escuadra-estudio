@@ -28,7 +28,7 @@ export const ProjectPrevisualizationComponent = ({
     return (
         <div className={styles["previsualization-container"]}>
             <div className={styles["image-container"]}>
-                {screen.availWidth < 768 ? (
+                {typeof window !== "undefined" && screen.availWidth < 768 ? (
                     <AutoAdjustImgComponent
                         alt={project.title}
                         givenClassName={styles["portrait-inner"]}

@@ -97,7 +97,7 @@ export const HomeProductCarouselComponent = ({
                 <Swiper
                     spaceBetween={0}
                     slidesPerView={
-                        window.screen
+                        typeof window !== "undefined"
                             ? window.screen.availWidth < 768
                                 ? 1
                                 : 4

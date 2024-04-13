@@ -126,7 +126,7 @@ export const AnimatedNavbarLogoComponent = ({
         }
     }, [openedState]);
     useEffect(() => {
-        if (screen) {
+        if (typeof window !== "undefined") {
             setScreenWidth(screen.availWidth);
         }
     }, []);

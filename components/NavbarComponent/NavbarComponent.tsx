@@ -74,7 +74,7 @@ export const NavbarComponent = ({
     }, [y]);
 
     useEffect(() => {
-        if (screen) {
+        if (typeof window !== "undefined") {
             setScreenWidth(screen.availWidth);
         }
     }, []);

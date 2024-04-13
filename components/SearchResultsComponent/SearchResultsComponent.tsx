@@ -142,6 +142,7 @@ export const SearchResultsComponent = () => {
                                     }`}
                                     key={result.productSlug}
                                     onClick={() => {
+                                        typeof window !== "undefined" &&
                                         screen.availWidth < 768
                                             ? (() => {
                                                   dispatch(

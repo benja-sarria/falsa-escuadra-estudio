@@ -37,7 +37,13 @@ export const AboutUsCarouselComponent = () => {
             </div>
             <Swiper
                 spaceBetween={1}
-                slidesPerView={screen.availWidth < 768 ? 1 : 4}
+                slidesPerView={
+                    typeof window !== "undefined"
+                        ? screen.availWidth < 768
+                            ? 1
+                            : 4
+                        : 4
+                }
                 //@ts-ignore
                 loopaddblankslides={"true"}
                 loop={true}
