@@ -13,9 +13,13 @@ export class ProfileServices {
     async getProfiles(queryParams: GetProfileQueryParamType | undefined) {
         try {
             const profiles = await this.profilesDao.getProfiles(queryParams);
-            return new StandardSuccessResponse({ data: profiles });
+            const standardResponse = new StandardSuccessResponse({
+                data: profiles,
+            });
+            return { ...standardResponse };
         } catch (error: any) {
-            return new StandardAPIError(error.message);
+            const standardError = new StandardAPIError(error.message);
+            return { ...standardError };
         }
     }
 }

@@ -52,9 +52,10 @@ export class ProjectServices {
                                 data: parsedData,
                                 photos: values,
                             });
-                        return new StandardSuccessResponse({
+                        const standardResponse = new StandardSuccessResponse({
                             data: savedProject,
                         });
+                        return { ...standardResponse };
                     }
                 );
             } else {
@@ -63,10 +64,14 @@ export class ProjectServices {
                 const savedProject = await this.projectDao.createProject({
                     data: parsedData,
                 });
-                return new StandardSuccessResponse({ data: savedProject });
+                const standardResponse = new StandardSuccessResponse({
+                    data: savedProject,
+                });
+                return { ...standardResponse };
             }
         } catch (error: any) {
-            return new StandardAPIError(error.message);
+            const standardError = new StandardAPIError(error.message);
+            return { ...standardError };
         }
     }
 
@@ -76,7 +81,8 @@ export class ProjectServices {
             const response = new StandardSuccessResponse({ data: projects });
             return { ...response };
         } catch (error: any) {
-            return new StandardAPIError(error.message);
+            const standardError = new StandardAPIError(error.message);
+            return { ...standardError };
         }
     }
 
@@ -89,9 +95,13 @@ export class ProjectServices {
                 parsedData,
                 id
             );
-            return new StandardSuccessResponse({ data: updatedArea });
+            const standardResponse = new StandardSuccessResponse({
+                data: updatedArea,
+            });
+            return { ...standardResponse };
         } catch (error: any) {
-            return new StandardAPIError(error.message);
+            const standardError = new StandardAPIError(error.message);
+            return { ...standardError };
         }
     }
 
@@ -100,10 +110,13 @@ export class ProjectServices {
             const { id, ...updatedProperties } = data;
 
             const removedData = await this.projectDao.removeProject(id);
-
-            return new StandardSuccessResponse({ data: removedData });
+            const standardResponse = new StandardSuccessResponse({
+                data: removedData,
+            });
+            return { ...standardResponse };
         } catch (error: any) {
-            return new StandardAPIError(error.message);
+            const standardError = new StandardAPIError(error.message);
+            return { ...standardError };
         }
     }
 
@@ -113,9 +126,13 @@ export class ProjectServices {
 
             const savedPhoto = await this.projectDao.createPhoto(parsedData);
 
-            return new StandardSuccessResponse({ data: savedPhoto });
+            const standardResponse = new StandardSuccessResponse({
+                data: savedPhoto,
+            });
+            return { ...standardResponse };
         } catch (error: any) {
-            return new StandardAPIError(error.message);
+            const standardError = new StandardAPIError(error.message);
+            return { ...standardError };
         }
     }
 
@@ -141,18 +158,27 @@ export class ProjectServices {
             data.src.data = `${savedData.baseSrc}`;
             const savedPhoto = await this.projectDao.updatePhoto(data);
 
-            return new StandardSuccessResponse({ data: savedPhoto });
+            const standardResponse = new StandardSuccessResponse({
+                data: savedPhoto,
+            });
+            return { ...standardResponse };
         } catch (error: any) {
-            return new StandardAPIError(error.message);
+            const standardError = new StandardAPIError(error.message);
+            return { ...standardError };
         }
     }
 
     async getPhotoService(queryParams: PhotoQueryParamsType | undefined) {
         try {
             const photos = await this.projectDao.getPhotos(queryParams);
-            return new StandardSuccessResponse({ data: photos });
+
+            const standardResponse = new StandardSuccessResponse({
+                data: photos,
+            });
+            return { ...standardResponse };
         } catch (error: any) {
-            return new StandardAPIError(error.message);
+            const standardError = new StandardAPIError(error.message);
+            return { ...standardError };
         }
     }
 
@@ -162,9 +188,13 @@ export class ProjectServices {
 
             const removedData = await this.projectDao.removePhoto(id);
 
-            return new StandardSuccessResponse({ data: removedData });
+            const standardResponse = new StandardSuccessResponse({
+                data: removedData,
+            });
+            return { ...standardResponse };
         } catch (error: any) {
-            return new StandardAPIError(error.message);
+            const standardError = new StandardAPIError(error.message);
+            return { ...standardError };
         }
     }
 }

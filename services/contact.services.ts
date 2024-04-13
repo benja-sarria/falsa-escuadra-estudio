@@ -57,7 +57,8 @@ export class ContactServices {
                 success: true,
             };
         } catch (error: any) {
-            return new StandardAPIError(error.message);
+            const standardError = new StandardAPIError(error.message);
+            return { ...standardError };
         }
     }
 }
