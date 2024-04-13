@@ -71,6 +71,8 @@ export const SearchResultsComponent = () => {
                                     const results = await searchProducts(
                                         target.value
                                     );
+                                    console.log("SEARCH", results);
+
                                     if (results.success) {
                                         console.log("RESULTS", results);
                                         const filteredArray: ProductWithIncludeType[] =

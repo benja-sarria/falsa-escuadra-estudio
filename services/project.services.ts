@@ -73,7 +73,8 @@ export class ProjectServices {
     async getProjectService(queryParams: Prisma.ProductWhereInput | undefined) {
         try {
             const projects = await this.projectDao.getProjects(queryParams);
-            return new StandardSuccessResponse({ data: projects });
+            const response = new StandardSuccessResponse({ data: projects });
+            return { ...response };
         } catch (error: any) {
             return new StandardAPIError(error.message);
         }

@@ -4,9 +4,12 @@ import { AnimatedNavbarLogoComponent } from "../AnimatedNavbarLogoComponent/Anim
 import { useEffect, useState } from "react";
 import { useAppSelector } from "@/redux/store";
 import Link from "next/link";
+import { ReusableButtonComponent } from "../ReusableButtonComponent/ReusableButtonComponent";
+import { AutoAdjustImgComponent } from "../AutoAdjustImgComponent/AutoAdjustImgComponent";
 
 export const FooterComponent = () => {
     const siteTexts = useAppSelector((state) => state.globalLanguage.value);
+    const socialMedia = siteTexts.messages?.socialMediaFooter;
 
     const [navbarTexts, setNavbarTexts] = useState<undefined | any>(undefined);
     useEffect(() => {
@@ -52,7 +55,37 @@ export const FooterComponent = () => {
                             );
                         })}
                 </div>
-                <div></div>
+                <div className={styles["social-container"]}>
+                    {socialMedia &&
+                        Object.keys(socialMedia).map((key) => {
+                            const data =
+                                socialMedia[key as keyof typeof socialMedia];
+                            return (
+                                <ReusableButtonComponent
+                                    key={key}
+                                    styleVariants={["social-media"]}
+                                    icon={
+                                        <AutoAdjustImgComponent
+                                            alt={key}
+                                            givenClassName={
+                                                styles["inner-icon"]
+                                            }
+                                            src={data.icon}
+                                            calculate="height"
+                                            fixedParameter="--icon-min-width"
+                                        />
+                                    }
+                                    onClickHandler={() => {
+                                        const anchor =
+                                            document.createElement("a");
+                                        anchor.setAttribute("href", data.link);
+                                        anchor.setAttribute("target", "_blank");
+                                        anchor.click();
+                                    }}
+                                />
+                            );
+                        })}
+                </div>
             </div>
         </div>
     );

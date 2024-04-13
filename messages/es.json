@@ -321,5 +321,19 @@
             "value": "Charcas 1931 - B° Pueyrredón, Córdoba",
             "label": "Dirección"
         }
+    },
+    "socialMediaFooter": {
+        "instagram": {
+            "icon": "/assets/img/icons/instagram.png",
+            "link": "https://www.instagram.com/falsaescuadra.estudio"
+        },
+        "whatsapp": {
+            "icon": "/assets/img/icons/wapp.png",
+            "link": "https://wa.me/5493518500739"
+        },
+        "linkedin": {
+            "icon": "/assets/img/icons/Linkedin.png",
+            "link": "https://www.linkedin.com/company/falsaescuadra-estudio"
+        }
     }
 }

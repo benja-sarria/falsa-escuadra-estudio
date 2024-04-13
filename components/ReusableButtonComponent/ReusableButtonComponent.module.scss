@@ -196,6 +196,23 @@ div:is([class*="log-in-btn-container"]):has(.glowing-btn) {
     }
 }
 
+.social-media {
+    --transform-transition: transform 400ms ease-out;
+    --padding-transition: padding 300ms 50ms ease-out;
+
+    min-width: 3.5rem;
+    max-width: 3.5rem;
+    min-height: 3.5rem;
+    max-height: 3.5rem;
+    border-radius: 10rem;
+    padding: 0rem;
+    background-color: transparent;
+    border: 2px solid var(--falsa-escuadra-grey);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .select-input-component__option-button {
     --border-transition: border 200ms ease-out;
     --transform-transition: transform 200ms ease-out;

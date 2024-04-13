@@ -101,6 +101,16 @@
                 }
             }
         }
+        .social-container {
+            display: flex;
+            gap: 1rem;
+            .inner-icon {
+                --icon-min-width: 1.5rem;
+                position: relative;
+                min-width: var(--icon-min-width);
+                max-width: var(--icon-min-width);
+            }
+        }
     }
 }
 
