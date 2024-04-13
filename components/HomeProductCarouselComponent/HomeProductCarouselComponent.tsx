@@ -96,7 +96,13 @@ export const HomeProductCarouselComponent = ({
             <div className={styles["home-carousel-carousel-container"]}>
                 <Swiper
                     spaceBetween={0}
-                    slidesPerView={screen?.availWidth < 768 ? 1 : 4}
+                    slidesPerView={
+                        window.screen
+                            ? window.screen.availWidth < 768
+                                ? 1
+                                : 4
+                            : 4
+                    }
                     //@ts-ignore
                     loopaddblankslides={"true"}
                     onSwiper={setMainSwiper}
