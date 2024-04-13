@@ -16,6 +16,6 @@ export const toBuffer = async (file: File) => {
         maxHeight: 1920, // the max height of the output image, defaults to 1920px
         resize: true, // defaults to true, set false if you do not want to resize the image width and height
     });
-    console.log("[COMPRESSED]", compressed);
+
     return { data: compressed[0].data, prefix: compressed[0].prefix };
 };

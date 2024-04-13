@@ -18,7 +18,6 @@ export const ReusableButtonContainer = ({
     const router = useRouter();
     const actions = {
         "log-in": (evt: SyntheticEvent) => {
-            console.log("[CLICKED]", evt);
             signIn("google", {
                 redirect: false,
             });

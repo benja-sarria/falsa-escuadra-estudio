@@ -42,7 +42,7 @@ export class ContactServices {
             }
 
             const verify = await transporter.verify();
-            console.log(verify);
+
             if (!verify) {
                 return { success: false, error: "Couldn't set up transporter" };
             }

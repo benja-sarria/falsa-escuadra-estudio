@@ -41,8 +41,6 @@ export const search = createSlice({
             state,
             action: PayloadAction<initialSearchStateType["value"]>
         ) => {
-            console.log(state, action);
-
             state.value = action.payload;
         },
     },

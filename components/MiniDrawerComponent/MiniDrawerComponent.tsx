@@ -139,14 +139,6 @@ export default function MiniDrawerComponent({
     };
 
     React.useEffect(() => {
-        console.log(
-            "[SECTION]",
-            section,
-            highlightRef.current,
-            enabledSections,
-            section,
-            enabledSections.indexOf(section as any)
-        );
         if (highlightRef.current) {
             switch (enabledSections.indexOf(section as any)) {
                 case 0:
@@ -272,7 +264,6 @@ export default function MiniDrawerComponent({
                                 },
                             }}
                             onClick={() => {
-                                console.log("[CLICKED]", text);
                                 sessionStorage.setItem("currentSection", text);
                                 dispatch(selectActiveSection(text));
                             }}

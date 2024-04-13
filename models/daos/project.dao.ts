@@ -57,8 +57,6 @@ export class ProjectPrismaDao {
 
     async getProjects(queryParams: Prisma.ProductWhereInput | undefined) {
         try {
-            console.log("DAO", queryParams);
-
             const projects: ProductReceivedType[] =
                 await this.db.product.findMany({
                     where: queryParams ? { ...queryParams } : {},
@@ -147,8 +145,6 @@ export class ProjectPrismaDao {
     }
 
     async getPhotos(queryParams: PhotoQueryParamsType | undefined) {
-        console.log("DAO", queryParams);
-
         const photos: ProductPhotos[] = await this.db.productPhotos.findMany({
             where: queryParams ? { ...queryParams } : {},
         });

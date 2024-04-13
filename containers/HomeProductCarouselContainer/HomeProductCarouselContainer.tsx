@@ -8,7 +8,7 @@ export const HomeProductCarouselContainer = async () => {
     const products = await productServices.getProjectService({
         published: true,
     });
-    console.log("[PRODUCTOS]", products);
+
     if (products.success && products.data)
         return <HomeProductCarouselComponent products={products.data} />;
     return <></>;

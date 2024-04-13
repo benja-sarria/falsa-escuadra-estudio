@@ -30,7 +30,6 @@ export default async function RootLayout({
     params: { lang: (typeof acceptedLocales)[number] };
 }) {
     const session = await getServerSession(authOptions);
-    console.log("[LANG]", lang);
 
     return (
         <Provider session={session}>

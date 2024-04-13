@@ -21,7 +21,7 @@ export const AdminProductsListComponent = ({
 
     useEffect(() => {
         dispatch(setLoading(true));
-        console.log("[PRODUCTS]", products);
+
         if (products) {
             dispatch(
                 setProducts({
@@ -34,10 +34,6 @@ export const AdminProductsListComponent = ({
             }, 1000);
         }
     }, [products]);
-
-    useEffect(() => {
-        console.log("STATE-PRODUCTS", stateProducts);
-    }, [stateProducts]);
 
     return (
         <div

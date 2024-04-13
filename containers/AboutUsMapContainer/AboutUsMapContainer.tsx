@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 export const AboutUsMapContainer = async () => {
     const productServices = new ProjectServices(new ProjectPrismaDao());
     const allProducts = await productServices.getProjectService({});
-    console.log("[PRODUCTS]", allProducts);
+
     if (!allProducts.data || allProducts.error) notFound();
 
     return (

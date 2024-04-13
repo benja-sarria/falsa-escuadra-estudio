@@ -25,8 +25,6 @@ export const activeSection = createSlice({
             action: PayloadAction<AvailableSectionsType>
         ) => {
             if (state.value !== action.payload) {
-                console.log(state, action);
-
                 state.value = action.payload;
             }
         },

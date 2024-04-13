@@ -26,8 +26,6 @@ export const activeProjectsType = createSlice({
             state,
             action: PayloadAction<initialActiveProjectsType["value"]>
         ) => {
-            console.log(state, action);
-
             state.value = action.payload;
         },
     },

@@ -36,7 +36,6 @@ export const productsValue = createSlice({
                 [id: string]: any;
             }>
         ) => {
-            console.log(state, action);
             state.value = { ...state.value, ...action.payload };
         },
     },

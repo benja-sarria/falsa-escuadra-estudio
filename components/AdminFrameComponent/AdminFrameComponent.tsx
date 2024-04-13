@@ -34,8 +34,6 @@ export const AdminFrameComponent = ({
     const svg = useRef(null);
     const controls = useAnimationControls();
     useEffect(() => {
-        console.log("[ITEM]", title.current);
-
         if (title.current && svg.current) {
             (title.current as any).classList.add(`${styles["animate-title"]}`);
             controls.set("hidden");
@@ -57,8 +55,6 @@ export const AdminFrameComponent = ({
     useEffect(() => {
         setTimeout(() => {
             const handleSetScreen = () => {
-                console.log("SETTING-screen");
-
                 setScreenState(window);
             };
             handleSetScreen();

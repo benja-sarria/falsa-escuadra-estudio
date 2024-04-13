@@ -78,19 +78,17 @@ export const ContactFormComponent = () => {
         async (formData: QueryInterface) => {
             setIsSending("true");
             const token = await handleReCaptchaVerify();
-            console.log(token);
+
             if (!token) {
                 setIsSending("error");
                 return;
             }
             const validationResult = await validateRecaptcha(token);
-            console.log("VALIDATION", validationResult);
+
             if (!validationResult.success || !validationResult.isValidated) {
                 setIsSending("error");
                 return;
             }
-
-            console.log("SENDING", formData);
 
             const formSubmitted = await submitContactForm(formData);
 
@@ -126,7 +124,7 @@ export const ContactFormComponent = () => {
                 errorObject[stageError] = true;
             });
             errorObject.message = stageErrors.message;
-            console.log("STAGE-ERRORS", errorObject);
+
             dispatch(setFormErrors(errorObject));
         } else {
             dispatch(resetFormErrors());

@@ -41,12 +41,8 @@ export const HomeProductCarouselComponent = ({
     const pathname = usePathname();
 
     useEffect(() => {
-        console.log("STATE-SWIPER", mainSwiper, pathname);
-
         const enter = (evt: Event) => {
             if (mainSwiper) {
-                console.log("[stopping]", mainSwiper, mainSwiper.translate);
-
                 mainSwiper.autoplay.stop();
                 /*   const target = evt.target as HTMLElement;
                 mainSwiper.params.autoplay.delay = 0;
@@ -55,11 +51,6 @@ export const HomeProductCarouselComponent = ({
         };
         const leave = (evt: Event) => {
             if (mainSwiper) {
-                console.log(
-                    "[stopping]",
-                    mainSwiper,
-                    mainSwiper.autoplay.start
-                );
                 mainSwiper.autoplay.start();
                 /*       const target = evt.target as HTMLElement;
                 mainSwiper.params.autoplay.delay = 5000; // Back to default

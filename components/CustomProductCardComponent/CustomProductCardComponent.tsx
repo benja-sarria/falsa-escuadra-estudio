@@ -33,11 +33,8 @@ export const CustomProductCardComponent = ({
     useEffect(() => {
         if (product) {
             const portrait = product.photos.find((photo: ProductPhotos) => {
-                console.log("finding", photo.isPortrait);
-
                 return photo.isPortrait;
             });
-            console.log("PORTRAIT", portrait);
 
             if (portrait) {
                 setPortraitPhoto({

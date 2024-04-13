@@ -2,7 +2,7 @@ import React from "react";
 
 export const parseProjectContent = (content: string) => {
     const contentArray = content.split("|");
-    console.log(contentArray);
+
     const parsedContent = contentArray.map((textPiece) => {
         if (textPiece.includes("<b>")) {
             const boldNode = React.createElement(
@@ -16,7 +16,6 @@ export const parseProjectContent = (content: string) => {
         return textPiece;
     });
 
-    console.log(parsedContent);
     return parsedContent;
 };
 

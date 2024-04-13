@@ -104,11 +104,7 @@ export const parseFormData = (
 });
 
 export const getStageErrors = (contactForm: QueryInterface) => {
-    console.log("CHECKING-FORM", contactForm);
-
     const parsedData = parseFormData(contactForm);
-
-    console.log("CHECKING-FORM", parsedData);
 
     const stageErrors = validateFormData(parsedData);
 
@@ -130,7 +126,6 @@ export const getStageErrors = (contactForm: QueryInterface) => {
                 ].validate?.includes(error.path[0] as FieldNames)
             ) {
                 errorsToSet.push(error.path[0] as FieldNames);
-                console.log(stageErrors);
 
                 errorObject.message = error.message;
             }
@@ -141,7 +136,6 @@ export const getStageErrors = (contactForm: QueryInterface) => {
         errorObject.message = "Debes ingresar un link válido";
     }
     errorObject.errors = errorsToSet;
-    console.log(errorObject);
 
     return errorObject;
 };

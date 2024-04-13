@@ -53,25 +53,14 @@ export const ProductCardComponent = ({
     useEffect(() => {
         if (product) {
             const portrait = product.photos.find((photo: ProductPhotos) => {
-                console.log("finding", photo.isPortrait);
-
                 return photo.isPortrait;
             });
-            console.log("PORTRAIT", portrait);
 
             if (portrait) {
                 setPortraitPhoto({ src: portrait.src, alt: portrait.alt });
             }
         }
     }, [product]);
-
-    useEffect(() => {
-        console.log("TYPE", type);
-    }, [type]);
-
-    useEffect(() => {
-        console.log("RECEIVING-TEXTS", siteTexts, type);
-    }, [siteTexts]);
 
     return loading ? (
         <div
@@ -148,10 +137,6 @@ export const ProductCardComponent = ({
                                             execute={(() => {
                                                 const availableActions = {
                                                     edit: () => {
-                                                        console.log(
-                                                            "[OPENING-DETAIL]"
-                                                        );
-
                                                         dispatch(
                                                             setAdminDetailOpened(
                                                                 true

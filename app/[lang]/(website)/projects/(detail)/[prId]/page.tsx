@@ -9,18 +9,17 @@ import { notFound } from "next/navigation";
 
 export default async function ProjectDetail({ params }: { params: any }) {
     // const params = useParams();
-    console.log("PARAMS", params);
+
     if (params.prId) {
         const paramId: string = params.prId;
         const productServices = new ProjectServices(new ProjectPrismaDao());
         const project = await productServices.getProjectService({
             productSlug: paramId,
         });
-        console.log("PRODUCT", project);
+
         if ((project.success && project.data.length < 1) || project.error) {
             notFound();
         }
-        console.log("RETURNING-COMPONENT");
 
         return (
             <main className={styles["main-container"]}>

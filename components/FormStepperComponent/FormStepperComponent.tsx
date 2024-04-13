@@ -149,8 +149,6 @@ export const FormStepperComponent = () => {
     const dispatch = useDispatch<AppDispatch>();
 
     const clickHandler = (selectedStep: ContactFormStageType) => {
-        console.log(selectedStep, currentStep);
-
         if (selectedStep < currentStep) {
             dispatch(setStage(selectedStep));
         }

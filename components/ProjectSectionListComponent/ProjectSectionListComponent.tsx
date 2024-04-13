@@ -22,8 +22,6 @@ export const ProjectSectionListComponent = ({
         ProductTypeWithIncludes[]
     >([]);
     useEffect(() => {
-        console.log("PRODUCTS", products, activeProductType);
-
         if (products)
             setStateProducts(
                 (() => {

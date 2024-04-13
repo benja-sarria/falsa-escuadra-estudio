@@ -20,7 +20,6 @@ export const ProjectSelectorComponent = () => {
 
     const handleSelectActive = (evt: MouseEvent) => {
         const target = evt.target as HTMLElement;
-        console.log("TARGET", target, target.dataset);
 
         if (target.dataset.id)
             dispatch(

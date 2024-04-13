@@ -13,7 +13,7 @@ export async function updateProductSubmit(formData: FormData) {}
 
 export async function deleteProductPhoto(formData: FormData) {
     const entries = Object.fromEntries(formData);
-    console.log("SERVER-ACTION", entries);
+
     const productServices = new ProjectServices(new ProjectPrismaDao());
     const response = await productServices.removePhotoService({
         id: +entries.photoSlug,
@@ -23,7 +23,7 @@ export async function deleteProductPhoto(formData: FormData) {
 
 export async function updateProductPhoto(formData: FormData) {
     const entries = Object.fromEntries(formData.entries());
-    console.log("SERVER-ACTION", entries);
+
     const parsedImages = JSON.parse(entries.newImage as string);
     const productServices = new ProjectServices(new ProjectPrismaDao());
     const response = await productServices.updatePhotoService({
@@ -31,7 +31,7 @@ export async function updateProductPhoto(formData: FormData) {
         src: { data: parsedImages.data, prefix: parsedImages.prefix },
         postSlug: `${entries.postSlug}`,
     });
-    console.log("RESPONSE", response);
+
     if (response.error) {
         return response;
     }
@@ -40,7 +40,6 @@ export async function updateProductPhoto(formData: FormData) {
 
 export async function searchProducts(searchTerm: string) {
     const productServices = new ProjectServices(new ProjectPrismaDao());
-    console.log("SEARCHING");
 
     const results = await productServices.getProjectService({
         OR: [
@@ -52,7 +51,6 @@ export async function searchProducts(searchTerm: string) {
             { content: { contains: searchTerm } },
         ],
     });
-    console.log("results", results);
 
     return results;
     // return revalidatePath(`${entries.validatePath}`);
@@ -90,10 +88,8 @@ export async function validateRecaptcha(token: string) {
         if (response.status !== 200) {
             return { error: "Server response error", success: false };
         }
-        console.log(response);
 
         const parsedResponse: RecaptchaResponseData = await response.json();
-        console.log(parsedResponse);
 
         const { success, hostname, score } = parsedResponse;
 
@@ -105,11 +101,6 @@ export async function validateRecaptcha(token: string) {
             score &&
             score >= 0.7;
 
-        console.log(
-            Array.from(eval(`${GOOGLE_RECAPTHA_HOSTNAME}`)),
-            isValidated
-        );
-
         return { success: true, isValidated };
     } catch (error) {
         // Handle any errors that occur during the API request.
@@ -119,7 +110,6 @@ export async function validateRecaptcha(token: string) {
 }
 
 export async function submitContactForm(formData: QueryInterface) {
-    console.log("DATA", formData);
     const { personalData, query } = formData;
     const { name, lastName, phone, city } = personalData;
     const { category, meassures, dimensions, materials, complementaryInfo } =

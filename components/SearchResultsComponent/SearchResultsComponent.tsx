@@ -62,19 +62,14 @@ export const SearchResultsComponent = () => {
                         className={styles["input"]}
                         onChange={async (evt: SyntheticEvent) => {
                             const target = evt.target as HTMLInputElement;
-                            console.log("VALUE", target.value);
 
                             if (target.value) {
                                 debounce(async function () {
-                                    console.log("searching");
-
                                     const results = await searchProducts(
                                         target.value
                                     );
-                                    console.log("SEARCH", results);
 
                                     if (results.success) {
-                                        console.log("RESULTS", results);
                                         const filteredArray: ProductWithIncludeType[] =
                                             [];
                                         results.data.forEach(
@@ -104,10 +99,7 @@ export const SearchResultsComponent = () => {
                                     }
                                 }, 500)();
                             } else {
-                                console.log("cleaning", target.value);
-
                                 dispatch(resetResults());
-                                console.log(search);
                             }
                         }}
                     />

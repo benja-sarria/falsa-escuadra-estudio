@@ -11,8 +11,6 @@ export const openAnimation = ({
     setEscuadraAnimation: Function;
     setEstudioAnimation: Function;
 }) => {
-    console.log(["ANIMATION-ENTER"]);
-
     animate(`#${animatedId}-component-container`, {
         minWidth: "calc(var(--logo-min-width) * 4)",
         maxWidth: "calc(var(--logo-min-width) * 4)",
@@ -123,8 +121,6 @@ export const closeAnimation = ({
     estudioAnimation: any;
 }) => {
     setTimeout(() => {
-        console.log(["ANIMATION-EXIT"]);
-
         falsaAnimation && falsaAnimation.cancel();
         escuadraAnimation && escuadraAnimation.cancel();
         estudioAnimation && estudioAnimation.cancel();

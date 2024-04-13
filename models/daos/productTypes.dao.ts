@@ -22,7 +22,7 @@ export class ProductTypesPrismaDao {
             await this.db.productTypes.findMany({
                 where: queryParams ? { ...queryParams } : {},
             });
-        console.log("DAO-TYPE", productTypes);
+
         if (!productTypes) {
             throw new Error("There was a problem querying your data");
         }

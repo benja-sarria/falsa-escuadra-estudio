@@ -18,7 +18,7 @@ export class UsersPrismaDAO {
 
     async getUserRoleLvl(params: QueryParamsInterface) {
         const users = await this.getAdminUsers(params);
-        console.log("[USER]", users);
+
         if (users.length < 1) {
             return {
                 error: false,
@@ -52,7 +52,6 @@ export class UsersPrismaDAO {
             },
         });
 
-        console.log("[USER]", newUser);
         if (!newUser) {
             return {
                 message: "Error saving user",
@@ -65,7 +64,7 @@ export class UsersPrismaDAO {
 
     async getAdminUsers(params?: QueryParamsInterface): Promise<any> {
         const users = await this.db.user.findMany({ ...params });
-        console.log("[USERS]", users);
+
         if (users.length < 1) {
             return {
                 message: "No se encontraron usuarios",

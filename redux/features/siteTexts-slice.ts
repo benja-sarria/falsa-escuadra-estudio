@@ -25,8 +25,6 @@ export const globalLanguage = createSlice({
             state,
             action: PayloadAction<{ lang: string; messages: any }>
         ) => {
-            console.log(state, action);
-
             state.value = { ...action.payload };
         },
     },
