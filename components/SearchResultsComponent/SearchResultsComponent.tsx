@@ -1,7 +1,6 @@
 "use client";
 import styles from "@/components/SearchResultsComponent/SearchResultsComponent.module.scss";
 import { AppDispatch, useAppSelector } from "@/redux/store";
-import { SvgIcon } from "@mui/material";
 import GoldSearch from "@/public/assets/img/layout/goldsearch.svg";
 import { SkeletonPlaceholderComponent } from "../SkeletonPlaceholderComponent/SkeletonPlaceholderComponent";
 import { useDispatch } from "react-redux";
@@ -17,6 +16,7 @@ import { parseResultsText } from "@/utils/search/parseResultsText";
 import { ProjectPrevisualizationComponent } from "../ProjectPrevisualizationComponent/ProjectPrevisualizationComponent";
 import { useRouter } from "next/navigation";
 import { ProductWithIncludeType } from "@/types/projectTypes";
+import { AutoAdjustImgComponent } from "../AutoAdjustImgComponent/AutoAdjustImgComponent";
 
 export const SearchResultsComponent = () => {
     const siteTexts = useAppSelector((state) => state.globalLanguage.value);
@@ -47,12 +47,15 @@ export const SearchResultsComponent = () => {
                     {searchResultsTexts && searchResultsTexts.title}
                 </h4>
                 <div className={styles["input-container"]}>
-                    <SvgIcon
-                        className={styles["gold-search"]}
-                        viewBox={"100 100"}
-                    >
-                        <GoldSearch />
-                    </SvgIcon>
+                    <div className={styles["gold-search"]}>
+                        <AutoAdjustImgComponent
+                            alt="arrow"
+                            givenClassName={styles["icon-inner"]}
+                            calculate="width"
+                            fixedParameter="--icon-min-height"
+                            src={GoldSearch}
+                        />
+                    </div>
                     <input
                         aria-label="search"
                         type="text"

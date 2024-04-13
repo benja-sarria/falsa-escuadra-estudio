@@ -9,7 +9,7 @@ import { HomeVideoSectionComponent } from "@/components/HomeVideoSectionComponen
 import { HomeProductCarouselContainer } from "@/containers/HomeProductCarouselContainer/HomeProductCarouselContainer";
 import { WhiteBoardComponent } from "@/components/WhiteBoardComponent/WhiteBoardComponent";
 import { AboutUsHomeContainer } from "@/containers/AboutUsHomeContainer/AboutUsHomeContainer";
-import { ContactUsSectionComponent } from "@/components/ContactUsSectionComponent/ContactUsSectionComponent";
+import ContactUsSectionComponent from "@/components/ContactUsSectionComponent/ContactUsSectionComponent";
 
 export default function Home() {
     return (

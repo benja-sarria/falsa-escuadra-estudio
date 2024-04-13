@@ -78,7 +78,7 @@ export const AutoAdjustImgComponent = ({
                 quality={quality ? quality : 75}
                 fill
                 ref={image}
-                onLoadingComplete={
+                onLoad={
                     customCallback
                         ? () => {
                               customCallback(

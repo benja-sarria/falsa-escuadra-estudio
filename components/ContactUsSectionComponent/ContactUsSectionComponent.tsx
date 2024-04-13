@@ -4,11 +4,15 @@ import styles from "@/components/ContactUsSectionComponent/ContactUsSectionCompo
 import { SectionTitleComponent } from "../SectionTitleComponent/SectionTitleComponent";
 import { ReusableButtonComponent } from "../ReusableButtonComponent/ReusableButtonComponent";
 import { useAppSelector } from "@/redux/store";
+import { AutoAdjustImgComponent } from "../AutoAdjustImgComponent/AutoAdjustImgComponent";
 
-export const ContactUsSectionComponent = () => {
+const ContactUsSectionComponent = () => {
     const siteTexts = useAppSelector(
         (state) => state.globalLanguage.value.messages
     );
+
+    const globallang = useAppSelector((state) => state.globalLanguage);
+
     const contactUsTexts = siteTexts?.home.contactUsSection;
     return (
         <div className={styles["contact-us-section"]}>
@@ -26,10 +30,12 @@ export const ContactUsSectionComponent = () => {
                         styleVariants={["white-variant", "contact-btn-variant"]}
                         text={`${contactUsTexts?.btnText}`}
                         icon={
-                            <Arrow
-                                style={{
-                                    transform: "scale(.8)",
-                                }}
+                            <AutoAdjustImgComponent
+                                alt="arrow"
+                                givenClassName={styles["icon-inner"]}
+                                calculate="width"
+                                fixedParameter="--icon-min-height"
+                                src={Arrow}
                             />
                         }
                     />
@@ -39,3 +45,5 @@ export const ContactUsSectionComponent = () => {
         </div>
     );
 };
+
+export default ContactUsSectionComponent;

@@ -51,6 +51,12 @@
                     font-weight: 500;
                 }
             }
+            .icon-inner {
+                --icon-min-height: 1rem;
+                position: relative;
+                min-height: var(--icon-min-height);
+                max-height: var(--icon-min-height);
+            }
         }
         .hero-right-column {
             background-image: url(/assets/img/home/contactUs/pattern.webp);
