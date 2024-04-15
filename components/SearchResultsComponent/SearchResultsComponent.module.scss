@@ -49,12 +49,7 @@
             @media (min-width: 768px) {
                 left: 10rem;
             }
-            .icon-inner {
-                --icon-min-height: 5rem;
-                position: relative;
-                min-height: var(--icon-min-height);
-                max-height: var(--icon-min-height);
-            }
+
             .gold-search {
                 position: absolute;
                 left: -5rem;
@@ -64,6 +59,12 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                .icon-inner {
+                    --icon-min-height: 5rem;
+                    position: relative;
+                    min-height: var(--icon-min-height);
+                    max-height: var(--icon-min-height);
+                }
 
                 @media (min-width: 768px) {
                     transform: scale(1);
