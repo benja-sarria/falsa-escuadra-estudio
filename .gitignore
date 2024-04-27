@@ -40,3 +40,5 @@ docker-compose.yml
 *.db
 
 */migrations/*
+
+*.test

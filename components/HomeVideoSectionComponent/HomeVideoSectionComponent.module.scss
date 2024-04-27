@@ -57,8 +57,9 @@
             margin-bottom: 2rem;
             @media (max-width: 768px) {
                 align-items: flex-start;
-                justify-content: space-between;
+                justify-content: center;
                 width: 100%;
+                column-gap: 0.5rem;
             }
         }
     }

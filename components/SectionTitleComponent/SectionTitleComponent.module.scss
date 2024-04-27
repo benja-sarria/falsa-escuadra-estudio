@@ -31,7 +31,9 @@
     max-width: 70%;
     margin: 0;
     @media (max-width: 768px) {
-        font-size: 4rem;
+        font-size: 3.5rem;
+        max-width: 100%;
+
         text-align: center;
     }
 }

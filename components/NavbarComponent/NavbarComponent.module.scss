@@ -12,6 +12,7 @@
         padding: 0.5rem 5rem;
         justify-content: space-around;
     }
+
     .navbar-logo-container {
         display: flex;
         justify-content: flex-start;
@@ -177,8 +178,12 @@
             padding-right: 0.5vw;
 
             filter: invert(1);
-            @media (min-width: 425px) and (max-width: 768px) {
+
+            @media (min-width: 325px) and (max-width: 500px) {
                 left: 40vw;
+            }
+            @media (min-width: 500px) and (max-width: 768px) {
+                left: 41vw;
             }
         }
     }

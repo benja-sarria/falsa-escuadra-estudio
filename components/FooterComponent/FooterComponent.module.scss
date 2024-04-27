@@ -25,8 +25,10 @@
             min-width: 20%;
             @media (max-width: 768px) {
                 min-height: 12rem;
-                min-width: 40%;
+                min-width: 100%;
                 transform: scale(1.35);
+                display: flex;
+                justify-content: center;
             }
         }
         .navbar-navigation-container {
@@ -58,6 +60,9 @@
                 overflow: visible;
                 min-height: 3.5rem;
                 min-width: 5rem;
+                @media (max-width: 768px) {
+                    font-size: 1.75rem;
+                }
                 @media (min-width: 768px) {
                     font-size: 1.15rem;
                 }
@@ -104,6 +109,9 @@
         .social-container {
             display: flex;
             gap: 1rem;
+            @media (max-width: 768px) {
+                padding-top: 2rem;
+            }
             .inner-icon {
                 --icon-min-width: 1.5rem;
                 position: relative;

@@ -3,8 +3,10 @@
     font-size: 1.25rem;
     line-height: 2rem;
     max-width: 15rem;
-    &__label {
+    @media (max-width: 768px) {
+        font-size: 1.1rem;
     }
+
     a {
         text-decoration: none;
         color: var(--falsa-escuadra-white);
