@@ -5,6 +5,7 @@ import { useAppSelector } from "@/redux/store";
 import { SvgIcon } from "@mui/material";
 import { IndicatorComponent } from "../IndicatorComponent/IndicatorComponent";
 import { parseTags } from "@/utils/text/parseTags";
+import { AutoAdjustImgComponent } from "../AutoAdjustImgComponent/AutoAdjustImgComponent";
 
 export const HomeVideoSectionComponent = () => {
     const siteTexts = useAppSelector((state) => state.globalLanguage.value);
@@ -58,10 +59,17 @@ export const HomeVideoSectionComponent = () => {
                 </ReusableButtonContainer>
             </div>
             <div className={styles["right-column"]}>
-                <iframe
+                <AutoAdjustImgComponent
+                    src={`/assets/img/home/working.webp`}
+                    alt={`work in progress`}
+                    givenClassName={styles["product-img-inner-container"]}
+                    calculate="height"
+                    fixedParameter={"--min-width"}
+                />
+                {/*  <iframe
                     className={styles["right-column-video"]}
                     src="https://video.fluq5-1.fna.fbcdn.net/v/t42.1790-2/243038183_292697318996259_9069813821112399010_n.mp4?_nc_cat=103&ccb=1-7&_nc_sid=55d0d3&efg=eyJ2ZW5jb2RlX3RhZyI6InN2ZV9zZCJ9&_nc_ohc=_ozULHiCS1AAX9ws7iK&_nc_rml=0&_nc_ht=video.fluq5-1.fna&oh=00_AfDYst8fnOp5vjqqK4vYa8BmMvJdUKtxccnpzbg-gH1ZKA&oe=65430CF3"
-                />
+                /> */}
             </div>
         </div>
     );

@@ -68,6 +68,15 @@
             display: flex;
             justify-content: center;
         }
+        .product-img-inner-container {
+            @media (max-width: 768px) {
+                --min-width: 90vw;
+            }
+            --min-width: 40vw;
+            position: relative;
+            min-width: var(--min-width);
+            max-width: var(--min-width);
+        }
         .right-column-video {
             z-index: 2;
             min-width: calc(75vw);

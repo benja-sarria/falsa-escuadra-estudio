@@ -35,7 +35,7 @@ export const AboutUsPortraitComponent = () => {
                     calculate="height"
                     fixedParameter="--img-min-width"
                 />
-                <p className={styles["portrait-text"]}>{parsedText}</p>
+                <div className={styles["portrait-text"]}>{parsedText}</div>
             </div>
         </div>
     );

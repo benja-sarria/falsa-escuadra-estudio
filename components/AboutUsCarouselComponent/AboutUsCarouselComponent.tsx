@@ -65,7 +65,7 @@ export const AboutUsCarouselComponent = () => {
                 }} */
                     >
                         <SectionTitleComponent
-                            styleVariants={["white-variant", "m"]}
+                            styleVariants={["white-variant", "m", "center"]}
                             text={link}
                         />
                     </SwiperSlide>
