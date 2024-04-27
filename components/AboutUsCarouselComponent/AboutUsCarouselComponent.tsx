@@ -16,14 +16,14 @@ import { useAppSelector } from "@/redux/store";
 
 export const AboutUsCarouselComponent = () => {
     const [links, setLinks] = useState<string[]>([
-        "<b>Escritorios</b>",
-        "<b>Mesas</b>",
-        "<b>Armarios</b>",
-        "<b>Bibliotecas</b>",
-        "<b>Escritorios</b>",
-        "<b>Mesas</b>",
-        "<b>Armarios</b>",
-        "<b>Bibliotecas</b>",
+        "<b>Escuchamos</b>",
+        "<b>Diseñamos</b>",
+        "<b>Acompañamos</b>",
+        "<b>Co-creamos</b>",
+        "<b>Proyectamos</b>",
+        "<b>Experimentamos</b>",
+        "<b>Instalamos</b>",
+        "<b>Creamos experiencias</b>",
     ]);
     const globalTexts = useAppSelector((state) => state.globalLanguage.value);
     const carouselTexts = globalTexts.messages?.aboutUs;

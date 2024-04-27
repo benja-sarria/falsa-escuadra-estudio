@@ -182,7 +182,11 @@ export const ProductCardComponent = ({
                 )}
             </div>
             <div className={styles["text-contents"]}>
-                <h5>{`${product.title}`}</h5>
+                <h5>{`${
+                    product.title?.length > 21
+                        ? `${product.title.slice(0, 23)}...`
+                        : product.title
+                }`}</h5>
                 <p>{`${product.content
                     .replaceAll("<b>", "")
                     .replaceAll("</b>", "")

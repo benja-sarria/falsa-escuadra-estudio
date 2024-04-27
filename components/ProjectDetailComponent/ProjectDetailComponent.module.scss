@@ -7,6 +7,11 @@
     align-items: center;
     padding: 4rem 20vw;
     row-gap: 3rem;
+
+    @media (max-width: 768px) {
+        row-gap: 1.5rem;
+        padding: 4rem 1rem;
+    }
     .project-detail-title {
         text-align: center;
         font-feature-settings: "clig" off, "liga" off;
@@ -28,10 +33,24 @@
         text-align: center;
         display: flex;
         flex-direction: column;
+        --img-min-width: 90vw;
+        --img-min-height: 50vh;
+        align-items: center;
+
+        @media (min-width: 768px) {
+            --img-min-width: 50vw;
+            --img-min-height: 90vh;
+        }
         b {
             font-size: 1.35rem;
             margin-bottom: 0.5rem;
             margin-top: 2rem;
+        }
+        p {
+            padding-bottom: 2rem;
+        }
+        .rest-photo {
+            padding-top: 3rem;
         }
     }
     .project-detail-images-container {

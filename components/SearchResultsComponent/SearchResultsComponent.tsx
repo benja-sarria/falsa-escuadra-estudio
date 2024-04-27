@@ -1,7 +1,7 @@
 "use client";
 import styles from "@/components/SearchResultsComponent/SearchResultsComponent.module.scss";
 import { AppDispatch, useAppSelector } from "@/redux/store";
-import GoldSearch from "@/public/assets/img/layout/goldsearch.svg";
+
 import { SkeletonPlaceholderComponent } from "../SkeletonPlaceholderComponent/SkeletonPlaceholderComponent";
 import { useDispatch } from "react-redux";
 import { SyntheticEvent, useEffect, useRef } from "react";
@@ -53,7 +53,7 @@ export const SearchResultsComponent = () => {
                             givenClassName={styles["icon-inner"]}
                             calculate="width"
                             fixedParameter="--icon-min-height"
-                            src={GoldSearch}
+                            src={"/assets/img/layout/goldsearch.svg"}
                         />
                     </div>
                     <input

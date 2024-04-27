@@ -10,6 +10,7 @@
     @media (max-width: 768px) {
         --portrait-img-min-width: 100vw;
         --left-column-percentaje: 100%;
+        --portrait-min-height: revert;
         flex-direction: column;
     }
     .left-column {

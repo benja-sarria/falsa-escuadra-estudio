@@ -14,30 +14,110 @@ export const ProjectDetailComponent = ({
 }) => {
     const parsedContent = parseProjectContent(project.content);
 
+    console.log(parsedContent.length);
+
+    const filteredParagraphs = parsedContent.filter(
+        (paragraph) => paragraph.type === "p"
+    );
+
     return (
         <div className={styles["project-detail-container"]}>
             <h1 className={styles["project-detail-title"]}>{project.title}</h1>
-            <p className={styles["project-detail-content"]}>{parsedContent}</p>
-            <div className={styles["project-detail-images-container"]}>
-                {project.photos.map((photo) => {
+            <div className={styles["project-detail-content"]}>
+                {parsedContent.map((paragraph, index) => {
+                    console.log(filteredParagraphs.indexOf(paragraph));
+
+                    const photo =
+                        project.photos[filteredParagraphs.indexOf(paragraph)];
+                    console.log(paragraph.type);
+                    const isParagraph = paragraph.type === "p";
+
                     return (
-                        <AutoAdjustImgComponent
-                            key={photo.src}
-                            alt={photo.alt}
-                            src={`${photo.src}`}
-                            givenClassName={styles["img-inner-container"]}
-                            customCallback={(imgNode: HTMLImageElement) => {
-                                autoFigureItOutMeasureLimit(
-                                    imgNode,
-                                    "--img-min-width",
-                                    "--img-min-height"
-                                );
-                            }}
-                        />
+                        <React.Fragment key={`${Math.random()}-content`}>
+                            {project.photos.length >
+                                filteredParagraphs.length &&
+                            index === parsedContent.length - 1 ? (
+                                project.photos
+                                    .slice(
+                                        filteredParagraphs.length,
+                                        project.photos.length
+                                    )
+                                    .map((photo) => {
+                                        return (
+                                            <div
+                                                key={photo.src}
+                                                className={styles["rest-photo"]}
+                                            >
+                                                <AutoAdjustImgComponent
+                                                    alt={photo.alt}
+                                                    src={`${photo.src}`}
+                                                    givenClassName={
+                                                        styles[
+                                                            "img-inner-container"
+                                                        ]
+                                                    }
+                                                    customCallback={(
+                                                        imgNode: HTMLImageElement
+                                                    ) => {
+                                                        autoFigureItOutMeasureLimit(
+                                                            imgNode,
+                                                            "--img-min-width",
+                                                            "--img-min-height"
+                                                        );
+                                                    }}
+                                                />
+                                            </div>
+                                        );
+                                    })
+                            ) : (
+                                <></>
+                            )}
+                            {paragraph}
+                            {photo && isParagraph ? (
+                                <AutoAdjustImgComponent
+                                    alt={photo.alt}
+                                    src={`${photo.src}`}
+                                    givenClassName={
+                                        styles["img-inner-container"]
+                                    }
+                                    customCallback={(
+                                        imgNode: HTMLImageElement
+                                    ) => {
+                                        autoFigureItOutMeasureLimit(
+                                            imgNode,
+                                            "--img-min-width",
+                                            "--img-min-height"
+                                        );
+                                    }}
+                                />
+                            ) : (
+                                <></>
+                            )}
+                        </React.Fragment>
                     );
                 })}
             </div>
-            <style global>{`
+            {/* <div className={styles["project-detail-images-container"]}>
+                {project.photos.map((photo) => {
+                    return (
+                        <React.Fragment key={photo.src}>
+                            <AutoAdjustImgComponent
+                                alt={photo.alt}
+                                src={`${photo.src}`}
+                                givenClassName={styles["img-inner-container"]}
+                                customCallback={(imgNode: HTMLImageElement) => {
+                                    autoFigureItOutMeasureLimit(
+                                        imgNode,
+                                        "--img-min-width",
+                                        "--img-min-height"
+                                    );
+                                }}
+                            />
+                        </React.Fragment>
+                    );
+                })}
+            </div> */}
+            <style global={`${true}` as unknown as boolean}>{`
                 ::-webkit-scrollbar {
                     width: 8px;
                     background-color:  var(--falsa-escuadra-black);

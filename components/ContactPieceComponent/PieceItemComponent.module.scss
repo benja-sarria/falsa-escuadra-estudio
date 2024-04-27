@@ -5,4 +5,8 @@
     max-width: 15rem;
     &__label {
     }
+    a {
+        text-decoration: none;
+        color: var(--falsa-escuadra-white);
+    }
 }

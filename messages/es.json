@@ -91,7 +91,7 @@
         },
         "videoSection": {
             "textContent": {
-                "text": "<b>Diseñamos y producimos de mobiliario a medida.</b> | Nuestra pasión por crear espacios únicos nos impulsó a dar el paso de emprender. | <b>No creamos muebles, creamos experiencias</b> | brindando un toque único a cada espacio. "
+                "text": "<b>Diseñamos y producimos mobiliario a medida.</b> | Nuestra pasión por crear espacios únicos nos impulsó a dar el paso de emprender. | <b>No creamos muebles, creamos experiencias</b> | brindando un toque único a cada espacio. "
             },
             "indicators": {
                 "projects": {
@@ -310,7 +310,7 @@
     },
     "contactPiece": {
         "tel": {
-            "value": "+54 351 654321",
+            "value": "+54 351 8500739",
             "label": "Llamanos"
         },
         "email": {
@@ -319,7 +319,8 @@
         },
         "address": {
             "value": "Charcas 1931 - B° Pueyrredón, Córdoba",
-            "label": "Dirección"
+            "label": "Dirección",
+            "link": "https://maps.app.goo.gl/wYvTvCQHYkB4vVau7"
         }
     },
     "socialMediaFooter": {

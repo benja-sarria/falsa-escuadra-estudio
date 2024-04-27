@@ -6,7 +6,9 @@
     align-items: center;
     row-gap: 4rem;
     background-color: var(--falsa-escuadra-white);
-
+    @media (max-width: 768px) {
+        padding: 3rem 1rem;
+    }
     .photos-container {
         display: flex;
         flex-direction: column;

@@ -7,13 +7,18 @@ export const parseProjectContent = (content: string) => {
         if (textPiece.includes("<b>")) {
             const boldNode = React.createElement(
                 "b",
-                {},
+                { key: textPiece, id: Math.random() },
                 textPiece.replaceAll("<b>", "").replaceAll("</b>", "")
             );
 
             return boldNode;
         }
-        return textPiece;
+        const regularNode = React.createElement(
+            "p",
+            { key: textPiece, id: Math.random() },
+            textPiece
+        );
+        return regularNode;
     });
 
     return parsedContent;

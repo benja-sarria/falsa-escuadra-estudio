@@ -55,6 +55,11 @@
             padding: 2rem 0rem;
             column-gap: 2rem;
             margin-bottom: 2rem;
+            @media (max-width: 768px) {
+                align-items: flex-start;
+                justify-content: space-between;
+                width: 100%;
+            }
         }
     }
     .right-column {

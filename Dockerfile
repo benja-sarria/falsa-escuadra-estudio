@@ -13,9 +13,9 @@ RUN npm install pm2 -g
 RUN npm run build
 
 #PRODUCCIÓN
-CMD ["npm", "run","start"]
+# CMD ["npm", "run","start"]
 # CMD ["npm", "run", "start-express"]
 #CMD ["pm2-runtime", "ecosystem.config.js"]
 
 #DESARROLLO
-# CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "dev"]
