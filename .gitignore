@@ -42,4 +42,7 @@ docker-compose.yml
 */migrations/*
 
 *.test
-*.prod
+*.prod*
+*.nginx*
+nginx-default-conf.conf
+nginx-default-conf.backup
