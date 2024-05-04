@@ -13,7 +13,15 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
     title: "Contacto | Falsa Escuadra Estudio",
     description: "Diseño y producción de mobiliario.",
-    robots: "noindex",
+    robots: {
+        index: true,
+        follow: true,
+        nocache: true,
+        googleBot: {
+            index: true,
+            follow: true,
+        },
+    },
     openGraph: {
         type: "website",
         url: "https://test.falsaescuadraestudio.com",
