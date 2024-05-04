@@ -109,51 +109,67 @@ export async function validateRecaptcha(token: string) {
 }
 
 export async function submitContactForm(formData: QueryInterface) {
-    const { personalData, query } = formData;
-    const { name, lastName, phone, city } = personalData;
-    const { category, meassures, dimensions, materials, complementaryInfo } =
-        query;
-    const { depth, height, width } = dimensions;
-    const templateData: TemaplateData = {
-        name: `${name} ${lastName}`,
-        phone: phone,
-        location: city,
-        category: category!.name,
-        meassures: meassures,
-        depth,
-        height,
-        width,
-        materials,
-        complementaryInfo,
-    };
-    const template = generateTemplate(templateData);
+    try {
+        const { personalData, query } = formData;
+        const { name, lastName, phone, city } = personalData;
+        const {
+            category,
+            meassures,
+            dimensions,
+            materials,
+            complementaryInfo,
+        } = query;
+        const { depth, height, width } = dimensions;
+        const templateData: TemaplateData = {
+            name: `${name} ${lastName}`,
+            phone: phone,
+            location: city,
+            category: category!.name,
+            meassures: meassures,
+            depth,
+            height,
+            width,
+            materials,
+            complementaryInfo,
+        };
+        const template = generateTemplate(templateData);
 
-    const contactServices = new ContactServices({ service: "gmail" });
+        console.log(template);
 
-    const mailData: Options = {
-        from: `${process.env.MAIL_SENDER_ADDRESS}`,
-        to: `${process.env.MAIL_ACCOUNT}`,
-        subject: `Nuevo contacto recibido! - ${templateData.name}`,
-        html: template,
-        attachments: [
-            {
-                filename: "logo.png",
-                path: `${path.resolve(
-                    path.join(process.cwd(), "templates/Isologotipo-white.png")
-                )}`,
-                cid: "falsaescuadralogo", //same cid value as in the html img src
-            },
-            {
-                filename: "footer.png",
-                path: `${path.resolve(
-                    path.join(process.cwd(), "templates/mail-img.png")
-                )}`,
-                cid: "falsaescuadrafooter", //same cid value as in the html img src
-            },
-        ],
-    };
+        const contactServices = new ContactServices({ service: "gmail" });
+        console.log(contactServices);
 
-    const result = await contactServices.sendEmail(mailData);
+        const mailData: Options = {
+            from: `${process.env.MAIL_SENDER_ADDRESS}`,
+            to: `${process.env.MAIL_ACCOUNT}`,
+            subject: `Nuevo contacto recibido! - ${templateData.name}`,
+            html: template,
+            attachments: [
+                {
+                    filename: "logo.png",
+                    path: `${path.resolve(
+                        path.join(
+                            process.cwd(),
+                            "templates/Isologotipo-white.png"
+                        )
+                    )}`,
+                    cid: "falsaescuadralogo", //same cid value as in the html img src
+                },
+                {
+                    filename: "footer.png",
+                    path: `${path.resolve(
+                        path.join(process.cwd(), "templates/mail-img.png")
+                    )}`,
+                    cid: "falsaescuadrafooter", //same cid value as in the html img src
+                },
+            ],
+        };
 
-    return result;
+        const result = await contactServices.sendEmail(mailData);
+
+        return result;
+    } catch (error) {
+        console.log(error);
+        return { success: false, error: true };
+    }
 }
