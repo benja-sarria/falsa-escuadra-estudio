@@ -42,3 +42,4 @@ docker-compose.yml
 */migrations/*
 
 *.test
+*.prod
