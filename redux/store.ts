@@ -1,3 +1,6 @@
+import contactFormState from "./features/website/contact-form-state-slice";
+import activeProjectsType from "./features/website/active-project-types-slice";
+import search from "./features/website/searchbox-slice";
 import openedProductValue from "./features/admin-opened-product-slice";
 import adminDetailOpened from "./features/admin-detail-open";
 import globalLanguage from "./features/siteTexts-slice";
@@ -10,11 +13,14 @@ import { TypedUseSelectorHook, useSelector } from "react-redux";
 export const store = configureStore({
     reducer: {
         activeSection,
+        activeProjectsType,
         productsValue,
         loading,
         globalLanguage,
         adminDetailOpened,
         openedProductValue,
+        search,
+        contactFormState,
     },
 });
 

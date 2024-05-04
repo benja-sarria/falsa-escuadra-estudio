@@ -1,4 +1,4 @@
-FROM node:18.16-buster-slim
+FROM node:20.12-buster-slim
 
 WORKDIR /tmp
 RUN apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade && apt-get install nano && apt-get install wget -y
@@ -13,9 +13,9 @@ RUN npm install pm2 -g
 RUN npm run build
 
 #PRODUCCIÓN
-# CMD ["npm", "run","start"]
+CMD ["npm", "run","start"]
 # CMD ["npm", "run", "start-express"]
 #CMD ["pm2-runtime", "ecosystem.config.js"]
 
 #DESARROLLO
-CMD ["npm", "run", "dev"]
+# CMD ["npm", "run", "dev"]

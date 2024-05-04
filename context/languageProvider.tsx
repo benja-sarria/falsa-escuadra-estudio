@@ -20,8 +20,6 @@ export const LanguageProvider = ({
     useEffect(() => {
         (async () => {
             const texts = await import(`@/messages/${lang ? lang : "es"}.json`);
-            console.log("TEXTS", texts.default);
-            console.log("SETTING", { lang: lang, messages: texts.default });
 
             dispatch(setLanguage({ lang: lang, messages: texts.default }));
         })();

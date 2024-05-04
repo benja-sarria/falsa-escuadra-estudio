@@ -16,9 +16,13 @@ export class ProductTypeServices {
             const productTypes = await this.productTypeDao.getProductTypes(
                 queryParams
             );
-            return new StandardSuccessResponse({ data: productTypes });
+            const standardResponse = new StandardSuccessResponse({
+                data: productTypes,
+            });
+            return { ...standardResponse };
         } catch (error: any) {
-            return new StandardAPIError(error.message);
+            const standardError = new StandardAPIError(error.message);
+            return { ...standardError };
         }
     }
 }

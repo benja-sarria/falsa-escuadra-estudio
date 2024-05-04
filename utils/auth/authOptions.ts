@@ -40,22 +40,14 @@ export const authOptions: AuthOptions = {
             profile?: (Profile & any) | undefined;
         }) {
             if (account?.provider === "google") {
-                console.log(process.env);
-                console.log("[CALLBACK] => ");
-                console.log(profile);
-                console.log(account);
-                console.log(process.env.GOOGLE_AUTHORIZED_ACCOUNTS);
                 const authorizedAccounts = process.env
                     .GOOGLE_AUTHORIZED_ACCOUNTS
                     ? eval(process.env.GOOGLE_AUTHORIZED_ACCOUNTS)
                     : [];
 
                 const checker = authorizedAccounts.some((account: any) => {
-                    console.log(profile?.email, account);
                     return profile?.email === account;
                 });
-
-                console.log("[CHECKER] => ", checker);
 
                 return checker;
             }
@@ -75,13 +67,11 @@ export const authOptions: AuthOptions = {
             user: any;
         }) {
             // Send properties to the client, like an access_token and user id from a provider.
-            console.log("[SESSION-SESSION]", session);
 
             const userServices = new UserServices(new UsersPrismaDAO());
             const roleLvl = await userServices.getUserRoleLvlService(
                 session.user
             );
-            console.log("SESSION-SETTING", roleLvl);
 
             return {
                 ...session,

@@ -18,6 +18,7 @@ import { useEffect, useRef, useState } from "react";
 import { ProductReceivedType } from "@/types/projectTypes";
 import { ProductPhotos } from "@prisma/client";
 import { SectionTitleComponent } from "../SectionTitleComponent/SectionTitleComponent";
+import { usePathname, useRouter } from "next/navigation";
 
 export const HomeProductCarouselComponent = ({
     products,
@@ -28,19 +29,20 @@ export const HomeProductCarouselComponent = ({
     const [mainSwiper, setMainSwiper] = useState<any>(undefined);
 
     const swiperRef = useRef(null);
+    const router = useRouter();
 
     const carouselSection =
         siteTexts &&
         siteTexts.messages &&
         siteTexts.messages.home.carouselSection;
+    const prodDetailSection =
+        siteTexts && siteTexts.messages && siteTexts.messages.projectDetail;
+
+    const pathname = usePathname();
 
     useEffect(() => {
-        console.log("STATE-SWIPER", mainSwiper);
-
         const enter = (evt: Event) => {
             if (mainSwiper) {
-                console.log("[stopping]", mainSwiper, mainSwiper.translate);
-
                 mainSwiper.autoplay.stop();
                 /*   const target = evt.target as HTMLElement;
                 mainSwiper.params.autoplay.delay = 0;
@@ -49,11 +51,6 @@ export const HomeProductCarouselComponent = ({
         };
         const leave = (evt: Event) => {
             if (mainSwiper) {
-                console.log(
-                    "[stopping]",
-                    mainSwiper,
-                    mainSwiper.autoplay.start
-                );
                 mainSwiper.autoplay.start();
                 /*       const target = evt.target as HTMLElement;
                 mainSwiper.params.autoplay.delay = 5000; // Back to default
@@ -86,14 +83,26 @@ export const HomeProductCarouselComponent = ({
         <div className={styles["home-carousel-container"]}>
             <div className={styles["home-carousel-title-container"]}>
                 <SectionTitleComponent
-                    text={`${carouselSection?.title?.text}`}
-                    styleVariants={[]}
+                    text={
+                        pathname.includes("/projects")
+                            ? `${prodDetailSection?.carouselTitle.text}`
+                            : `${carouselSection?.title?.text}`
+                    }
+                    styleVariants={
+                        pathname.includes("/projects") ? ["white-variant"] : []
+                    }
                 />
             </div>
             <div className={styles["home-carousel-carousel-container"]}>
                 <Swiper
                     spaceBetween={0}
-                    slidesPerView={4}
+                    slidesPerView={
+                        typeof window !== "undefined"
+                            ? window.screen.availWidth < 768
+                                ? 1
+                                : 4
+                            : 4
+                    }
                     //@ts-ignore
                     loopaddblankslides={"true"}
                     onSwiper={setMainSwiper}
@@ -112,6 +121,10 @@ export const HomeProductCarouselComponent = ({
                         products.length > 0 &&
                         products.map((swipe, index: number) => {
                             const baseOne = index + 1;
+                            const parsedContent = swipe.content
+                                .replaceAll("<b>", "")
+                                .replaceAll("</b>", "")
+                                .replaceAll("|", "");
                             const portrait = swipe.photos.find(
                                 (photo: ProductPhotos) => photo.isPortrait
                             );
@@ -120,6 +133,11 @@ export const HomeProductCarouselComponent = ({
                                     <SwiperSlide
                                         key={swipe.id}
                                         className={`${styles["taller-slide"]} ${styles["swiper-slide"]}`}
+                                        onClick={() => {
+                                            router.push(
+                                                `/projects/${swipe.productSlug}`
+                                            );
+                                        }}
                                     >
                                         <div className={styles["img-outer"]}>
                                             <AutoAdjustImgComponent
@@ -140,14 +158,21 @@ export const HomeProductCarouselComponent = ({
                                                 styles["card-title-container"]
                                             }
                                         >
-                                            <h5>{swipe.title}</h5>
+                                            <h5>
+                                                {swipe.title.length > 23
+                                                    ? `${swipe.title.slice(
+                                                          0,
+                                                          23
+                                                      )}...`
+                                                    : `${swipe.title}`}
+                                            </h5>
                                             <p>
                                                 {swipe.content.length > 50
-                                                    ? `${swipe.content.slice(
+                                                    ? `${parsedContent.slice(
                                                           0,
                                                           50
                                                       )}...`
-                                                    : `${swipe.content}`}
+                                                    : `${parsedContent}`}
                                             </p>
                                         </div>
                                     </SwiperSlide>
@@ -157,6 +182,11 @@ export const HomeProductCarouselComponent = ({
                                     <SwiperSlide
                                         className={`${styles["wider-slide"]} ${styles["swiper-slide"]}`}
                                         key={swipe.id}
+                                        onClick={() => {
+                                            router.push(
+                                                `/projects/${swipe.productSlug}`
+                                            );
+                                        }}
                                     >
                                         <div className={styles["img-outer"]}>
                                             <AutoAdjustImgComponent
@@ -180,11 +210,11 @@ export const HomeProductCarouselComponent = ({
                                             <h5>{swipe.title}</h5>
                                             <p>
                                                 {swipe.content.length > 50
-                                                    ? `${swipe.content.slice(
+                                                    ? `${parsedContent.slice(
                                                           0,
                                                           50
                                                       )}...`
-                                                    : `${swipe.content}`}
+                                                    : `${parsedContent}`}
                                             </p>
                                         </div>
                                     </SwiperSlide>
@@ -194,6 +224,11 @@ export const HomeProductCarouselComponent = ({
                                 <SwiperSlide
                                     className={`${styles["squarer-slide"]} ${styles["swiper-slide"]}`}
                                     key={swipe.id}
+                                    onClick={() => {
+                                        router.push(
+                                            `/projects/${swipe.productSlug}`
+                                        );
+                                    }}
                                 >
                                     <div className={styles["img-outer"]}>
                                         <AutoAdjustImgComponent
@@ -225,11 +260,11 @@ export const HomeProductCarouselComponent = ({
                                         <h5>{swipe.title}</h5>
                                         <p>
                                             {swipe.content.length > 50
-                                                ? `${swipe.content.slice(
+                                                ? `${parsedContent.slice(
                                                       0,
                                                       50
                                                   )}...`
-                                                : `${swipe.content}`}
+                                                : `${parsedContent}`}
                                         </p>
                                     </div>
                                 </SwiperSlide>

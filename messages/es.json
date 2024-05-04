@@ -42,10 +42,15 @@
     },
     "layout": {
         "navbar": {
-            "home": { "text": "Inicio", "link": "#" },
-            "projects": { "text": "Proyectos", "link": "#" },
-            "about-us": { "text": "Nosotros", "link": "#" },
-            "contact": { "text": "Contacto", "link": "#" }
+            "home": { "text": "Inicio", "link": "/" },
+            "projects": { "text": "Proyectos", "link": "/projects" },
+            "about-us": { "text": "Nosotros", "link": "/about-us" },
+            "contact": { "text": "Contacto", "link": "/contact" }
+        },
+        "search": {
+            "results": {
+                "viewProjectBtn": "Ver proyecto"
+            }
         }
     },
     "home": {
@@ -86,7 +91,7 @@
         },
         "videoSection": {
             "textContent": {
-                "text": "<b>Introducción breve contando quienes somos y qué hacemos.</b> | Se puede mostrar en números los proyectos finalizados y todas las | <b>ciudades a las que se ha enviado.</b>"
+                "text": "<b>Diseñamos y producimos mobiliario a medida.</b> | Nuestra pasión por crear espacios únicos nos impulsó a dar el paso de emprender. | <b>No creamos muebles, creamos experiencias</b> | brindando un toque único a cada espacio. "
             },
             "indicators": {
                 "projects": {
@@ -94,17 +99,21 @@
                     "subtitle": "Proyectos Finalizados"
                 },
                 "designs": {
-                    "number": "300",
+                    "number": "150",
                     "subtitle": "Diseños únicos"
                 },
                 "cities": {
-                    "number": "50",
+                    "number": "7",
                     "subtitle": "Ciudades"
+                },
+                "countries": {
+                    "number": "2",
+                    "subtitle": "Paises"
                 }
             },
             "button": {
                 "text": "Conocenos",
-                "link": "#"
+                "link": "/about-us"
             }
         },
         "carouselSection": {
@@ -176,6 +185,156 @@
             "sectionPreTitle": "Diseñamos especialmente para vos.",
             "sectionTitle": "<b>Charlemos</b>| sobre tu | <b>idea</b>",
             "btnText": "Contacto"
+        },
+        "searchResults": {
+            "title": "¿Qué estas buscando?"
+        }
+    },
+    "projects": {
+        "portrait": {
+            "photo": {
+                "src": "/assets/img/site/projects/heading.webp",
+                "alt": "portada proyectos"
+            },
+            "texts": {
+                "title": "Conocé nuestros proyectos",
+                "description": "Cada proyecto es una historia única. Desde espacios minimalistas hasta diseños extravagantes, cada mueble a medida cuenta una historia de creatividad y funcionalidad."
+            }
+        },
+        "selector": {
+            "custom": {
+                "text": "Encargos"
+            },
+            "own": {
+                "text": "Creaciones"
+            }
+        }
+    },
+    "projectDetail": {
+        "carouselTitle": {
+            "text": "Ver más | <b>proyectos</b>"
+        }
+    },
+    "contact": {
+        "seal": {
+            "img": {
+                "src": "/assets/img/contact/contact-seal.webp"
+            },
+            "text": {
+                "src": "/assets/img/contact/texts.webp"
+            }
+        },
+        "pageTitle": {
+            "text": "¡Charlemos sobre tu idea!"
+        },
+        "pageSubtitle": {
+            "text": "Te queremos ayudar a convertir tu idea en realidad. Contestá las siguientes preguntas y nos pondremos en contacto con vos."
+        }
+    },
+    "aboutUs": {
+        "pageTitle": {
+            "text": "<b>Nosotros</b>"
+        },
+        "images": {
+            "left": {
+                "src": "/assets/img/about-us/about-us-1.webp",
+                "alt": "equipo de falsa escuadra"
+            },
+            "right": {
+                "src": "/assets/img/about-us/about-us-2.webp",
+                "alt": "equipo de falsa escuadra"
+            }
+        },
+        "portraitText": {
+            "text": "Falsa Escuadra Estudio nació del coraje y la determinación de dos jóvenes emprendedores que se negaron a conformarse con lo convencional. Con valentía, decidieron desafiar los límites y dar forma a sus ideas, apostando por un camino lleno de desafíos y oportunidades, haciendo realidad su sueño: crear un espacio donde la creatividad y el compromiso se fusionan para dar vida a proyectos únicos y significativos.</br> En nuestro estudio, creemos en la importancia de ponerle identidad a cada proyecto. Nos apasiona trabajar codo a codo con nuestros clientes para entender sus necesidades, sus sueños y sus objetivos. Nos comprometemos a darle forma y color a esas ideas, convirtiéndolas en realidades palpables y sorprendentes.    </br>        El trabajo en equipo es el corazón de nuestra filosofía. Creemos en la fuerza y la magia que surge cuando personas con distintas habilidades y perspectivas se unen con un propósito común. En Falsa Escuadra Estudio, cada miembro de nuestro equipo aporta su talento único y su pasión, trabajando en armonía para alcanzar los objetivos que nos proponemos.   </br>         En resumen, en Falsa Escuadra Estudio no solo creamos proyectos, sino que construimos historias. Historias que reflejan el coraje de emprender, la magia de la colaboración y la belleza de ponerle identidad a cada idea."
+        },
+        "carouselTitle": {
+            "text": "¿Qué hacemos?"
+        },
+        "infoSection": {
+            "title": "Nuestros valores",
+            "heroText": "Nuestros valores son el cimiento sobre el cual construimos cada proyecto y establecemos relaciones significativas con nuestros clientes y colaboradores.          ",
+            "cardStaticTitle": "Nuestro valor",
+            "cards": {
+                "creativity": {
+                    "title": "Creatividad",
+                    "content": "La creatividad es el motor que impulsa nuestra labor. Creemos en la capacidad de pensar de manera innovadora y en encontrar soluciones originales a los desafíos que enfrentamos. La creatividad nos permite explorar nuevas ideas, romper con lo convencional y crear experiencias memorables para nuestros clientes."
+                },
+                "commitment": {
+                    "title": "Compromiso",
+                    "content": "Estamos comprometidos con la excelencia en todo lo que hacemos. Nos esforzamos por superar las expectativas de nuestros clientes y por entregar resultados de calidad que reflejen nuestro compromiso con la perfección y el profesionalismo. Nuestro compromiso se traduce en dedicación, responsabilidad y atención al detalle en cada etapa de nuestros proyectos."
+                },
+                "collaboration": {
+                    "title": "Colaboración",
+                    "content": "Creemos en el poder de trabajar juntos para alcanzar metas comunes. La colaboración es fundamental en nuestro proceso creativo y en la relación con nuestros clientes. Valoramos la diversidad de opiniones y experiencias, y fomentamos un ambiente de trabajo inclusivo donde cada miembro del equipo se sienta valorado y escuchado."
+                },
+                "integrity": {
+                    "title": "Integridad",
+                    "content": "La integridad es la base de nuestras relaciones tanto internas como externas. Actuamos con honestidad, transparencia y ética en todas nuestras interacciones. Nos comprometemos a cumplir con nuestros compromisos y a mantener la confianza de nuestros clientes, colaboradores y comunidad en general."
+                },
+                "innovation": {
+                    "title": "Innovación",
+                    "content": "Abrazamos el cambio y buscamos constantemente nuevas formas de mejorar y evolucionar. La innovación está en nuestro ADN y nos impulsa a explorar nuevas tecnologías, tendencias y metodologías para ofrecer soluciones creativas y vanguardistas a nuestros clientes."
+                },
+                "pasion": {
+                    "title": "Pasión",
+                    "content": "La pasión es el combustible que alimenta nuestra dedicación y compromiso con cada proyecto. Nos apasiona lo que hacemos y nos esforzamos por transmitir esa pasión en cada interacción y en cada resultado que entregamos. Creemos que la pasión es contagiosa y que inspira a otros a alcanzar sus sueños y aspiraciones."
+                }
+            }
+        },
+        "footerHero": {
+            "src": "/assets/img/about-us/banner.webp",
+            "alt": "collage picture",
+            "preTitle": "Nos gustaría conocerte y que",
+            "title": "Charlemos sobre tu | <b>idea</b>",
+            "button": {
+                "text": "Contacto",
+                "link": "/contact"
+            }
+        }
+    },
+    "contactForm": {
+        "name": {
+            "label": "¿Cómo te llamas?"
+        },
+        "phone": {
+            "label": "¿Cuál es tu teléfono?"
+        },
+        "city": { "label": "¿Dónde vivís?" },
+        "category": { "label": "¿En qué te podemos ayudar?" },
+        "dimensions": { "label": "¿Cuáles son las dimensiones de tu diseño?" },
+        "complementaryInfo": {
+            "label": "¿Quieres adjuntar fotos o links para describir tu idea?"
+        },
+        "materials": { "label": "¿Qué materiales te gustaría usar?" }
+    },
+    "contactPiece": {
+        "tel": {
+            "value": "+54 351 8500739",
+            "label": "Llamanos"
+        },
+        "email": {
+            "value": "contacto@falsaescuadraestudio.com",
+            "label": "E-mail"
+        },
+        "address": {
+            "value": "Charcas 1931 - B° Pueyrredón, Córdoba",
+            "label": "Dirección",
+            "link": "https://maps.app.goo.gl/wYvTvCQHYkB4vVau7"
+        }
+    },
+    "socialMediaFooter": {
+        "instagram": {
+            "icon": "/assets/img/icons/instagram.png",
+            "link": "https://www.instagram.com/falsaescuadra.estudio"
+        },
+        "whatsapp": {
+            "icon": "/assets/img/icons/wapp.png",
+            "link": "https://wa.me/5493518500739"
+        },
+        "linkedin": {
+            "icon": "/assets/img/icons/Linkedin.png",
+            "link": "https://www.linkedin.com/company/falsaescuadra-estudio"
         }
     }
 }

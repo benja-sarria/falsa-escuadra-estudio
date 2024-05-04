@@ -19,13 +19,17 @@
     --falsa-escuadra-green: #458374;
     --falsa-escuadra-green-mid: #8cc0b4;
     --falsa-escuadra-green-light: #c9dad3;
+    --falsa-escuadra-grey-dark: #282828;
     --falsa-escuadra-grey: #353535;
     --falsa-escuadra-grey-alt: #4c4b4b;
+    --falsa-escuadra-grey-mid-250: #89898959;
+    --falsa-escuadra-grey-mid-500: #8989898b;
     --falsa-escuadra-grey-mid: #898989;
     --falsa-escuadra-grey-light: #b9b9b9;
     --falsa-escuadra-grey-lighter: #ededed;
     --falsa-escuadra-brown: #49332a;
     --falsa-escuadra-error: rgb(230, 0, 0);
+    --falsa-escuadra-success: #27cba2;
 
     --foreground-rgb: 0, 0, 0;
     --background-start-rgb: 214, 219, 220;

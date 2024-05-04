@@ -63,8 +63,6 @@ export const ProcessGridComponent = () => {
                                 className={styles["card-container"]}
                                 key={stageKey}
                                 onMouseEnter={(e) => {
-                                    console.log("ENTRÉ");
-
                                     handleCardMouseUp(e, index + 1);
                                 }}
                             >

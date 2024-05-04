@@ -9,8 +9,6 @@ export const saveToWebp = async (
     folderPath: string
 ) => {
     try {
-        console.log("[IMG]", fileSrc);
-
         const buffer = Buffer.from(fileSrc.data, "base64");
         const filenameEnding = `${index}.${Date.now()}.${"webp"}`;
 
@@ -44,7 +42,7 @@ export const removePriorImg = (folderPath: string, identifier: string) => {
     const foundFile = files.find((file: string) => {
         return file.split(".")[0] === identifier;
     });
-    console.log("[FILES]", files, foundFile, folderPath);
+
     if (foundFile) {
         fs.unlinkSync(`${folderPath}/${foundFile}`);
     }

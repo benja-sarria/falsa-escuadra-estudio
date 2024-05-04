@@ -8,7 +8,6 @@ export const ProductDetailContainer = async () => {
         new ProductTypesPrismaDao()
     );
     const productTypes = await productTypesServices.getProductTypesService({});
-    console.log("[TYPES]", productTypes);
 
     return (
         <ProductDetailComponent

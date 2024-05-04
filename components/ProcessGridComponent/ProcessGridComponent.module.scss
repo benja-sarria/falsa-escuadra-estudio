@@ -5,6 +5,9 @@
     min-width: 100%;
     max-width: 100%;
     overflow: hidden;
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
     .card-container {
         position: relative;
         --card-min-height: 20rem;
@@ -14,6 +17,10 @@
         min-height: var(--card-min-height);
         display: flex;
         align-items: center;
+        @media (max-width: 768px) {
+            --card-min-height: 40vh;
+            --img-min-width: 40vh;
+        }
         justify-content: center;
         &:nth-child(1),
         &:nth-child(4),
@@ -58,6 +65,18 @@
                 position: relative;
                 min-width: var(--img-min-width);
                 max-width: var(--img-min-width);
+            }
+        }
+        @media (max-width: 768px) {
+            div:is([class*="stage-card-component"]) {
+                border-left: var(--card-default-border);
+                border-right: var(--card-default-border);
+                border-bottom: var(--card-default-border);
+            }
+            &:nth-child(6) {
+                div:is([class*="stage-card-component"]) {
+                    border-bottom: none;
+                }
             }
         }
     }

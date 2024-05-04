@@ -1,0 +1,13 @@
+.carousel-section {
+    background-color: var(--falsa-escuadra-blue);
+    .title-section {
+        min-width: 100vw;
+        display: flex;
+        justify-content: center;
+    }
+    .about-us-carousel {
+        div:is([class*="swiper-wrapper"]) {
+            transition-timing-function: linear !important;
+        }
+    }
+}

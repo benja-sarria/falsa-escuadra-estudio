@@ -1,0 +1,24 @@
+.container {
+    --banner-min-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem 0rem;
+    .banner-img {
+        position: relative;
+        min-width: var(--banner-min-width);
+        max-width: var(--banner-min-width);
+    }
+    .title-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .pre-title {
+            color: #898989;
+            text-align: center;
+            font-family: Montserrat;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+    }
+}

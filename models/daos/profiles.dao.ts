@@ -17,7 +17,7 @@ export class ProfilesPrismaDao {
                 where: queryParams ? { ...queryParams } : {},
                 include: { user: { select: { name: true } } },
             });
-            console.log("DAO-PROFILES", profiles);
+
             if (!profiles) {
                 throw new Error("There was a problem querying your data");
             }

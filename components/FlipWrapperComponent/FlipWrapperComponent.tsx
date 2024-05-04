@@ -57,7 +57,6 @@ export function FlipWrapperComponent(props: any): ReactNode {
     useEffect(() => {
         dx.set(-rotateXaxis);
         dy.set(rotateYaxis);
-        console.log("CHILDREN", props.children[0]);
     }, [rotateXaxis, rotateYaxis]);
 
     return (
@@ -114,7 +113,6 @@ export function FlipWrapperComponent(props: any): ReactNode {
                             {props.children &&
                                 props.children.length > 0 &&
                                 props.children.filter((child: ReactNode) => {
-                                    console.log("child", child);
                                     return (
                                         child &&
                                         (child as ReactElement).key === "front"

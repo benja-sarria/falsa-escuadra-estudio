@@ -1,3 +1,4 @@
+"su";
 import styles from "@/components/AboutUsHomeComponent/AboutUsHomeComponent.module.scss";
 import { FlipWrapperComponent } from "../FlipWrapperComponent/FlipWrapperComponent";
 

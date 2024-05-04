@@ -10,7 +10,6 @@ export function getLocale(data: any, type: "req" | "headers") {
             : { "accept-language": data().get("accept-language") };
     let languages = new Negotiator({ headers }).languages();
     let defaultLocale = "es";
-    console.log("LOCALES", match(languages, acceptedLocales, defaultLocale));
 
     return match(languages, acceptedLocales, defaultLocale); // -> 'en-US'
 }

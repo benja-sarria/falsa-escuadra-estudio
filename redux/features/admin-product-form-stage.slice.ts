@@ -15,8 +15,6 @@ export const formStage = createSlice({
             return initialFormStage;
         },
         setFormStage: (state, action: PayloadAction<number>) => {
-            console.log(state, action);
-
             state.value = action.payload;
         },
     },

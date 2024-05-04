@@ -1,5 +1,9 @@
 .outer-container {
     padding: 0.2rem;
+    @media (max-width: 768px) {
+        position: absolute;
+        max-width: 11rem;
+    }
     .component-container {
         --logo-min-width: 3.5rem;
         --logo-falsa-width: 3.5rem;
@@ -49,4 +53,8 @@
 
 .light {
     filter: invert(1);
+}
+
+.mid-size {
+    transform: scale(1.1);
 }

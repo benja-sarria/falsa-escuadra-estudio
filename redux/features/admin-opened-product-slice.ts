@@ -48,7 +48,6 @@ export const openedProductValue = createSlice({
                 update?: PossibleFormValuesType;
             }>
         ) => {
-            console.log(state, action);
             if (!state.value) {
                 state.value = {};
             }

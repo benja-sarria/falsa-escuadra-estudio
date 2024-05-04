@@ -1,6 +1,10 @@
 @import "/app/[lang]/mixins";
 
 .reusable-btn-base {
+    --border-transition: border 400ms ease-out;
+    --transform-transition: transform 400ms ease-out;
+    --padding-transition: padding 300ms 200ms ease-out;
+    --color-transition: color 400ms ease-out;
     display: inline-flex;
     padding: 0.8rem 2rem;
     align-items: center;
@@ -10,8 +14,8 @@
     font-family: "Montserrat";
     font-weight: 600;
     font-size: 1.1rem;
-    transition: transform 400ms ease-out, padding 300ms 200ms ease-out,
-        color 400ms ease-out, border 400ms ease-out;
+    transition: var(--transform-transition), var(--padding-transition),
+        var(--color-transition), var(--border-transition);
     &:hover {
         padding: 0.8rem 2.3rem;
         transform: scale(1.1);
@@ -27,9 +31,27 @@
     color: var(--falsa-escuadra-black);
 }
 
+.green-variant {
+    background-color: var(--falsa-escuadra-green);
+    color: var(--falsa-escuadra-white);
+    border: none;
+}
+
 .outlined {
     border: 2px solid var(--Black, #171717);
     background-color: transparent;
+}
+.invisible {
+    border: none;
+    background-color: transparent;
+    padding: 0rem;
+    &:hover {
+        padding: 0rem;
+        transform: scale(1);
+    }
+}
+.hamburguer-menu {
+    opacity: 1;
 }
 
 .light {
@@ -124,7 +146,92 @@ div:is([class*="log-in-btn-container"]):has(.glowing-btn) {
 .contact-btn-variant {
     border: none;
     padding: 1rem 1.5rem;
+    @media (max-width: 768px) {
+        align-self: center;
+        padding: 1.2rem 1.75rem;
+        font-size: 1.3rem;
+    }
     &:hover {
         padding: 1rem 1.7rem;
+    }
+}
+
+.search-project {
+    max-width: 12rem;
+    border-radius: 0.5rem;
+    align-self: flex-end;
+    background-color: transparent;
+    border: 2px solid var(--falsa-escuadra-gold);
+    color: var(--falsa-escuadra-gold);
+    pointer-events: all;
+    &:hover {
+        background-color: var(--falsa-escuadra-gold);
+        color: var(--falsa-escuadra-white);
+        padding: 0.8rem 2rem;
+        transform: scale(1);
+    }
+}
+
+.contact-form-component__next-button {
+    padding: 0.75rem 1.5rem;
+    min-width: 5rem;
+    max-width: 5rem;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 15%;
+    bottom: 18%;
+    @media (max-width: 768px) {
+        /*  right: 33%;
+        bottom: -2rem; */
+        position: revert;
+        right: revert;
+        bottom: revert;
+    }
+    &:hover {
+        padding: 0.75rem 1.5rem;
+        transform: scale(1.15);
+    }
+}
+
+.social-media {
+    --transform-transition: transform 400ms ease-out;
+    --padding-transition: padding 300ms 50ms ease-out;
+
+    min-width: 3.5rem;
+    max-width: 3.5rem;
+    min-height: 3.5rem;
+    max-height: 3.5rem;
+    border-radius: 10rem;
+    padding: 0rem;
+    background-color: transparent;
+    border: 2px solid var(--falsa-escuadra-grey);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.select-input-component__option-button {
+    --border-transition: border 200ms ease-out;
+    --transform-transition: transform 200ms ease-out;
+    font-size: 0.95rem;
+    padding: 0.5rem 1.5rem;
+    background-color: transparent;
+    border: 2px solid var(--falsa-escuadra-grey-mid-500);
+    color: var(--falsa-escuadra-white);
+    max-height: 2.5rem;
+    min-height: 2.5rem;
+    @media (max-width: 768px) {
+        max-height: 3.5rem;
+    }
+    &:hover {
+        padding: 0.5rem 1.5rem;
+        transform: scale(1.05);
+    }
+
+    &--active {
+        border: 3px solid var(--falsa-escuadra-gold);
     }
 }

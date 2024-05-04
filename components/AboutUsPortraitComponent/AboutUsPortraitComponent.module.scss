@@ -1,0 +1,77 @@
+.portrait-container {
+    --section-height: 100vh;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    background-image: linear-gradient(
+        to bottom,
+        transparent 0% 50%,
+        var(--falsa-escuadra-blue) 50% 100%
+    );
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+    .portrait-background-rectangle {
+        position: absolute;
+        top: -6rem;
+        left: 0;
+        min-height: calc(var(--section-height) * 0.75);
+        min-width: 23vw;
+        background-color: var(--falsa-escuadra-gold-light);
+    }
+    .left-column {
+        padding: 4rem 6rem;
+        display: flex;
+        flex-direction: column;
+        gap: 6rem 0;
+        width: 30%;
+        @media (max-width: 768px) {
+            padding: 4rem 2rem;
+            align-items: center;
+            width: 100%;
+            gap: 2rem 0;
+        }
+        .left-img-inner {
+            --img-min-width: 27vw;
+            position: relative;
+            min-width: var(--img-min-width);
+            max-width: var(--img-min-width);
+            @media (max-width: 768px) {
+                display: none;
+            }
+        }
+    }
+    .right-column {
+        width: 80%;
+        padding: 2rem 4rem 2rem 4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem 0;
+        --img-min-width: 45vw;
+        background-color: var(--falsa-escuadra-grey-lighter);
+        @media (max-width: 768px) {
+            --img-min-width: 85vw;
+            position: relative;
+            width: 100%;
+            padding: 2rem 1rem;
+        }
+        .right-img-inner {
+            position: relative;
+            min-width: var(--img-min-width);
+            max-width: var(--img-min-width);
+        }
+        .portrait-text {
+            max-width: var(--img-min-width);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            @media (max-width: 768px) {
+                max-width: 95%;
+                font-size: 1.15rem;
+                text-align: center;
+            }
+        }
+    }
+}

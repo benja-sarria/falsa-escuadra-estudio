@@ -3,46 +3,89 @@
     position: relative;
     min-height: var(--section-height);
     min-width: 100vw;
-    padding: 0rem 4rem;
+    padding: 0rem 0rem;
     margin-bottom: 4rem;
-    display: flex;
-    align-items: center;
+
+    @media (min-width: 768px) {
+        padding: 0rem 4rem;
+        display: flex;
+        align-items: center;
+    }
     .video-section-background {
         position: absolute;
         min-height: calc(var(--section-height));
-        min-width: 65%;
+        min-width: 100%;
         background: url("/assets/img/site/video-background.jpeg"),
             rgb(213, 206, 185) 50% / cover no-repeat;
         mix-blend-mode: color-burn;
+        @media (min-width: 768px) {
+            min-width: 65%;
+        }
     }
     .left-column {
         position: relative;
-        max-width: 50%;
+        max-width: 100%;
         min-height: calc(var(--section-height));
         overflow: hidden;
-        padding: 5rem 4rem;
+        padding: 2rem 1rem;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        justify-content: center;
+        justify-content: flex-start;
+        @media (min-width: 768px) {
+            max-width: 50%;
+            padding: 5rem 4rem;
+            justify-content: center;
+        }
         .left-column-text {
             font-size: 1.5rem;
             line-height: 2.5rem;
-            max-width: 65%;
+
+            @media (min-width: 768px) {
+                max-width: 65%;
+            }
+        }
+        @media (max-width: 768px) {
+            button {
+                align-self: center;
+            }
         }
         .left-column-indicators {
             display: flex;
             padding: 2rem 0rem;
             column-gap: 2rem;
             margin-bottom: 2rem;
+            @media (max-width: 768px) {
+                align-items: flex-start;
+                justify-content: center;
+                width: 100%;
+                column-gap: 0.5rem;
+            }
         }
     }
     .right-column {
         z-index: 2;
+        @media (max-width: 768px) {
+            display: flex;
+            justify-content: center;
+        }
+        .product-img-inner-container {
+            @media (max-width: 768px) {
+                --min-width: 90vw;
+            }
+            --min-width: 40vw;
+            position: relative;
+            min-width: var(--min-width);
+            max-width: var(--min-width);
+        }
         .right-column-video {
             z-index: 2;
-            min-width: calc((var(--section-height) * 0.8) * 1.5);
-            min-height: calc(var(--section-height) * 0.8);
+            min-width: calc(75vw);
+            min-height: calc(75vw / 1.2);
+            @media (min-width: 768px) {
+                min-width: calc((var(--section-height) * 0.8) * 1.5);
+                min-height: calc(var(--section-height) * 0.8);
+            }
         }
     }
 }

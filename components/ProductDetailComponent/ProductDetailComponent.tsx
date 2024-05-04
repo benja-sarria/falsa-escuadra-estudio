@@ -52,13 +52,10 @@ export const ProductDetailComponent = ({
     const siteTexts = useAppSelector((state) => state.globalLanguage.value);
     const pathname = usePathname();
     const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
-    useEffect(() => {
-        console.log("[OPENED]", openedDetail);
-    }, [openedDetail]);
 
     useEffect(() => {
         if (openedDetail && openedDetail.original) {
-            setActiveId(`${openedDetail?.original.photos[0].id}`);
+            setActiveId(`${openedDetail?.original?.photos[0]?.id}`);
         }
     }, []);
 
@@ -69,11 +66,6 @@ export const ProductDetailComponent = ({
                     <div className={styles["product-main-swiper-container"]}>
                         <Swiper
                             onActiveIndexChange={(swiper) => {
-                                console.log(
-                                    swiper.slides[swiper.activeIndex].dataset[
-                                        "photoId"
-                                    ]
-                                );
                                 setActiveId(
                                     swiper.slides[swiper.activeIndex].dataset[
                                         "photoId"
@@ -101,10 +93,6 @@ export const ProductDetailComponent = ({
                                                               document.querySelector(
                                                                   `#image-${photo.id}`
                                                               ) as HTMLElement;
-                                                          console.log(
-                                                              "[INPUT-PHOTO]",
-                                                              inputPhoto
-                                                          );
 
                                                           if (inputPhoto) {
                                                               inputPhoto.click();
@@ -279,10 +267,6 @@ export const ProductDetailComponent = ({
                                                     onChange={async (
                                                         evt: SyntheticEvent
                                                     ) => {
-                                                        console.log(
-                                                            "[VALUE]",
-                                                            evt
-                                                        );
                                                         const files = (
                                                             evt.target as HTMLInputElement
                                                         ).files;
@@ -316,10 +300,6 @@ export const ProductDetailComponent = ({
                                                                     ) as File
                                                                 )) as any;
 
-                                                            console.log(
-                                                                "STREAM",
-                                                                parsedSrc
-                                                            );
                                                             const updatedPhoto =
                                                                 {
                                                                     ...affectedPhoto,
@@ -388,20 +368,12 @@ export const ProductDetailComponent = ({
                                                             document.querySelector(
                                                                 `#image-${activeId}`
                                                             ) as HTMLElement;
-                                                        console.log(
-                                                            "[INPUT-PHOTO]",
-                                                            inputPhoto
-                                                        );
 
                                                         if (inputPhoto) {
                                                             inputPhoto.click();
                                                         }
                                                     },
                                                     remove: () => {
-                                                        console.log(
-                                                            "[EXECUTING]"
-                                                        );
-
                                                         const formData =
                                                             new FormData();
                                                         formData.append(
@@ -591,10 +563,6 @@ export const ProductDetailComponent = ({
                             {productTypes &&
                                 productTypes.data.map(
                                     (productType: ProductTypes) => {
-                                        console.log(
-                                            "[OPTION]",
-                                            productType.type
-                                        );
                                         return (
                                             <option
                                                 value={`${productType.id}`}

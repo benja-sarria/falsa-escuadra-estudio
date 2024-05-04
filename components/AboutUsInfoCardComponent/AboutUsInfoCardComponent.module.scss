@@ -1,0 +1,26 @@
+.card-container {
+    display: grid;
+    border-top: 1px solid var(--falsa-escuadra-white);
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    .pre-text {
+        font-size: 0.75rem;
+        display: flex;
+        flex-direction: column;
+        @media (max-width: 768px) {
+            font-size: 0.85rem;
+        }
+    }
+
+    .title {
+        font-size: 1.6rem;
+    }
+
+    .content {
+        @media (max-width: 768px) {
+            font-size: 1.15rem;
+        }
+    }
+}

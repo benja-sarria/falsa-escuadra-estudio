@@ -19,7 +19,7 @@ export const MiniDrawerContainer = async ({
         }
         return ["dashboard", "products"];
     })();
-    console.log("[SESSION]", session);
+
     return (
         <MiniDrawerComponent
             session={session}

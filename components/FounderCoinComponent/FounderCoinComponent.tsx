@@ -33,10 +33,10 @@ export const FounderCoinComponent = ({
                         calculate="height"
                         fixedParameter="--image-min-width"
                     />
-                    <ReusableButtonComponent
+                    {/* <ReusableButtonComponent
                         styleVariants={["coin-show-more"]}
                         icon={<AddIcon />}
-                    />
+                    /> */}
                 </div>
             )}
         </>

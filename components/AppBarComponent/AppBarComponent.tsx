@@ -86,7 +86,10 @@ function AppBarComponent({
                 }}
             >
                 <Toolbar disableGutters>
-                    <AnimatedNavbarLogoComponent variants={["light"]} />
+                    <AnimatedNavbarLogoComponent
+                        variants={["light"]}
+                        animatedId="navbar"
+                    />
 
                     <Box
                         sx={{

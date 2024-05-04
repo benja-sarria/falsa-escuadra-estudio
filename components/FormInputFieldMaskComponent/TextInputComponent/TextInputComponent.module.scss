@@ -1,0 +1,38 @@
+.text-input-component {
+    display: flex;
+    &__input {
+        min-width: 100%;
+        background-color: transparent;
+        border: none;
+        border-bottom: 2px solid var(--falsa-escuadra-grey-mid);
+        font-size: 1.25rem;
+        color: var(--falsa-escuadra-white);
+
+        &::placeholder {
+            font-size: 1rem;
+            position: relative;
+            bottom: 0.25rem;
+        }
+
+        &:focus {
+            outline: transparent;
+        }
+
+        &--shorten {
+            min-width: revert;
+        }
+    }
+
+    &__unit {
+        &--show {
+            padding: 0.5rem 0.5rem;
+            color: var(--falsa-escuadra-white);
+            font-weight: 600;
+            border-top: 2px solid var(--falsa-escuadra-grey-mid);
+            border-bottom: 2px solid var(--falsa-escuadra-grey-mid);
+            border-right: 2px solid var(--falsa-escuadra-grey-mid);
+            border-top-right-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+        }
+    }
+}

@@ -17,8 +17,6 @@ export const loading = createSlice({
             return initialLoadingValue;
         },
         setLoading: (state, action: PayloadAction<boolean>) => {
-            console.log(state, action);
-
             state.value = action.payload;
         },
     },
