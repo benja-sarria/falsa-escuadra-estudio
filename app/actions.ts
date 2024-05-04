@@ -134,10 +134,7 @@ export async function submitContactForm(formData: QueryInterface) {
         };
         const template = generateTemplate(templateData);
 
-        console.log(template);
-
         const contactServices = new ContactServices({ service: "gmail" });
-        console.log(contactServices);
 
         const mailData: Options = {
             from: `${process.env.MAIL_SENDER_ADDRESS}`,
