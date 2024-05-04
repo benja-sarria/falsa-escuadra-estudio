@@ -78,12 +78,14 @@ export const ContactFormComponent = () => {
         async (formData: QueryInterface) => {
             setIsSending("true");
             const token = await handleReCaptchaVerify();
+            console.log("TOKEN", token);
 
             if (!token) {
                 setIsSending("error");
                 return;
             }
             const validationResult = await validateRecaptcha(token);
+            console.log("validation", validationResult);
 
             if (!validationResult.success || !validationResult.isValidated) {
                 setIsSending("error");
