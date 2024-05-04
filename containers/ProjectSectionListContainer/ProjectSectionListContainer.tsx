@@ -12,8 +12,6 @@ export const ProjectSectionListContainer = async () => {
 
     const parsedProducts = products.data.reduce(
         (acc: Product[], data: Product) => {
-            console.log(acc);
-
             const repeatedProduct = acc?.find(
                 (product: Product) =>
                     product.title === data.title &&

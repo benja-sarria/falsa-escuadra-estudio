@@ -14,8 +14,6 @@ export const ProjectDetailComponent = ({
 }) => {
     const parsedContent = parseProjectContent(project.content);
 
-    console.log(parsedContent.length);
-
     const filteredParagraphs = parsedContent.filter(
         (paragraph) => paragraph.type === "p"
     );
@@ -25,11 +23,9 @@ export const ProjectDetailComponent = ({
             <h1 className={styles["project-detail-title"]}>{project.title}</h1>
             <div className={styles["project-detail-content"]}>
                 {parsedContent.map((paragraph, index) => {
-                    console.log(filteredParagraphs.indexOf(paragraph));
-
                     const photo =
                         project.photos[filteredParagraphs.indexOf(paragraph)];
-                    console.log(paragraph.type);
+
                     const isParagraph = paragraph.type === "p";
 
                     return (

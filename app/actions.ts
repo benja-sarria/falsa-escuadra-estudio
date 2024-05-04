@@ -18,7 +18,6 @@ export async function deleteProductPhoto(formData: FormData) {
     const response = await productServices.removePhotoService({
         id: +entries.photoSlug,
     });
-    console.log("RESPONSE", response);
 }
 
 export async function updateProductPhoto(formData: FormData) {
@@ -155,8 +154,6 @@ export async function submitContactForm(formData: QueryInterface) {
     };
 
     const result = await contactServices.sendEmail(mailData);
-
-    console.log("RESULT", result);
 
     return result;
 }
