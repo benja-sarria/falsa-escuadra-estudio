@@ -377,13 +377,13 @@ export const stageFields: {
     1: {
         data: "name",
         type: "text",
-        placeholder: "Escribe aqui...",
+        placeholder: "Escribe aquí...",
         validate: ["name", "lastName"],
     },
     2: {
         data: "phone",
         type: "phone",
-        placeholder: "Escribe aqui...",
+        placeholder: "Escribe aquí...",
         validate: ["phone"],
     },
     3: {

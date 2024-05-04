@@ -64,7 +64,7 @@ export const TextInputComponent = ({
                         ? ` ${styles[`${namespace}__input--shorten`]}`
                         : ""
                 }`}
-                placeholder={placeholder ?? "Escribe aqui..."}
+                placeholder={placeholder ?? "Escribe aquí..."}
             />
             {isDimensional && (
                 <span className={styles[`${namespace}__unit--show`]}>cm</span>
