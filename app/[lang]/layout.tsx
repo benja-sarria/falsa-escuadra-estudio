@@ -14,6 +14,8 @@ import { acceptedLocales } from "@/utils/api/getLocale";
 import { NavbarContainer } from "@/containers/NavbarContainer/NavbarContainer";
 import { SearchBoxContainer } from "@/containers/SearchBoxContainer/SearchBoxContainer";
 
+import { GoogleAnalytics } from "@next/third-parties/google";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -57,6 +59,7 @@ export default async function RootLayout({
                             {children}
                         </LanguageProvider>
                     </ReduxProvider>
+                    <GoogleAnalytics gaId={`${process.env.GOOGLE_GTAG_ID}`} />
                 </body>
             </html>
         </Provider>
